@@ -1,6 +1,6 @@
 # Schoolastick
 
-![Screenshot (7)](https://github.com/user-attachments/assets/1143f5f5-7c4b-4ac3-8a65-4ba7cd3b5893)
+
 ![Screenshot (6)](https://github.com/user-attachments/assets/c77dffec-dbcf-49e1-bb37-3f8fa2bcfb78)
 ![Screenshot (5)](https://github.com/user-attachments/assets/a3962199-7c27-4bd3-b64c-d81d87e1966e)
 ![Screenshot (4)](https://github.com/user-attachments/assets/4a8d6c22-875e-45ea-878f-fd49727c24ff)
