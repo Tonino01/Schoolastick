@@ -7,8 +7,6 @@
 body {
   background-color: #23548B;
   font-family: 'Madimi One', sans-serif;
-  margin: 0;
-  text-align: center;
   
   
 }
@@ -17,6 +15,8 @@ h1 {
 	color: white;
 	margin-top: 60px;
 	font-size: 48px;
+	align-items: center;
+	text-align: center;
 	
 } 
 

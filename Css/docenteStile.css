@@ -1,0 +1,110 @@
+
+@font-face {
+  font-family: 'Madimi One';
+  src: url('MadimiOne.ttf') format('truetype');
+}
+
+.header {
+	
+	position: relative;
+    display: flex;
+    align-items: center;
+	
+}
+
+.header .profile {
+	
+	margin-left: 53%;
+	
+	
+}
+
+body {
+  background-color: #93719C;
+  font-family: 'Madimi One', sans-serif;
+  
+  
+}
+
+h1 {
+    color: white;
+    font-size: 48px;
+    border-style: solid;
+    border-color: #831E9C;
+    background-color: #831E9C;
+    width: 100%;
+    max-width: 735px;
+    height: auto;
+    
+    padding: 10px;
+    position: relative;
+	
+	border-radius: 20px;
+}
+
+.bannerSegnalazioni {
+    color: white;
+    border-style: solid;
+    border-color: #360143;
+    background-color: #360143;
+    height: 100px;
+    padding: 10px;
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.bannerSegnalazioni h2 {
+    flex-grow: 1;
+	font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.buttonNuova {
+    background-color: #831E9C;
+    border: 2px solid #831E9C;
+	color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 10px;
+	margin-left: 20px;
+	font-family: 'Madimi One', sans-serif;
+	height: 70px;
+	width: 150px;
+	font-size: 24px;
+}
+
+.buttonNuova:hover{
+	
+	background-color: #6750A4;
+	border: 2px solid #6750A4;
+	
+}
+
+.buttonNuova editIcon {
+	
+	margin-right: 0px;
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
+}
+
+
+
+.segnalazione {
+	
+	background-color: #D9D9D9;
+	
+}
+
+
+
+
+
+
