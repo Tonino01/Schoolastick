@@ -4,23 +4,27 @@
   src: url('MadimiOne.ttf') format('truetype');
 }
 
+* {
+	
+	font-family: 'Madimi One', sans-serif;
+	
+}
+
 body {
   background-color: #23548B;
-  font-family: 'Madimi One', sans-serif;
-  
-  
   
   
 }
 
 h1 {
 	color: white;
-	margin-top: 60px;
+	margin-top: 40px;
 	font-size: 48px;
+	text-align: center;
 	
 } 
 
-form {
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +48,7 @@ input {
 }
 
 label {
-	
+	margin-top: 15px;
 	padding: 12px;
 	font-size: 22px;
 	
@@ -76,7 +80,7 @@ label {
 	display: inline-block;
 	font-size: 20px;
 	border-radius: 8px;
-	font-family: 'Madimi One', sans-serif;
+	
 }
 
 .buttonAnnulla {
@@ -86,9 +90,9 @@ label {
 	color: white;
 	font-size: 20px;
 	border-radius: 8px;
-	font-family: 'Madimi One', sans-serif;
-	
+	align-items: center;
 	margin-top: 15px;
+	
 	
 }
 
