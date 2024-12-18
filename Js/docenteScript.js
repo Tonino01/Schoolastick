@@ -1,13 +1,13 @@
+let fs = require('fs');
 
-const creaSegnalazione = document.createElement();
-
-
-function caricaContenuto(file, callback) {
-  fetch(file)
-    .then(response => response.text())
-    .then(data => callback(data))
-    .catch(error => console.error('Errore nel caricamento del file:', error));
-	
-	
+function caricaContenuto() {
+    fs.readFile('mostraSegnalazioni.html', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        document.getElementById("contenuto").innerHTML = data;
+    });
 }
+
 

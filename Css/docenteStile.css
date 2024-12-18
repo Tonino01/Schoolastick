@@ -1,8 +1,5 @@
 
-@font-face {
-  font-family: 'Madimi One';
-  src: url('MadimiOne.ttf') format('truetype');
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
 	
@@ -19,9 +16,15 @@
 	
 }
 
+*{
+	
+	font-family: 'Poppins', sans-serif;
+	
+}
+
 body {
   background-color: #93719C;
-  font-family: 'Madimi One', sans-serif;
+  
   
   
 }
@@ -40,6 +43,13 @@ h1 {
     position: relative;
 	
 	border-radius: 20px;
+}
+
+.utente{
+	
+	margin-left: 10px;
+	font-size: 30px;
+	
 }
 
 .containerSegnalazioni {
