@@ -1,13 +1,13 @@
-let fs = require('fs');
+function caricaSegnalazioni() {
 
-function caricaContenuto() {
-    fs.readFile('mostraSegnalazioni.html', 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-        document.getElementById("contenuto").innerHTML = data;
+  fetch("librerie/mostraSegnalazioni.html")
+    .then(response => response.text())
+    .then(data => {
+      const fileContent = data;
+      document.getElementById('contenitore').innerHTML = fileContent;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento del file:', error);
     });
+
 }
-
-
