@@ -2,31 +2,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
-	
+
 	position: relative;
     display: flex;
     align-items: center;
-	
+
 }
 
 .header .profile {
-	
+
 	margin-left: 53%;
-	
-	
+
+
 }
 
 *{
-	
+
 	font-family: 'Poppins', sans-serif;
-	
+
 }
 
 body {
   background-color: #93719C;
-  
-  
-  
+
+
+
 }
 
 h1 {
@@ -38,18 +38,18 @@ h1 {
     width: 100%;
     max-width: 735px;
     height: auto;
-    
+
     padding: 10px;
     position: relative;
-	
+
 	border-radius: 20px;
 }
 
 .utente{
-	
+
 	margin-left: 10px;
 	font-size: 30px;
-	
+
 }
 
 .containerSegnalazioni {
@@ -69,7 +69,7 @@ h1 {
 
 .containerSegnalazioni h2 {
     flex-grow: 1;
-	font-size: 48px;
+		font-size: 48px;
     text-align: center;
     margin: 0;
 }
@@ -91,14 +91,14 @@ h1 {
 }
 
 .buttonNuova:hover{
-	
+
 	background-color: #6750A4;
 	border: 2px solid #6750A4;
-	
+
 }
 
 .buttonNuova editIcon {
-	
+
 	margin-right: 0px;
 	margin-right: 10px;
 	width: 20px;
@@ -118,18 +118,28 @@ h1 {
 }
 
 .segnalazione {
-	
+
     background-color: #D9D9D9;
     height: calc((100vh - 400px) / 2 - 20px); /* Calcola l'altezza tenendo conto dei padding e degli spazi tra le righe */
     width: calc((100% - 80px) / 3 - 20px); /* Calcola la larghezza tenendo conto dei padding e degli spazi tra i div */
     margin: 10px;
     border-radius: 20px;
     box-sizing: border-box;
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+		box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
 
+.creaSegnalazione {
 
+	color: white;
+	border-style: solid;
+	border-color: #360143;
+	background-color: #360143;
+	height: 100px;
+	padding: 10px;
+	position: relative;
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
 
-
-
+}
