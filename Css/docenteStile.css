@@ -75,16 +75,15 @@ h1 {
 }
 
 .buttonNuova {
-    background-color: #831E9C;
-    border: 2px solid #831E9C;
+  background-color: #831E9C;
+  border: 2px solid #831E9C;
 	color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 20px;
-    margin-right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 10px;
 	margin-left: 20px;
-	font-family: 'Madimi One', sans-serif;
 	height: 70px;
 	width: 150px;
 	font-size: 24px;
@@ -148,5 +147,28 @@ h1 {
     display: flex;
 
     align-items: center;
+
+}
+
+.defaultButton {
+
+	background-color: #1F1F3F;
+  border: 2px solid #1F1F3F;
+	color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 10px;
+	margin-left: 20px;
+	height: 70px;
+	width: 150px;
+	font-size: 24px;
+}
+
+.defaultButton:hover{
+
+	background-color: #6161C5;
+	border: 2px solid #6161C5;
 
 }
