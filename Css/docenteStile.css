@@ -131,14 +131,15 @@ h1 {
 
 .creaSegnalazione {
 
+	margin-top: 40px;
 	color: white;
 	border-style: solid;
-	border-color: #360143;
-	background-color: #360143;
+	border-color: #23548B;
+	background-color: #23548B;
 	height: 100px;
 	padding: 10px;
 	position: relative;
-	border-radius: 20px;
+	border-radius: 30px;
 	display: flex;
 	align-items: center;
 
