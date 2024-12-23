@@ -23,7 +23,7 @@ async function mostraSegnalazioni() {
 async function creaSegnalazioni(){
 
   try {
-      const response = await fetch('librerie/creaSegnalazioni.html');
+      const response = await fetch('librerie/nuovaSegnalazione.html');
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }
