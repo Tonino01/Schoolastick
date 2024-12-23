@@ -1,19 +1,16 @@
 
-@font-face {
-  font-family: 'Madimi One';
-  src: url('MadimiOne.ttf') format('truetype');
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-* {
-	
-	font-family: 'Madimi One', sans-serif;
-	
+*{
+
+	font-family: 'Poppins', sans-serif;
+
 }
 
 body {
   background-color: #23548B;
-  
-  
+
+
 }
 
 h1 {
@@ -21,8 +18,8 @@ h1 {
 	margin-top: 40px;
 	font-size: 48px;
 	text-align: center;
-	
-} 
+
+}
 
 div {
     display: flex;
@@ -30,7 +27,7 @@ div {
     align-items: center;
     margin: 0 auto;
     border: 1px solid #ccc;
-    
+
 	border: #D9D9D9;
 	background-color: #D9D9D9;
     width: 475px;
@@ -40,7 +37,7 @@ div {
 }
 
 input {
-	
+
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	padding: 6px;
@@ -51,16 +48,16 @@ label {
 	margin-top: 15px;
 	padding: 12px;
 	font-size: 22px;
-	
+
 }
 
 .container {
-	
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 10vh;
-	
+
 }
 
 .buttonCrea {
@@ -69,22 +66,22 @@ label {
 	margin-bottom : 25%;
 	max-margin: 200px;
 	color: white;
-	
+
 	padding: 8px;
 	padding-left: 30%;
 	padding-right: 30%;
-	
+
 	text-align: center;
 	text-decoration: none;
-	
+
 	display: inline-block;
 	font-size: 20px;
 	border-radius: 8px;
-	
+
 }
 
 .buttonAnnulla {
-	
+
 	background-color: #2C2C2C;
 	padding: 8px;
 	color: white;
@@ -92,7 +89,6 @@ label {
 	border-radius: 8px;
 	align-items: center;
 	margin-top: 15px;
-	
-	
-}
 
+
+}
