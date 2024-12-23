@@ -39,17 +39,17 @@ h1 {
 .logo {
 
 	color: white;
-
+	position: relative;
+	display: flex;
+	align-items: center;
 	border-style: solid;
 	border-color: #831E9C;
 	background-color: #831E9C;
 	width: 100%;
 	max-width: 735px;
 	height: auto;
-
 	padding: 10px;
 	position: relative;
-
 	margin-top: 30px;
 	margin-bottom: 30px;
 	border-radius: 20px;
