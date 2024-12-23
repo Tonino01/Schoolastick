@@ -29,23 +29,35 @@ body {
 
 }
 
+
+
 h1 {
-    color: white;
     font-size: 48px;
-    border-style: solid;
-    border-color: #831E9C;
-    background-color: #831E9C;
-    width: 100%;
-    max-width: 735px;
-    height: auto;
 
-    padding: 10px;
-    position: relative;
-
-	border-radius: 20px;
 }
 
-.tipoUtente{
+.logo {
+
+	color: white;
+
+	border-style: solid;
+	border-color: #831E9C;
+	background-color: #831E9C;
+	width: 100%;
+	max-width: 735px;
+	height: auto;
+
+	padding: 10px;
+	position: relative;
+
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius: 20px;
+
+
+}
+
+.utente{
 
 	margin-left: 10px;
 	font-size: 30px;
@@ -142,21 +154,54 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centra verticalmente i contenuti */
 }
 
-.infoAccount h3 {
-    margin-top: 20px;
+.testa {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Posiziona il titolo DOCENTE in alto a sinistra */
+    display: flex;
+    align-items: center;
+}
+
+.testa h3 {
+    margin: 0;
+		color: white;
+    font-size: 48px;
+    border-style: solid;
+    border-color: #831E9C;
+    background-color: #831E9C;
+    width: 100%;
+    max-width: 735px;
+    height: auto;
+
+    padding-left: 50px;
+		padding-right: 50px;
+    position: relative;
+
+		border-radius: 20px;
+}
+
+.testa img {
+
+    margin-left: 545px; /* Spazio tra titolo e immagine */
 }
 
 .infoAccount p {
     margin: 10px 0;
+    text-align: center; /* Centra il testo dei paragrafi */
 }
 
 .infoAccount .defaultButton {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 20px; /* Posiziona i bottoni in basso */
+    left: 20px;  /* Posiziona i bottoni a sinistra */
 }
+
+
+
+
 
 
 
