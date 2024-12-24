@@ -227,6 +227,73 @@ h1 {
 
 }
 
+.selezionaPiano {
+  background-color: #1E4A7A;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.selezionaPiano h4 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.selezionaPiano button {
+  background-color: #1A1A3D;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.selezionaPiano button:hover {
+  background-color: #333366;
+}
+
+.selezionaPiano button:nth-child(2) {
+  order: 1;
+}
+
+.selezionaPiano button:nth-child(3) {
+  order: 2;
+}
+
+.selezionaPiano button:nth-child(4) {
+  order: 3;
+}
+
+.selezionaPiano button:nth-child(5) {
+  order: 4;
+}
+
+.selezionaPiano button:nth-child(6) {
+  order: 5;
+}
+
+.selezionaPiano button:nth-child(7) {
+  order: 6;
+}
+
+.selezionaPiano button:nth-child(8) {
+  order: 7;
+}
+
+
+
+
+
 .defaultButton {
 
 	background-color: #2C2C2C;
