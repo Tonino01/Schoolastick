@@ -69,6 +69,7 @@ function pulisciContenitore(){
 
 }
 
+//inutili, mi servivano solo per provare una cosa, e non ho voglia di toglierli
 function segnalazioni(){
 
   pulisciContenitore();
@@ -87,5 +88,42 @@ function mostraInfoAccount(){
 
   pulisciContenitore();
   infoAccount();
+
+}
+
+
+function seminterratoButton(){
+
+  document.getElementById("titoloNuova").innerText = "SEMINTERRATO - SELEZIONA AULA";
+
+}
+function palestraButton(){
+
+
+
+}
+function pianoTerraButton(){
+
+
+
+}
+function intermedio1Button(){
+
+
+
+}
+function piano1Button(){
+
+
+
+}
+function intermedio2Button(){
+
+
+
+}
+function piano2Button(){
+
+
 
 }
