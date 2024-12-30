@@ -94,8 +94,8 @@ function mostraInfoAccount(){
 
 function seminterratoButton(){
 
-  document.getElementById("titoloNuova").innerText = "SEMINTERRATO - SELEZIONA AULA";
-  document.getElementById("seminterrato").innerHTML.remove();
+  
+
 
 
 }
