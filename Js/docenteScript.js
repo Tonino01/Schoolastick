@@ -52,38 +52,43 @@ function mostraInfoAccount(){
 
 function seminterratoButton(){
 
-
-
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
 function palestraButton(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Palestra.html');
 
 }
 function pianoTerraButton(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - PianoTerra.html');
 
 }
 function intermedio1Button(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
 function piano1Button(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
 function intermedio2Button(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
 function piano2Button(){
 
-
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
