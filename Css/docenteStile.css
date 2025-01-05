@@ -291,7 +291,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.buttonAula {
+button .buttonAula {
   background-color: #1A1A3D;
   color: white;
 	position: absolute;
@@ -305,7 +305,7 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.buttonAula:hover {
+button .buttonAula:hover {
   background-color: #333366;
 }
 
