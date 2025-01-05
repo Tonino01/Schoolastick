@@ -1,4 +1,4 @@
-
+//ottimizazione fetch
 async function fetching(risorsa) {
 
     try {
@@ -18,7 +18,12 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
+//trovare soluzioni per transizioni
+function transizione(container){
 
+  document.getElementById(container).classList.add('div-animate');
+
+}
 
 function pulisciContenitore(){
 
@@ -26,7 +31,7 @@ function pulisciContenitore(){
 
 }
 
-//inutili, mi servivano solo per provare una cosa, e non ho voglia di toglierli
+
 function segnalazioni(){
 
   pulisciContenitore();
@@ -45,50 +50,71 @@ function nuovaSegnalazione(){
 function mostraInfoAccount(){
 
   pulisciContenitore();
+  //non funziona, uffa...
+
+  //transizione('info');
+
   fetching('librerie/infoAccount.html');
 
 }
 
+let tempPiano = "";
+let tempAula = "";
 
 function seminterratoButton(){
 
+  tempPiano = "Seminterrato";
   pulisciContenitore();
   fetching('librerie/nuovaSegnalazione - Seminterrato.html');
 
 }
 function palestraButton(){
 
+  tempPiano = "Palestra";
   pulisciContenitore();
   fetching('librerie/nuovaSegnalazione - Palestra.html');
 
 }
 function pianoTerraButton(){
 
+  tempPiano = "Piano Terra";
   pulisciContenitore();
   fetching('librerie/nuovaSegnalazione - PianoTerra.html');
 
 }
 function intermedio1Button(){
 
+  tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
+  fetching('librerie/nuovaSegnalazione - intermedio1.html');
 
 }
 function piano1Button(){
 
+  tempPiano = "Piano 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
+  fetching('librerie/nuovaSegnalazione - Piano1.html');
 
 }
 function intermedio2Button(){
 
+  tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
+  fetching('librerie/nuovaSegnalazione - intermedio2.html');
 
 }
 function piano2Button(){
 
+  tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
+  fetching('librerie/nuovaSegnalazione - piano2.html');
+
+}
+
+function dettagliSegnalazione(aula){
+
+  pulisciContenitore();
+  fetching('librerie/mostraDettagliSegnalazione.html');
+  document.getElementById("aulaSezione").innerText = aula;
 
 }
