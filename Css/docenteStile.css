@@ -137,8 +137,9 @@ h1 {
     box-sizing: border-box;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center; /* Centra orizzontalmente */
-    align-items: flex-start; /* Centra in alto */
+    flex-direction: column; /* Disporre gli elementi in colonna */
+    justify-content: flex-start; /* Allineare gli elementi all'inizio */
+    align-items: center; /* Centra orizzontalmente */
     padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
 }
 
@@ -152,6 +153,31 @@ h1 {
     display: flex;
     justify-content: center; /* Assicura che il contenuto della barra sia centrato orizzontalmente */
     align-items: center; /* Assicura che il contenuto della barra sia centrato verticalmente */
+}
+
+.barraSegnalazione h4 {
+
+	font-size: 23px;
+	color: white;
+
+}
+
+
+
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%); /* Inizia fuori dalla visuale, sotto */
+    opacity: 0; /* Inizia invisibile */
+  }
+  100% {
+    transform: translateY(0); /* Torna alla posizione originale */
+    opacity: 1; /* Diventa visibile */
+  }
+}
+
+.div-animate {
+  animation: slide-up 0.5s ease-out forwards; /* Applica l'animazione */
 }
 
 
@@ -211,7 +237,7 @@ h1 {
     text-align: center; /* Centra il testo dei paragrafi */
 }
 
-.infoAccount .defaultButton {
+.infoAccount #indietro {
     position: absolute;
     bottom: 20px; /* Posiziona i bottoni in basso */
     left: 20px;  /* Posiziona i bottoni a sinistra */
@@ -249,9 +275,10 @@ h1 {
 
   padding: 20px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
   gap: 10px;
 }
 
@@ -264,10 +291,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-.selezionaPiano button {
+.buttonAula {
   background-color: #1A1A3D;
   color: white;
-
+	position: absolute;
+	bottom: 20px; /* Posiziona i bottoni in basso */
+	left: 20px;  /* Posiziona i bottoni a sinistra */
   font-size: 18px;
   padding: 10px 20px;
   border: none;
@@ -276,7 +305,7 @@ h1 {
   transition: background-color 0.3s;
 }
 
-.selezionaPiano button:hover {
+.buttonAula:hover {
   background-color: #333366;
 }
 
@@ -285,7 +314,7 @@ h1 {
 
 
 
-.defaultButton {
+button {
 
 	background-color: #2C2C2C;
   border: 2px solid #2C2C2C;
@@ -300,7 +329,7 @@ h1 {
 
 }
 
-.defaultButton:hover{
+button:hover{
 
 	background-color: #777575;
 	border: 2px solid #777575;

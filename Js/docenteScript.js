@@ -1,4 +1,4 @@
-
+//ottimizazione fetch
 async function fetching(risorsa) {
 
     try {
@@ -18,7 +18,12 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
+//trovare soluzioni per transizioni
+function transizione(container){
 
+  document.getElementById(container).classList.add('div-animate');
+
+}
 
 function pulisciContenitore(){
 
@@ -26,7 +31,7 @@ function pulisciContenitore(){
 
 }
 
-//inutili, mi servivano solo per provare una cosa, e non ho voglia di toglierli
+
 function segnalazioni(){
 
   pulisciContenitore();
@@ -45,6 +50,10 @@ function nuovaSegnalazione(){
 function mostraInfoAccount(){
 
   pulisciContenitore();
+  //non funziona, uffa...
+
+  //transizione('info');
+
   fetching('librerie/infoAccount.html');
 
 }
@@ -90,5 +99,12 @@ function piano2Button(){
 
   pulisciContenitore();
   fetching('librerie/nuovaSegnalazione - Seminterrato.html');
+
+}
+
+function dettagliSegnalazione(){
+
+  pulisciContenitore();
+  fetching('librerie/mostraDettagliSegnalazione.html');
 
 }
