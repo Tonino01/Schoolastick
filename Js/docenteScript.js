@@ -1,3 +1,21 @@
+//inizializazione degli oggetti
+
+const segnalazione = {
+
+  descrizione: "",
+  categoria: "",
+  aula:"",
+  piano: "",
+  stato: "",
+  perChi: "",
+  daChi: "",
+  risoluzione: ""
+
+};
+
+
+
+
 //ottimizazione fetch
 async function fetching(risorsa) {
 
@@ -113,13 +131,32 @@ function piano2Button(){
 
 function dettagliSegnalazione(aula){
   tempAula = aula;
+
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
 
+  setTimeout(function() { console.log('Attesa completata. Continuo con la funzione.');
+    document.getElementById('aulaSezione').innerText = tempAula;
+  }, 500);
+
 }
 
-function getAula(){
 
-  document.getElementById('aulaSezione').innerText = tempAula;
+function creaSegnalazione(){
 
+  segnalazione.descrizione = document.getElementById("descrizione").value;
+
+  let categoria = document.getElementById("categoria").options[selectElement.selectedIndex];
+
+  segnalazione.categoria = categoria.value;
+
+  segnalazione.aula = tempAula;
+
+  segnalazione.piano = tempPiano;
+
+  segnalazione.stato = "DA FARE";
+
+  segnalazione.daChi = getUtente();
+
+  segnalazione.perChi = 
 }
