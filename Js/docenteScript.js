@@ -14,7 +14,11 @@ const segnalazione = {
 };
 
 
+function logOut(){
 
+  window.location.href = "index.html";
+
+}
 
 //ottimizazione fetch
 async function fetching(risorsa) {
@@ -133,7 +137,7 @@ function dettagliSegnalazione(aula){
   tempAula = aula;
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  fetching('librerie/mostraCreaSegnalazione.html');
 
   setTimeout(function() { console.log('Attesa completata. Continuo con la funzione.');
     document.getElementById('aulaSezione').innerText = tempAula;
@@ -141,14 +145,30 @@ function dettagliSegnalazione(aula){
 
 }
 
+function indietro(){
+
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - ' +tempPiano.replace(/\s+/g, '')+ '.html');
+
+}
+
+function getUtente(){
+
+
+
+}
 
 function creaSegnalazione(){
+
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
   let categoria = document.getElementById("categoria").options[selectElement.selectedIndex];
+  alert("gsgr");
 
-  segnalazione.categoria = categoria.value;
+  categoria = categoria.value;
+
+  segnalazione.categoria = categoria;
 
   segnalazione.aula = tempAula;
 
@@ -158,5 +178,19 @@ function creaSegnalazione(){
 
   segnalazione.daChi = getUtente();
 
-  segnalazione.perChi = 
+  if(categoria == "Pulire"){
+
+    segnalazione.perChi = "Collaboratore";
+
+  }else{
+
+    segnalazione.perChi = "Tecnico";
+
+  }
+
+  alert("segnalazione effettuata!!");
+
+
+  //inviare la segnalazione al DataBase
+
 }

@@ -338,7 +338,7 @@ button:hover{
 }
 
 
-.dettagliSegnalazioni {
+.creaSegnalazioni {
 	margin-top: 50px;
 
 	margin-left: auto;
@@ -354,11 +354,10 @@ button:hover{
 	position: relative;
 	border-radius: 40px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+
 }
 
-.dettagliSegnalazioni h4 {
+.creaSegnalazioni h4 {
 	font-size: 24px;
   margin: 0;
   position: absolute;
@@ -385,14 +384,13 @@ button:hover{
   padding: 50px;
   border: 1px solid #fff;
   border-radius: 10px;
-  background-color: #4682B4;
-  color: white;
+
 }
 
 .inserimento select {
   padding: 8px;
   border: 1px solid #fff;
   border-radius: 5px;
-  background-color: #4682B4;
-  color: white;
+
+
 }
