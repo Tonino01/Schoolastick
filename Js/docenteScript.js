@@ -112,9 +112,14 @@ function piano2Button(){
 }
 
 function dettagliSegnalazione(aula){
-
+  tempAula = aula;
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
-  document.getElementById("aulaSezione").innerText = aula;
+
+}
+
+function getAula(){
+
+  document.getElementById('aulaSezione').innerText = tempAula;
 
 }

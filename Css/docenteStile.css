@@ -145,15 +145,16 @@ h1 {
 
 .barraSegnalazione {
     background-color: #D70505;
-    height: 65px;
-    width: 550px;
+    height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
+    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
     margin: 10px;
     border-radius: 20px;
     box-sizing: border-box;
     display: flex;
-    justify-content: center; /* Assicura che il contenuto della barra sia centrato orizzontalmente */
-    align-items: center; /* Assicura che il contenuto della barra sia centrato verticalmente */
+    justify-content: center;
+    align-items: center;
 }
+
 
 .barraSegnalazione h4 {
 
@@ -334,4 +335,65 @@ button:hover{
 	background-color: #777575;
 	border: 2px solid #777575;
 
+}
+
+
+.dettagliSegnalazioni {
+	margin-top: 50px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	color: white;
+	border-style: solid;
+	border-color: #23548B;
+	background-color: #23548B;
+	height: 60vh;
+	width: 90%;
+
+	position: relative;
+	border-radius: 40px;
+	display: flex;
+
+  flex-direction: column;
+  padding: 20px;
+}
+
+.dettagliSegnalazioni h4 {
+	font-size: 24px;
+  margin: 0;
+  position: absolute;
+
+}
+
+.inserimento {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.inserimento label {
+  display: block;
+
+  color: white;
+}
+
+.inserimento input {
+  flex: 1;
+  margin-right: 20px;
+  padding: 50px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  background-color: #4682B4;
+  color: white;
+}
+
+.inserimento select {
+  padding: 8px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: #4682B4;
+  color: white;
 }

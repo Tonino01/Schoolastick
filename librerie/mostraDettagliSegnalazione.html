@@ -1,16 +1,21 @@
-<div class="dettagliSegnalazioni">
+<div class="dettagliSegnalazioni" >
 
-  <h4>DETTAGLI SEGNALAZIONE - <span id = "aulaSezione"><span></h4>
+  <h4>DETTAGLI SEGNALAZIONE - <span id = "aulaSezione">Aula **<span></h4>
 
-  <h5>DESCRIZIONE PROBLEMA</h5>
+  <div class = "inserimento">
 
-  <input type="text" name="" value="">
+    <label><h5>DESCRIZIONE PROBLEMA</h5></label>
+    <input type="text" name="" value="">
 
-  <label for="categoria"><h5>CATEGORIA</h5></label>
-  <select id="categoria" name="problema">
-    <option value = "Riparare"><option>
-    <option value = "sostituire"><option>
-    <option value = "pulire"><option>
-  </select>
+    <label for="categoria"><h5>CATEGORIA</h5></label>
+    <select id="categoria" name="problema">
+      <option value = "Riparare">
+      <option value = "sostituire">
+      <option value = "pulire">
+    </select>
+  </div>
+
+  <button type="button" onclick="nuovaSegnalazione()" >INDIETRO</button>
+  <button type="button" class="buttonAula" onclick="creaSegnalazione()" >CREA</button>
 
 </div>
