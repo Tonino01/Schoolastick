@@ -64,7 +64,7 @@ function segnalazioni(){
 function dettagliSegnalazione(){
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazioni.html');
+  fetching('librerie/mostraDettagliSegnalazione.html');
 
 }
 

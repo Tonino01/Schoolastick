@@ -413,5 +413,28 @@ button:hover{
 	position: relative;
 	border-radius: 40px;
 	display: flex;
+	flex-direction: column;
+
+}
+
+
+.barraStato {
+    background-color: #D70505;
+    height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
+    width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
+    margin: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dettagliSegnalazioni p{
+
+	font-size: 32px;
+
+	margin-left: 150px;
+
 
 }
