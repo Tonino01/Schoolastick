@@ -394,3 +394,24 @@ button:hover{
 
 
 }
+
+
+.dettagliSegnalazioni{
+
+	margin-top: 50px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	color: white;
+	border-style: solid;
+	border-color: #23548B;
+	background-color: #23548B;
+	height: 60vh;
+	width: 90%;
+
+	position: relative;
+	border-radius: 40px;
+	display: flex;
+
+}

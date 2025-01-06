@@ -61,6 +61,13 @@ function segnalazioni(){
 
 }
 
+function dettagliSegnalazione(){
+
+  pulisciContenitore();
+  fetching('librerie/mostraDettagliSegnalazioni.html');
+
+}
+
 function nuovaSegnalazione(){
 
   pulisciContenitore();
@@ -133,7 +140,7 @@ function piano2Button(){
 
 }
 
-function dettagliSegnalazione(aula){
+function creaSegnalazione(aula){
   tempAula = aula;
 
   pulisciContenitore();
@@ -154,11 +161,11 @@ function indietro(){
 
 function getUtente(){
 
-
+  //DA FARE!!!!
 
 }
 
-function creaSegnalazione(){
+function creaNuovaSegnalazione(){
 
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
