@@ -170,8 +170,11 @@ function creaNuovaSegnalazione(){
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
-  let categoria = document.getElementById("categoria").options[selectElement.selectedIndex];
-  alert("gsgr");
+  let selectElement = document.getElementById('categoria');
+
+
+  let categoria = selectElement.options[selectElement.selectedIndex];
+  
 
   categoria = categoria.value;
 
@@ -200,4 +203,8 @@ function creaNuovaSegnalazione(){
 
   //inviare la segnalazione al DataBase
 
+
+
+
+  segnalazioni();
 }
