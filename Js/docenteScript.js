@@ -1,3 +1,25 @@
+//inizializazione degli oggetti
+
+const segnalazione = {
+
+  descrizione: "",
+  categoria: "",
+  aula:"",
+  piano: "",
+  stato: "",
+  perChi: "",
+  daChi: "",
+  risoluzione: ""
+
+};
+
+
+function logOut(){
+
+  window.location.href = "index.html";
+
+}
+
 //ottimizazione fetch
 async function fetching(risorsa) {
 
@@ -36,6 +58,13 @@ function segnalazioni(){
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
+
+}
+
+function dettagliSegnalazione(){
+
+  pulisciContenitore();
+  fetching('librerie/mostraDettagliSegnalazione.html');
 
 }
 
@@ -111,10 +140,71 @@ function piano2Button(){
 
 }
 
-function dettagliSegnalazione(aula){
+function creaSegnalazione(aula){
+  tempAula = aula;
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
-  document.getElementById("aulaSezione").innerText = aula;
+  fetching('librerie/mostraCreaSegnalazione.html');
 
+  setTimeout(function() { console.log('Attesa completata. Continuo con la funzione.');
+    document.getElementById('aulaSezione').innerText = tempAula;
+  }, 500);
+
+}
+
+function indietro(){
+
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione - ' +tempPiano.replace(/\s+/g, '')+ '.html');
+
+}
+
+function getUtente(){
+
+  //DA FARE!!!!
+
+}
+
+function creaNuovaSegnalazione(){
+
+
+  segnalazione.descrizione = document.getElementById("descrizione").value;
+
+  let selectElement = document.getElementById('categoria');
+
+
+  let categoria = selectElement.options[selectElement.selectedIndex];
+  
+
+  categoria = categoria.value;
+
+  segnalazione.categoria = categoria;
+
+  segnalazione.aula = tempAula;
+
+  segnalazione.piano = tempPiano;
+
+  segnalazione.stato = "DA FARE";
+
+  segnalazione.daChi = getUtente();
+
+  if(categoria == "Pulire"){
+
+    segnalazione.perChi = "Collaboratore";
+
+  }else{
+
+    segnalazione.perChi = "Tecnico";
+
+  }
+
+  alert("segnalazione effettuata!!");
+
+
+  //inviare la segnalazione al DataBase
+
+
+
+
+  segnalazioni();
 }
