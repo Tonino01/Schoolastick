@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<link rel="stylesheet" type="text/css" href = "Css/amministratoreStile.css">
+		<link rel="icon" type="image/x-icon" href="icone/logo_amministratore.png">
+		<script src = "Js/amministratoreScript.js"></script>
+
+		<title>Schoolastick-Amministratore</title>
+
+	</head>
+
+	<body onload = "segnalazioni()">
+		<div class = "header">
+
+			<div class = "logo">
+				<img id="utenteImg" src="icone/logo_amministratore.png">
+				<p><span calss = "utente">Area Amministratore</span></p>
+			</div>
+			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
+
+		</div>
+
+
+
+		<div class = "containerSegnalazioni">
+
+
+			<button class = "buttonNuova" onclick = "nuovaSegnalazione()">
+
+			<img src = "icone/edit_icon.png" class = "editIcon"></img>
+
+			Nuova</button>
+
+      <button class = "buttonNuova" onclick = "nuovaSegnalazione()">
+
+			<img src = "icone/edit_icon.png" class = "editIcon"></img>
+
+			Utenti</button>
+
+			<h2><span id = "segnalazioni">Segnalazioni :</span></h2>
+
+		</div>
+
+		<div id = "contenitore">
+
+		</div>
+
+
+
+	</body>
+
+</html>
