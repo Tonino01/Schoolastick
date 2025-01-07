@@ -422,7 +422,10 @@ button:hover{
     background-color: #D70505;
     height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
     width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin: 10px;
+    margin-left: auto;
+		margin-right: auto;
+		margin-top: 30px;
+		margin-bottom: 50px;
     border-radius: 20px;
     box-sizing: border-box;
     display: flex;
@@ -433,8 +436,9 @@ button:hover{
 .dettagliSegnalazioni p{
 
 	font-size: 32px;
-
-	margin-left: 150px;
+	margin:20px;
+	margin-left: auto;
+	margin-right: 50px;
 
 
 }
