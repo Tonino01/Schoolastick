@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina di registrazione</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="Css/registrati.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>Registrati</span></div>
+    <form id="signup-form" action="#" method="POST" onsubmit="return validateSignupForm()">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" id="name" placeholder="Nome" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required />
+        <i class="fas fa-eye show-password" id="toggle-password" onclick="togglePassword()"></i>
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirm-password" placeholder="Conferma Password" required />
+        <i class="fas fa-eye show-password" id="toggle-password" onclick="toggleConfirmPassword()"></i>
+      </div>
+      <div class="row button">
+        <input type="submit" value="Registrati" />
+      </div>
+      <div class="signup-link" style="margin-top: 25px;">Hai già un account? <a href="accedi.html">Accedi</a></div>
+      <div id="error-message" class="error-message"></div>
+    </form>
+  </div>
+  <script src="Js/registrati.js"></script>
+</body>
+</html>
