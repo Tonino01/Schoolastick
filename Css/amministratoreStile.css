@@ -54,6 +54,12 @@ h1 {
 
 }
 
+.titoloPagina {
+
+	padding-right: 350px;
+
+}
+
 .utente{
 
 	margin-left: 10px;
@@ -307,19 +313,18 @@ button .buttonAula:hover {
 
 
 button {
-
-	background-color: #2C2C2C;
-  border: 2px solid #2C2C2C;
-	color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-
+    width: auto; /* O specifica una larghezza fissa, come width: 200px; */
+    background-color: #2C2C2C;
+    border: 2px solid #2C2C2C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 20px;
 }
+
 
 button:hover{
 
@@ -431,5 +436,26 @@ button:hover{
 	margin-left: auto;
 	margin-right: 50px;
 
+
+}
+
+.mostraUtenti{
+
+	margin-top: 50px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	color: white;
+	border-style: solid;
+	border-color: #23548B;
+	background-color: #23548B;
+	height: 60vh;
+	width: 90%;
+
+	position: relative;
+	border-radius: 40px;
+	display: flex;
+	flex-direction: column;
 
 }
