@@ -181,6 +181,21 @@ function getUtente(){
 
 }
 
+
+function mostraModificaUtente(){
+
+  pulisciContenitore();
+
+  fetching('librerie/modificaUtente.html');
+
+  document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
+
+}
+
+
+
+
+
 function creaNuovaSegnalazione(){
 
 

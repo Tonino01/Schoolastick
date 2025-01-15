@@ -455,7 +455,61 @@ button:hover{
 
 	position: relative;
 	border-radius: 40px;
-	display: flex;
-	flex-direction: column;
+  margin: 50px auto;
+  
+  justify-content: space-between;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
+
+
+.column {
+  width: 45%;
+  margin-top: 5%;
+}
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.circle.Amministratore { background-color: red; }
+.circle.Amministratore { background-color: red; }
+.circle.Tecnico { background-color: gray; }
+.circle.Docente { background-color: purple; }
+.circle.Studente { background-color: orange; }
+
+.name {
+  flex-grow: 1;
+}
+
+
+.button {
+  background-color: #430101;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.button:hover {
+  background-color: #421B1B;
+  border: none;
+}
+
+
