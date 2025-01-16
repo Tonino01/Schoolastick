@@ -78,6 +78,8 @@ function nuovaSegnalazione(){
 
   document.getElementById("titolo").innerText = "Creazione Segnalazione:"
 
+
+
 }
 
 function mostraInfoAccount(){
@@ -90,18 +92,6 @@ function mostraInfoAccount(){
   document.getElementById("titolo").innerText = "Informazioni sull'Account:"
 
 }
-
-function mostraUtenti(){
-
-  pulisciContenitore();
-
-  fetching('librerie/mostraUtenti.html');
-
-  document.getElementById("titolo").innerText = "Utenti Piattaforma:"
-
-}
-
-//gestione selezione luogo
 
 let tempPiano = "";
 let tempAula = "";
@@ -191,25 +181,18 @@ function getUtente(){
 
 }
 
-function salvaRuoloUtente(){
+function buttonCompletaSegnalazione(){
 
-  //DA FARE!!!!
+  const buttonInCorso = document.createElement('button');
+  buttonInCorso.textContent = 'CONTRASSEGNA COME IN CORSO';
+  buttonInCorso.className = 'buttonInCorso';
 
+  const buttonCompleta = document.createElement('button');
+  buttonCompleta.textContent = 'CONTRASSEGNA COME COMPLETATA';
+  buttonCompleta.className = 'buttonCompleta';
+
+  document.getElementsById/("buttonTecnico").appendChild(buttonInCorso);
 }
-
-
-function mostraModificaUtente(){
-
-  pulisciContenitore();
-
-  fetching('librerie/modificaUtente.html');
-
-  document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
-
-}
-
-
-
 
 
 function creaNuovaSegnalazione(){
@@ -254,7 +237,4 @@ function creaNuovaSegnalazione(){
 
 
   segnalazioni();
-
-  //da fare
-
 }

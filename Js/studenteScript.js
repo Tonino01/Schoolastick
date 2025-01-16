@@ -93,76 +93,14 @@ function mostraInfoAccount(){
 
 }
 
-let tempPiano = "";
-let tempAula = "";
-
-function seminterratoButton(){
-
-  tempPiano = "Seminterrato";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Seminterrato.html');
-
-}
-function palestraButton(){
-
-  tempPiano = "Palestra";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Palestra.html');
-
-}
-function pianoTerraButton(){
-
-  tempPiano = "Piano Terra";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - PianoTerra.html');
-
-}
-function intermedio1Button(){
-
-  tempPiano = "Intermedio 1";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
-
-}
-function piano1Button(){
-
-  tempPiano = "Piano 1";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - Piano1.html');
-
-}
-function intermedio2Button(){
-
-  tempPiano = "Intermedio 2";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
-
-}
-function piano2Button(){
-
-  tempPiano = "Piano 2";
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
-
-}
-
-function creaSegnalazione(aula){
-  tempAula = aula;
+function mostraArchivio(){
 
   pulisciContenitore();
-  fetching('librerie/mostraCreaSegnalazione.html');
 
-  setTimeout(function() { console.log('Attesa completata. Continuo con la funzione.');
-    document.getElementById('aulaSezione').innerText = tempAula;
-  }, 500);
+  fetching('librerie/mostraArchivio.html');
 
-}
-
-function indietro(){
-
-  pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - ' +tempPiano.replace(/\s+/g, '')+ '.html');
-
+  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+  
 }
 
 function getUtente(){

@@ -23,7 +23,7 @@
 }
 
 body {
-  background-color: #D6B191;
+  background-color: #999999;
 
 
 
@@ -43,8 +43,8 @@ h1 {
 	display: flex;
 	align-items: center;
 	border-style: solid;
-	border-color: #E16B04;
-	background-color: #E16B04;
+	border-color: #3A3A3A;
+	background-color: #3A3A3A;
 	width: 100%;
 	max-width: 735px;
 	height: auto;
@@ -57,7 +57,11 @@ h1 {
 
 }
 
+.titoloPagina {
 
+	padding-right: 170px;
+
+}
 
 .utente{
 
@@ -69,8 +73,8 @@ h1 {
 .containerSegnalazioni {
     color: white;
     border-style: solid;
-    border-color: #954500;
-    background-color: #954500;
+    border-color: #101010;
+    background-color: #101010;
     height: 100px;
     padding: 10px;
     position: relative;
@@ -88,7 +92,47 @@ h1 {
     margin: 0;
 }
 
+.buttonNuova {
+  background-color: #3A3A3A;
+  border: 2px solid #3A3A3A;
+	color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 10px;
+	margin-left: 20px;
+	height: 70px;
+	width: 150px;
+	font-size: 24px;
+}
 
+.buttonNuova:hover{
+
+	background-color: #686868;
+	border: 2px solid #686868;
+
+}
+
+.noButton{
+
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 5%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.noButton:hover{
+
+  background: none;
+  border: none;
+
+}
 
 
 
@@ -191,8 +235,8 @@ h1 {
 		color: white;
     font-size: 48px;
     border-style: solid;
-    border-color: #E16B04;
-    background-color: #E16B04;
+    border-color: #831E9C;
+    background-color: #831E9C;
     width: 100%;
     max-width: 735px;
     height: auto;
@@ -287,25 +331,8 @@ button .buttonAula:hover {
 }
 
 
-.noButton{
 
-  background: none;
-  border: none;
-  padding: 0;
-  margin-right: 5%;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 
-}
-
-.noButton:hover{
-
-  background: none;
-  border: none;
-
-}
 
 
 button {
@@ -327,6 +354,34 @@ button:hover{
 
 	background-color: #777575;
 	border: 2px solid #777575;
+
+}
+
+.buttonInCorso{
+
+  background-color: #D78605;
+  border: 2px solid #D78605;
+	color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+	margin-left: 20px;
+
+}
+
+.buttonCompleta{
+
+  background-color: #0A9B02;
+  border: 2px solid #0A9B02;
+	color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+	margin-left: 20px;
 
 }
 

@@ -165,6 +165,16 @@ function indietro(){
 
 }
 
+function mostraArchivio(){
+
+  pulisciContenitore();
+
+  fetching('librerie/mostraArchivio.html');
+
+  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+  
+}
+
 function getUtente(){
 
   //DA FARE!!!!
