@@ -57,6 +57,12 @@ h1 {
 
 }
 
+.titoloPagina {
+
+	padding-right: 170px;
+
+}
+
 .utente{
 
 	margin-left: 10px;
@@ -108,13 +114,7 @@ h1 {
 
 }
 
-.buttonNuova editIcon {
 
-	margin-right: 0px;
-	margin-right: 10px;
-	width: 20px;
-	height: 20px;
-}
 
 .segnalazioni {
     display: flex;

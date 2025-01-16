@@ -59,6 +59,8 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
+  document.getElementById("titolo").innerText = "Segnalazioni:"
+
 }
 
 function dettagliSegnalazione(){
@@ -74,16 +76,20 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
+  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+
+
+
 }
 
 function mostraInfoAccount(){
 
   pulisciContenitore();
-  //non funziona, uffa...
 
-  //transizione('info');
 
   fetching('librerie/infoAccount.html');
+
+  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
 
 }
 
@@ -174,7 +180,7 @@ function creaNuovaSegnalazione(){
 
 
   let categoria = selectElement.options[selectElement.selectedIndex];
-  
+
 
   categoria = categoria.value;
 
