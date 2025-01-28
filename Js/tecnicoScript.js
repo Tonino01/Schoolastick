@@ -40,6 +40,8 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
+
+
 //trovare soluzioni per transizioni
 function transizione(container){
 
@@ -66,7 +68,9 @@ function segnalazioni(){
 function dettagliSegnalazione(){
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
+    buttonCompletaSegnalazione();
+  });
 
 }
 
@@ -178,22 +182,90 @@ function mostraArchivio(){
 function getUtente(){
 
   //DA FARE!!!!
+  return "Tecnico";
 
 }
 
-function buttonCompletaSegnalazione(){
+function getStato(){
 
-  const buttonInCorso = document.createElement('button');
-  buttonInCorso.textContent = 'CONTRASSEGNA COME IN CORSO';
-  buttonInCorso.className = 'buttonInCorso';
+  //DA FARE!!!!
+  return "Da Fare";
 
-  const buttonCompleta = document.createElement('button');
-  buttonCompleta.textContent = 'CONTRASSEGNA COME COMPLETATA';
-  buttonCompleta.className = 'buttonCompleta';
-
-  document.getElementsById/("buttonTecnico").appendChild(buttonInCorso);
 }
 
+function setStato(stato){
+
+  //DA FARE!!!!
+
+}
+
+const buttonInCorso = document.createElement('button');
+buttonInCorso.textContent = 'CONTRASSEGNA COME IN CORSO';
+buttonInCorso.className = 'buttonInCorso';
+buttonInCorso.onclick = "'contrassegnaInCorso()'";
+
+const buttonCompleta = document.createElement('button');
+buttonCompleta.textContent = 'CONTRASSEGNA COME COMPLETATA';
+buttonCompleta.className = 'buttonCompleta';
+buttonInCorso.onclick = "'contrassegnaCompletata()'";
+
+
+function buttonCompletaSegnalazione() {
+
+  
+
+  const buttonContainer = document.getElementById("buttonTecnico");
+
+  if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
+
+    if(getStato() == "Da Fare"){
+
+      buttonContainer.appendChild(buttonInCorso);
+
+    }else if(getStato() == "In Corso"){
+
+      buttonContainer.appendChild(buttonCompleta);
+
+    }
+  }else{
+
+    buttonContainer.innerHTML = '';
+
+  }
+  
+}
+
+function contrassegnaInCorso(){
+
+  buttonContainer.innerHTML = '';
+
+  setStato("In Corso");
+
+  buttonContainer.appendChild(buttonCompleta);
+
+
+}
+
+function contrassegnaCompletata(){
+
+  buttonContainer.innerHTML = '';
+
+  setStato("Completata");
+
+  mostraScriviReport();
+
+}
+
+
+function mostraScriviReport(){
+
+  pulisciContenitore();
+
+  fetching('librerie/mostraScriviReport.html');
+
+  document.getElementById("titolo").innerText = "Scrivi Report:"
+
+}
 
 function creaNuovaSegnalazione(){
 
