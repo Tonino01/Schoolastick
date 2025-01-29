@@ -195,41 +195,38 @@ function getStato(){
 
 function setStato(stato){
 
+  return stato;
+
   //DA FARE!!!!
 
 }
 
-const buttonInCorso = document.createElement('button');
-buttonInCorso.textContent = 'CONTRASSEGNA COME IN CORSO';
-buttonInCorso.className = 'buttonInCorso';
-buttonInCorso.onclick = "'contrassegnaInCorso()'";
-
-const buttonCompleta = document.createElement('button');
-buttonCompleta.textContent = 'CONTRASSEGNA COME COMPLETATA';
-buttonCompleta.className = 'buttonCompleta';
-buttonInCorso.onclick = "'contrassegnaCompletata()'";
 
 
 function buttonCompletaSegnalazione() {
 
   
 
-  const buttonContainer = document.getElementById("buttonTecnico");
+  const buttonContainer = document.getElementById("modificaButton");
 
   if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
 
     if(getStato() == "Da Fare"){
 
-      buttonContainer.appendChild(buttonInCorso);
+      buttonContainer.onclick = function() { contrassegnaInCorso(); };
+      buttonCompleta.style.backgroundColor = "#D78605";
+      buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
 
     }else if(getStato() == "In Corso"){
 
-      buttonContainer.appendChild(buttonCompleta);
+      buttonContainer.onclick = function() { mostraScriviReport(); };
+      buttonCompleta.style.backgroundColor = "#D78605";
+      buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
 
     }
   }else{
 
-    buttonContainer.innerHTML = '';
+    buttonContainer.style.display = "none";
 
   }
   
@@ -237,24 +234,30 @@ function buttonCompletaSegnalazione() {
 
 function contrassegnaInCorso(){
 
-  buttonContainer.innerHTML = '';
+  
+  
 
   setStato("In Corso");
 
-  buttonContainer.appendChild(buttonCompleta);
+  buttonContainer.onclick = function() { contrassegnaCompletata(); };
+  buttonCompleta.style.backgroundColor = "#D78605";
+  buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
 
 
 }
 
 function contrassegnaCompletata(){
 
-  buttonContainer.innerHTML = '';
+  buttonContainer.onclick = function() { mostraScriviReport(); };
+  buttonCompleta.style.backgroundColor = "#D78605";
+  buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
 
-  setStato("Completata");
 
-  mostraScriviReport();
+  setStato("Completata"); //da mettere finito il report
+
 
 }
+
 
 
 function mostraScriviReport(){
