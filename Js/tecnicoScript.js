@@ -201,26 +201,28 @@ function setStato(stato){
 
 }
 
-
+const buttonContainer = document.getElementById("modificaButton");
 
 function buttonCompletaSegnalazione() {
 
   
 
-  const buttonContainer = document.getElementById("modificaButton");
+  
 
   if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
 
     if(getStato() == "Da Fare"){
 
       buttonContainer.onclick = function() { contrassegnaInCorso(); };
-      buttonCompleta.style.backgroundColor = "#D78605";
+      buttonContainer.style.backgroundColor = "#D78605";
+      buttonContainer.style.borderColor = "#D78605";
       buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
 
     }else if(getStato() == "In Corso"){
 
       buttonContainer.onclick = function() { mostraScriviReport(); };
-      buttonCompleta.style.backgroundColor = "#D78605";
+      buttonContainer.style.backgroundColor = "#0A9B02";
+      buttonContainer.style.borderColor = "#0A9B02";
       buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
 
     }
@@ -240,7 +242,8 @@ function contrassegnaInCorso(){
   setStato("In Corso");
 
   buttonContainer.onclick = function() { contrassegnaCompletata(); };
-  buttonCompleta.style.backgroundColor = "#D78605";
+  buttonContainer.style.backgroundColor = "#D78605";
+  buttonContainer.style.borderColor = "#D78605";
   buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
 
 
@@ -249,7 +252,8 @@ function contrassegnaInCorso(){
 function contrassegnaCompletata(){
 
   buttonContainer.onclick = function() { mostraScriviReport(); };
-  buttonCompleta.style.backgroundColor = "#D78605";
+  buttonContainer.style.backgroundColor = "#0A9B02";
+  buttonContainer.style.borderColor = "#0A9B02";
   buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
 
 
