@@ -68,10 +68,13 @@ function segnalazioni(){
 function dettagliSegnalazione(){
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
-    buttonCompletaSegnalazione();
-  });
+  fetching('librerie/mostraDettagliSegnalazione.html');
 
+  let buttonContainer = document.createElement("button");
+
+  buttonCompletaSegnalazione();
+
+  document.getElementById("mButton").HTMLElement = buttonContainer;
 }
 
 function nuovaSegnalazione(){
@@ -201,14 +204,11 @@ function setStato(stato){
 
 }
 
-const buttonContainer = document.getElementById("modificaButton");
+
 
 function buttonCompletaSegnalazione() {
 
   
-
-  
-
   if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
 
     if(getStato() == "Da Fare"){
