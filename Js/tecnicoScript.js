@@ -67,13 +67,24 @@ function segnalazioni(){
 
 function dettagliSegnalazione(){
 
+    // pulisciContenitore();
+    // fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
+    //   let buttonContainer = document.createElement("button");
+    //   buttonCompletaSegnalazione(buttonContainer);
+    //   document.getElementById("mButton").appendChild(buttonContainer);
+    // });
+
+
+}
+
+querySelectorAll(#bottoneSegnalazione).addEventListener('click', function() {
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
     let buttonContainer = document.createElement("button");
     buttonCompletaSegnalazione(buttonContainer);
     document.getElementById("mButton").appendChild(buttonContainer);
   });
-}
+});
 
 function nuovaSegnalazione(){
 
