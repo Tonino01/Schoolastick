@@ -68,13 +68,11 @@ function segnalazioni(){
 function dettagliSegnalazione(){
 
   pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
-
-  let buttonContainer = document.createElement("button");
-
-  buttonCompletaSegnalazione();
-
-  document.getElementById("mButton").HTMLElement = buttonContainer;
+  fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
+    let buttonContainer = document.createElement("button");
+    buttonCompletaSegnalazione(buttonContainer);
+    document.getElementById("mButton").appendChild(buttonContainer);
+  });
 }
 
 function nuovaSegnalazione(){
@@ -206,21 +204,21 @@ function setStato(stato){
 
 
 
-function buttonCompletaSegnalazione() {
+function buttonCompletaSegnalazione(buttonContainer) {
 
   
   if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
 
     if(getStato() == "Da Fare"){
 
-      buttonContainer.onclick = function() { contrassegnaInCorso(); };
+      buttonContainer.onclick = function() { contrassegnaInCorso(buttonContainer); };
       buttonContainer.style.backgroundColor = "#D78605";
       buttonContainer.style.borderColor = "#D78605";
       buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
 
     }else if(getStato() == "In Corso"){
 
-      buttonContainer.onclick = function() { mostraScriviReport(); };
+      buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
       buttonContainer.style.backgroundColor = "#0A9B02";
       buttonContainer.style.borderColor = "#0A9B02";
       buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
@@ -234,14 +232,14 @@ function buttonCompletaSegnalazione() {
   
 }
 
-function contrassegnaInCorso(){
+function contrassegnaInCorso(buttonContainer){
 
   
   
 
   setStato("In Corso");
 
-  buttonContainer.onclick = function() { contrassegnaCompletata(); };
+  buttonContainer.onclick = function() { contrassegnaCompletata(buttonContainer); };
   buttonContainer.style.backgroundColor = "#D78605";
   buttonContainer.style.borderColor = "#D78605";
   buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
@@ -249,9 +247,9 @@ function contrassegnaInCorso(){
 
 }
 
-function contrassegnaCompletata(){
+function contrassegnaCompletata(buttonContainer){
 
-  buttonContainer.onclick = function() { mostraScriviReport(); };
+  buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
   buttonContainer.style.backgroundColor = "#0A9B02";
   buttonContainer.style.borderColor = "#0A9B02";
   buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
