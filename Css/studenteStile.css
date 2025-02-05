@@ -23,7 +23,7 @@
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #e1e1e1;
 
 
 
@@ -42,9 +42,7 @@ h1 {
 	position: relative;
 	display: flex;
 	align-items: center;
-	border-style: solid;
-	border-color: #E16B04;
-	background-color: #E16B04;
+  background-image: linear-gradient(to right, #ffa530 , #ff7011);
 	width: 100%;
 	max-width: 735px;
 	height: auto;
@@ -110,27 +108,26 @@ h1 {
     margin: 10px;
     border-radius: 20px;
     box-sizing: border-box;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column; /* Disporre gli elementi in colonna */
     justify-content: flex-start; /* Allineare gli elementi all'inizio */
     align-items: center; /* Centra orizzontalmente */
-    padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
+    
     transition:0.5s;
 }
 .segnalazione:hover{
-    background-color: #ff7e427a;
+   
 }
 
 .barraSegnalazione {
     background-color: #D70505;
     height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin: 10px;
-    border-radius: 20px;
+    width: 100%; /* Larghezza dinamica in base alla larghezza della viewport */
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    border-radius: 20px 20px 0px 0px;
     align-items: center;
 }
 
@@ -282,7 +279,7 @@ button .buttonAula {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: 0.3s;
 }
 
 button .buttonAula:hover {
@@ -322,14 +319,16 @@ button {
   border-radius: 10px;
   margin-right: 10px;
 	margin-left: 20px;
+  transition: 0.5s;
 
 
 }
 
 button:hover{
 
-	background-color: #777575;
-	border: 2px solid #777575;
+	background-color: #4e4e4e;
+	border: 2px solid #4e4e4e;
+  color:#ffffff;
 
 }
 
