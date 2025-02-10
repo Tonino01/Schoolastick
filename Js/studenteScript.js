@@ -71,7 +71,7 @@ function segnalazioni(){
 }
 
 function caricaDettagli() {
-  fetch('php/generaDettagli.php') // Qui chiami il file PHP
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
