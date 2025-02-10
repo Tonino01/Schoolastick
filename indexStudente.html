@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard Studente</title>
-</head>
-<body>
-    <h2>Benvenuto Studente!</h2>
-    <p>Questa è la tua area riservata.</p>
-    <a href="php/logout.php">Esci</a>
-</body>
+
+<html>
+
+	<head>
+
+		<link rel="stylesheet" type="text/css" href = "Css/studenteStile.css">
+		<link rel="icon" type="image/x-icon" href="icone/logo_studente.png" onclick = "logOut()">
+		<script src = "Js/studenteScript.js"></script>
+
+		<title>Schoolastick-Studente</title>
+
+	</head>
+
+	<body onload = "segnalazioni()">
+		<div class = "header">
+
+			<div class = "logo">
+				<img id="utenteImg" src="icone/logo_studente.png" onclick = "logOut()">
+				<p><span calss = "utente">Area Studenti</span></p>
+			</div>
+			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
+
+		</div>
+
+
+
+		<div class = "containerSegnalazioni">
+
+			<h2><span id = "titolo">Segnalazioni :</span></h2>
+
+			<button class = "noButton" onclick = "mostraArchivio()">
+
+				<img src = "icone/box_icon.png" class = "editIcon"></img>
+	
+			</button>
+
+		</div>
+
+		<div id = "contenitore">
+
+		</div>
+
+
+
+	</body>
+
 </html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<link rel="stylesheet" type="text/css" href = "Css/amministratoreStile.css">
+		<link rel="icon" type="image/x-icon" href="icone/logo_amministratore.png" >
+		<script src = "Js/amministratoreScript.js"></script>
+
+		<title>Schoolastick-Amministratore</title>
+
+	</head>
+
+	<body onload = "segnalazioni()">
+		<div class = "header">
+
+			<div class = "logo">
+				<img id="utenteImg" src="icone/logo_amministratore.png" onclick = "logOut()">
+				<p><span calss = "utente">Area Amministratore</span></p>
+			</div>
+			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
+
+		</div>
+
+
+
+		<div class = "containerSegnalazioni">
+
+
+			<button class = "buttonNuova" onclick = "nuovaSegnalazione()">
+
+			<img src = "icone/edit_icon.png" class = "editIcon"></img>
+
+			Nuova</button>
+
+      <button class = "buttonNuova" onclick = "mostraUtenti()">
+
+			<img src = "icone/group_icon.png" class = "editIcon"></img>
+
+			Utenti</button>
+
+			<h2 class = "titoloPagina"><span id = "titolo">Segnalazioni:</span></h2>
+
+			<button class = "noButton" onclick = "mostraArchivio()">
+
+				<img src = "icone/box_icon.png" class = "editIcon"></img>
+	
+			</button>
+
+		</div>
+
+		<div id = "contenitore">
+
+		</div>
+
+
+
+	</body>
+
+</html>

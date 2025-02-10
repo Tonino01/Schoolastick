@@ -1,0 +1,492 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.header {
+
+	position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+.header .profile {
+
+	margin-left: 53%;
+
+
+}
+
+*{
+
+	font-family: 'Poppins', sans-serif;
+
+}
+
+body {
+  background-color: #999999;
+
+
+
+}
+
+
+
+h1 {
+    font-size: 48px;
+
+}
+
+.logo {
+
+	color: white;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-style: solid;
+	border-color: #3A3A3A;
+	background-color: #3A3A3A;
+	width: 100%;
+	max-width: 735px;
+	height: auto;
+	padding: 10px;
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius: 20px;
+
+
+}
+
+.titoloPagina {
+
+	padding-right: 170px;
+
+}
+
+.utente{
+
+	margin-left: 10px;
+	font-size: 30px;
+
+}
+
+.containerSegnalazioni {
+    color: white;
+    border-style: solid;
+    border-color: #101010;
+    background-color: #101010;
+    height: 100px;
+    padding: 10px;
+    position: relative;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.containerSegnalazioni h2 {
+    flex-grow: 1;
+		font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.buttonNuova {
+  background-color: #3A3A3A;
+  border: 2px solid #3A3A3A;
+	color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 10px;
+	margin-left: 20px;
+	height: 70px;
+	width: 10%;
+	font-size: 24px;
+}
+
+.buttonNuova:hover{
+
+	background-color: #686868;
+	border: 2px solid #686868;
+
+}
+
+.noButton{
+
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 5%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.noButton:hover{
+
+  background: none;
+  border: none;
+
+}
+
+
+
+.segnalazioni {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Distribuisce uniformemente gli elementi */
+    align-content: space-around; /* Distribuisce uniformemente le righe */
+    width: 100%;
+    height: 100hv;
+    margin: 0;
+    padding: 20px; /* Margini interni */
+    box-sizing: border-box;
+}
+
+.segnalazione {
+    background-color: #D9D9D9;
+    height: calc((100vh - 400px) / 2 - 20px); /* Calcola l'altezza tenendo conto dei padding e degli spazi tra le righe */
+    width: calc((100% - 80px) / 3 - 20px); /* Calcola la larghezza tenendo conto dei padding e degli spazi tra i div */
+    margin: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Disporre gli elementi in colonna */
+    justify-content: flex-start; /* Allineare gli elementi all'inizio */
+    align-items: center; /* Centra orizzontalmente */
+    padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
+}
+
+.barraSegnalazione {
+    background-color: #D70505;
+    height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
+    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
+    margin: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.barraSegnalazione h4 {
+
+	font-size: 23px;
+	color: white;
+
+}
+
+
+
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%); /* Inizia fuori dalla visuale, sotto */
+    opacity: 0; /* Inizia invisibile */
+  }
+  100% {
+    transform: translateY(0); /* Torna alla posizione originale */
+    opacity: 1; /* Diventa visibile */
+  }
+}
+
+.div-animate {
+  animation: slide-up 0.5s ease-out forwards; /* Applica l'animazione */
+}
+
+
+
+
+.infoAccount {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    border-style: solid;
+    border-color: #23548B;
+    background-color: #23548B;
+    height: 60vh;
+    width: 90%;
+    position: relative;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente i contenuti */
+}
+
+.testa {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Posiziona il titolo DOCENTE in alto a sinistra */
+    display: flex;
+    align-items: center;
+}
+
+.testa h3 {
+    margin: 0;
+		color: white;
+    font-size: 48px;
+    border-style: solid;
+    border-color: #831E9C;
+    background-color: #831E9C;
+    width: 100%;
+    max-width: 735px;
+    height: auto;
+
+    padding-left: 50px;
+		padding-right: 50px;
+    position: relative;
+
+		border-radius: 20px;
+}
+
+.testa img {
+
+    margin-left: 545px; /* Spazio tra titolo e immagine */
+}
+
+.infoAccount p {
+    margin: 10px 0;
+    text-align: center; /* Centra il testo dei paragrafi */
+}
+
+.infoAccount #indietro {
+    position: absolute;
+    bottom: 20px; /* Posiziona i bottoni in basso */
+    left: 20px;  /* Posiziona i bottoni a sinistra */
+}
+
+
+
+
+
+
+
+.creaSegnalazione {
+
+    margin-top: 50px;
+
+		margin-left: auto;
+		margin-right: auto;
+
+    color: white;
+    border-style: solid;
+    border-color: #23548B;
+    background-color: #23548B;
+    height: 60vh;
+    width: 90%;
+
+    position: relative;
+    border-radius: 40px;
+    display: flex;
+		justify-content: center;
+    align-items: center;
+
+}
+
+.selezionaPiano {
+
+  padding: 20px;
+  display: flex;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  gap: 10px;
+}
+
+.selezionaPiano h4 {
+  width: 100%;
+  text-align: center;
+  color: white;
+
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+button .buttonAula {
+  background-color: #1A1A3D;
+  color: white;
+	position: absolute;
+	bottom: 20px; /* Posiziona i bottoni in basso */
+	left: 20px;  /* Posiziona i bottoni a sinistra */
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button .buttonAula:hover {
+  background-color: #333366;
+}
+
+
+
+
+
+
+button {
+
+	background-color: #2C2C2C;
+  border: 2px solid #2C2C2C;
+	color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+	margin-left: 20px;
+
+
+}
+
+button:hover{
+
+	background-color: #777575;
+	border: 2px solid #777575;
+
+}
+
+.buttonInCorso{
+
+  background-color: #D78605;
+  border: 2px solid #D78605;
+	color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+	margin-left: 20px;
+
+}
+
+.buttonCompleta{
+
+  background-color: #0A9B02;
+  border: 2px solid #0A9B02;
+	color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px;
+	margin-left: 20px;
+
+}
+
+
+.creaSegnalazioni {
+	margin-top: 50px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	color: white;
+	border-style: solid;
+	border-color: #23548B;
+	background-color: #23548B;
+	height: 60vh;
+	width: 90%;
+
+	position: relative;
+	border-radius: 40px;
+	display: flex;
+
+}
+
+.creaSegnalazioni h4 {
+	font-size: 24px;
+  margin: 0;
+  position: absolute;
+
+}
+
+.inserimento {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.inserimento label {
+  display: block;
+
+  color: white;
+}
+
+.inserimento input {
+  flex: 1;
+  margin-right: 20px;
+  padding: 50px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+
+}
+
+.inserimento select {
+  padding: 8px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+
+
+}
+
+
+.dettagliSegnalazioni{
+
+	margin-top: 50px;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	color: white;
+	border-style: solid;
+	border-color: #23548B;
+	background-color: #23548B;
+	height: 60vh;
+	width: 90%;
+
+	position: relative;
+	border-radius: 40px;
+	display: flex;
+	flex-direction: column;
+
+}
+
+
+.barraStato {
+    background-color: #D70505;
+    height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
+    width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
+    margin-left: auto;
+		margin-right: auto;
+		margin-top: 30px;
+		margin-bottom: 50px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dettagliSegnalazioni p{
+
+	font-size: 32px;
+	margin:20px;
+	margin-left: auto;
+	margin-right: 50px;
+
+
+}
