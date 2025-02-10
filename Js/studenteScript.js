@@ -59,8 +59,27 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
 
+
+
+  document.getElementById("titolo").innerText = "Segnalazioni:";
+
+  caricaDettagli();
+
+
+
+}
+
+function caricaDettagli() {
+  fetch('php/generaDettagli.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
@@ -100,7 +119,7 @@ function mostraArchivio(){
   fetching('librerie/mostraArchivio.html');
 
   document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
-  
+
 }
 
 function getUtente(){

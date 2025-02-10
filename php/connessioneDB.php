@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "schoolastck_prova";
+$dbname = "schoolastck";
 
 //connessione
 
@@ -19,7 +19,7 @@ if($connessione -> connect_error){
 
 }else{
 
-    //echo "connessione riuscita";   
+    //echo "connessione riuscita";
 
 }
 
