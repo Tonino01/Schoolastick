@@ -63,28 +63,34 @@ function segnalazioni(){
 
   document.getElementById("titolo").innerText = "Segnalazioni:"
 
+  caricaDettagli();
+
+
+}
+
+function caricaDettagli() {
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
 
-    // pulisciContenitore();
-    // fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
-    //   let buttonContainer = document.createElement("button");
-    //   buttonCompletaSegnalazione(buttonContainer);
-    //   document.getElementById("mButton").appendChild(buttonContainer);
-    // });
+     pulisciContenitore();
+     fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
+       let buttonContainer = document.createElement("button");
+      buttonCompletaSegnalazione(buttonContainer);
+      document.getElementById("mButton").appendChild(buttonContainer);
+    });
 
 
 }
-
-querySelectorAll(#bottoneSegnalazione).addEventListener('click', function() {
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
-    let buttonContainer = document.createElement("button");
-    buttonCompletaSegnalazione(buttonContainer);
-    document.getElementById("mButton").appendChild(buttonContainer);
-  });
-});
 
 function nuovaSegnalazione(){
 
@@ -188,7 +194,7 @@ function mostraArchivio(){
   fetching('librerie/mostraArchivio.html');
 
   document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
-  
+
 }
 
 function getUtente(){
@@ -217,7 +223,7 @@ function setStato(stato){
 
 function buttonCompletaSegnalazione(buttonContainer) {
 
-  
+
   if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
 
     if(getStato() == "Da Fare"){
@@ -240,13 +246,13 @@ function buttonCompletaSegnalazione(buttonContainer) {
     buttonContainer.style.display = "none";
 
   }
-  
+
 }
 
 function contrassegnaInCorso(buttonContainer){
 
-  
-  
+
+
 
   setStato("In Corso");
 
