@@ -3,13 +3,10 @@
 const segnalazione = {
 
   descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
+  luogo_id: "",
   stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
+  id_utente_crea: "",
+  reprt: ""
 
 };
 
@@ -135,7 +132,7 @@ function intermedio1Button(){
 
   tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio1.html');
 
 }
 function piano1Button(){
@@ -149,14 +146,14 @@ function intermedio2Button(){
 
   tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio2.html');
 
 }
 function piano2Button(){
 
   tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
+  fetching('librerie/nuovaSegnalazione - Piano2.html');
 
 }
 
@@ -208,15 +205,14 @@ function creaNuovaSegnalazione(){
 
   categoria = categoria.value;
 
-  segnalazione.categoria = categoria;
 
   segnalazione.aula = tempAula;
 
-  segnalazione.piano = tempPiano;
+  segnalazione.luogo_id = tempPiano;
 
   segnalazione.stato = "DA FARE";
 
-  segnalazione.daChi = getUtente();
+  segnalazione.id_utente_crea = getUtente();
 
   if(categoria == "Pulire"){
 
@@ -231,10 +227,31 @@ function creaNuovaSegnalazione(){
   alert("segnalazione effettuata!!");
 
 
+  inviaSegnalazioni();
+
   //inviare la segnalazione al DataBase
 
-
-
-
   segnalazioni();
+}
+
+function inviaSegnalazioni(){
+
+
+  // Effettua la richiesta POST al server
+  fetch('inserisci_segnalazione.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(segnalazione)
+  })
+  .then(response => response.json())
+  .then(result => {
+      console.log('Successo:', result);
+  })
+  .catch(error => {
+      console.error('Errore:', error);
+  });
+
+
 }
