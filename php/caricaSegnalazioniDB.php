@@ -1,6 +1,6 @@
 <?php
 
-include 'connessioneDB.php';
+require_once 'connessioneDB.php';
 
 // Esegui la query per ottenere le segnalazioni
 $sql = "SELECT * FROM segnalazioni";
