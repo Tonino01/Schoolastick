@@ -2,17 +2,16 @@
 
 .header {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     background-color: #333;
     color: white;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 .header .profile {
-    margin-left: auto;
+    margin-left: auto; 
 }
 
 * {
@@ -34,27 +33,29 @@ h1 {
 .logo {
     color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(to right, #ffa530 , #ff7011);
+    background-image: linear-gradient(to right,#ff7011, #ffa53000 );
     width: 100%;
-    max-width: 600px;
+    max-width: 90%;
     padding: 20px;
-    margin: 20px auto;
+    margin: 5px 5px 5px 20px;
     border-radius: 20px;
+    align-items: center;
+}
+.logo #utenteImg {
+    height: 100%;
+    align-self: center;
 }
 
 .utente {
-    margin-left: 20px;
+    margin: 0 0 0 40px;
+    font-size: 27px;
 }
 
 .containerSegnalazioni {
     color: white;
-    border: 2px solid #954500;
-    background-color: #954500;
+    background-color: #404040;
     padding: 20px;
-    margin: 20px 0;
-    border-radius: 20px;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,13 +100,13 @@ h1 {
 }
 
 .segnalazione h4 {
-  margin: 10px 0; 
+  margin: 10px 20px; /* Adjusted margin */
   padding: 0 10px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(100% - 20px);
+  width: calc(100% - 50px); /* Adjusted width */
 }
 
 .barraSegnalazione {
@@ -156,7 +157,7 @@ h1 {
 }
 
 .testa {
-    position: absolute;
+    position: relative;
     top: 20px;
     left: 20px;
     display: flex;
@@ -344,11 +345,10 @@ button:hover {
 
 @media (max-width: 768px) {
     .header .profile {
-        margin-left: auto;
+        position: relative;
     }
 
     .header {
-        justify-content: center;
     }
 
     .logo {
@@ -356,7 +356,6 @@ button:hover {
     }
 
     .containerSegnalazioni {
-        flex-direction: column;
         align-items: center;
     }
 
@@ -374,7 +373,7 @@ button:hover {
 
 
 .barraStato {
-  margin-top: 0; /* Rimuove eventuali margini superiori */
-  padding-top: 0; /* Rimuove eventuali padding superiori */
+  margin-top: 0; 
+  padding-top: 0; 
 }
 
