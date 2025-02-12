@@ -20,7 +20,7 @@
 }
 
 body {
-    background-color: #f0f0f0;
+    background-color: #ff660031;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,12 +32,12 @@ h1 {
 }
 .bc {
     display: none; /* Hide by default */
-    background-color: #333;
+    background-color: #404040;
     margin: 0;
     width: 100%;
     position: sticky;
     top: 0;
-    z-index: 1001; /* Ensure it appears above other elements */
+    z-index: 1003; /* Ensure it appears above containerSegnalazioni */
 }
 
 body.scrolled .bc {
@@ -77,15 +77,16 @@ body.scrolled .bc {
 .containerSegnalazioni {
     color: white;
     background-color: #404040;
-    z-index: 1000;
-    position: sticky;
-    top: 0;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky; /* Changed to sticky */
+    top: 0; /* Align to top */
+    z-index: 1002; /* Ensure it appears above other elements */
     max-width: 100%;
+    height: 50px;
     padding: 20px 20px 20px 0;
     display: flex;
     justify-content: center; /* Center the content horizontally */
     align-items: center; 
-    position: relative;
 }
 
 .containerSegnalazioni h2 {
@@ -95,6 +96,7 @@ body.scrolled .bc {
     position: absolute; /* Make h2 absolute for better control */
     left: 50%;
     transform: translateX(-50%); /* Center it horizontally */
+    font-size: 200%;
 }
 
 .containerSegnalazioni .editIcon {

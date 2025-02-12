@@ -2,120 +2,285 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
-
-	position: relative;
-    display: flex;
-    align-items: center;
-
+  position: relative;
+  padding: 20px 20px 20px 0;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  
 }
 
 .header .profile {
-
-	margin-left: 53%;
-
-
+  margin-left: auto; 
 }
 
-*{
-
-	font-family: 'Poppins', sans-serif;
-
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #93719C;
-
-
-
+  background-color: #8000ff31;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-
 
 h1 {
-    font-size: 48px;
-
+  font-size: 36px;
+  color: #333;
+}
+.bc {
+  display: none; /* Hide by default */
+  background-color: #404040;
+  margin: 0;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1003; /* Ensure it appears above containerSegnalazioni */
 }
 
+body.scrolled .bc {
+  display: block; /* Show when body has 'scrolled' class */
+}
+
+.bar{
+  position: relative;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to right,#8000ff, #ffa53000 );
+  width: 100%;
+  height: 10px; 
+}
 .logo {
-
-	color: white;
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-style: solid;
-	border-color: #831E9C;
-	background-color: #831E9C;
-	width: 100%;
-	max-width: 735px;
-	height: auto;
-	padding: 10px;
-	position: relative;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	border-radius: 20px;
-
-
+  color: white;
+  display: flex;
+  background-image: linear-gradient(to right,#8000ff, #ffa53000 );
+  width: 100%;
+  max-width: 90%;
+  padding: 20px;
+  margin: 5px 5px 5px 20px;
+  border-radius: 20px;
+  align-items: center;
+  
+}
+.logo #utenteImg {
+  height: 100%;
+  align-self: center;
 }
 
-.titoloPagina {
-
-	padding-right: 170px;
-
-}
-
-.utente{
-
-	margin-left: 10px;
-	font-size: 30px;
-
+.utente {
+  margin: 0 0 0 40px;
+  font-size: 27px;
 }
 
 .containerSegnalazioni {
-    color: white;
-    border-style: solid;
-    border-color: #360143;
-    background-color: #360143;
-    height: 100px;
-    padding: 10px;
-    position: relative;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
+  color: white;
+  background-color: #404040;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky; /* Changed to sticky */
+  top: 0; /* Align to top */
+  z-index: 1002; /* Ensure it appears above other elements */
+  max-width: 100%;
+  height: 50px;
+  padding: 20px 20px 20px 0;
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; 
 }
-
-
 
 .containerSegnalazioni h2 {
-    flex-grow: 1;
-		font-size: 48px;
-    text-align: center;
-    margin: 0;
+  font-size: 36px;
+  text-align: center;
+  margin: 0;
+  position: absolute; /* Make h2 absolute for better control */
+  left: 50%;
+  transform: translateX(-50%); /* Center it horizontally */
+  font-size: 200%;
 }
 
-.buttonNuova {
-  background-color: #831E9C;
-  border: 2px solid #831E9C;
-	color: white;
+.containerSegnalazioni .editIcon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.parentContainer {
+  height: 100vh; /* Ensure the parent container has a height */
+  overflow: visible; /* Ensure no overflow property interferes */
+}
+
+.segnalazioni {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.segnalazione button {
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 3%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.segnalazione {
+background-color: #ffffff;
+height: 230px;
+width: calc(33% - 40px);
+margin: 10px;
+border-radius: 20px;
+box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+transition: 0.5s;
+}
+
+.segnalazione h4 {
+margin: 10px 20px; /* Adjusted margin */
+padding: 0 10px;
+text-align: center;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width: calc(100% - 50px); /* Adjusted width */
+}
+
+.barraSegnalazione {
+background-color: #D70505;
+height: 50px;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 20px 20px 0 0;
+margin: 0;
+}
+
+
+
+
+.barraSegnalazione h4 {
+  font-size: 18px;
+  color: white;
+}
+
+@keyframes slide-up {
+  0% {
+      transform: translateY(100%);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+.div-animate {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.infoAccount {
+  margin: 20px auto;
+  color: white;
+  border: 2px solid #23548B;
+  background-color: #23548B;
+  padding: 20px;
   border-radius: 20px;
-  margin-right: 10px;
-	margin-left: 20px;
-	height: 70px;
-	width: 10%;
-	font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.buttonNuova:hover{
-
-	background-color: #6750A4;
-	border: 2px solid #6750A4;
-
+.testa {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.noButton{
+.testa h3 {
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  background-color: #E16B04;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
 
+.testa img {
+  margin-left: 20px;
+}
+
+.infoAccount p {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.infoAccount #indietro {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.creaSegnalazione {
+  margin: 20px auto;
+  color: white;
+  border: 2px solid #23548B;
+  background-color: #23548B;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selezionaPiano {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.selezionaPiano h4 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+button .buttonAula {
+  background-color: #1A1A3D;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button .buttonAula:hover {
+  background-color: #333366;
+}
+
+.noButton {
   background: none;
   border: none;
   padding: 0;
@@ -124,263 +289,48 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
 }
 
-.noButton:hover{
-
+.noButton:hover {
   background: none;
   border: none;
-
 }
-
-
-.segnalazioni {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Distribuisce uniformemente gli elementi */
-    align-content: space-around; /* Distribuisce uniformemente le righe */
-    width: 100%;
-    height: 100hv;
-    margin: 0;
-    padding: 20px; /* Margini interni */
-    box-sizing: border-box;
-}
-
-.segnalazione {
-    background-color: #D9D9D9;
-    height: calc((100vh - 400px) / 2 - 20px); /* Calcola l'altezza tenendo conto dei padding e degli spazi tra le righe */
-    width: calc((100% - 80px) / 3 - 20px); /* Calcola la larghezza tenendo conto dei padding e degli spazi tra i div */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column; /* Disporre gli elementi in colonna */
-    justify-content: flex-start; /* Allineare gli elementi all'inizio */
-    align-items: center; /* Centra orizzontalmente */
-    padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
-}
-
-.barraSegnalazione {
-    background-color: #D70505;
-    height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.barraSegnalazione h4 {
-
-	font-size: 23px;
-	color: white;
-
-}
-
-
-
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(100%); /* Inizia fuori dalla visuale, sotto */
-    opacity: 0; /* Inizia invisibile */
-  }
-  100% {
-    transform: translateY(0); /* Torna alla posizione originale */
-    opacity: 1; /* Diventa visibile */
-  }
-}
-
-.div-animate {
-  animation: slide-up 0.5s ease-out forwards; /* Applica l'animazione */
-}
-
-
-
-
-.infoAccount {
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra verticalmente i contenuti */
-}
-
-.testa {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Posiziona il titolo DOCENTE in alto a sinistra */
-    display: flex;
-    align-items: center;
-}
-
-.testa h3 {
-    margin: 0;
-		color: white;
-    font-size: 48px;
-    border-style: solid;
-    border-color: #831E9C;
-    background-color: #831E9C;
-    width: 100%;
-    max-width: 735px;
-    height: auto;
-
-    padding-left: 50px;
-		padding-right: 50px;
-    position: relative;
-
-		border-radius: 20px;
-}
-
-.testa img {
-
-    margin-left: 545px; /* Spazio tra titolo e immagine */
-}
-
-.infoAccount p {
-    margin: 10px 0;
-    text-align: center; /* Centra il testo dei paragrafi */
-}
-
-.infoAccount #indietro {
-    position: absolute;
-    bottom: 20px; /* Posiziona i bottoni in basso */
-    left: 20px;  /* Posiziona i bottoni a sinistra */
-}
-
-
-
-
-
-
-
-.creaSegnalazione {
-
-    margin-top: 50px;
-
-		margin-left: auto;
-		margin-right: auto;
-
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-		justify-content: center;
-    align-items: center;
-
-}
-
-.selezionaPiano {
-
-  padding: 20px;
-  display: flex;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-  gap: 10px;
-}
-
-.selezionaPiano h4 {
-  width: 100%;
-  text-align: center;
-  color: white;
-
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-button .buttonAula {
-  background-color: #1A1A3D;
-  color: white;
-	position: absolute;
-	bottom: 20px; /* Posiziona i bottoni in basso */
-	left: 20px;  /* Posiziona i bottoni a sinistra */
-  font-size: 18px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button .buttonAula:hover {
-  background-color: #333366;
-}
-
-
-
-
-
 
 button {
-
-	background-color: #2C2C2C;
+  background-color: #2C2C2C;
   border: 2px solid #2C2C2C;
-	color: white;
+  color: white;
   padding: 10px 20px;
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
   border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-
+  margin: 10px;
+  transition: 0.5s;
 }
 
-button:hover{
-
-	background-color: #777575;
-	border: 2px solid #777575;
-
+button:hover {
+  background-color: #4e4e4e;
+  border: 2px solid #4e4e4e;
+  color: #ffffff;
 }
-
 
 .creaSegnalazioni {
-	margin-top: 50px;
-
-	margin-left: auto;
-	margin-right: auto;
-
-	color: white;
-	border-style: solid;
-	border-color: #23548B;
-	background-color: #23548B;
-	height: 60vh;
-	width: 90%;
-
-	position: relative;
-	border-radius: 40px;
-	display: flex;
-
+  margin: 20px auto;
+  color: white;
+  border: 2px solid #23548B;
+  background-color: #23548B;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .creaSegnalazioni h4 {
-	font-size: 24px;
+  font-size: 18px;
   margin: 0;
   position: absolute;
-
 }
 
 .inserimento {
@@ -388,76 +338,86 @@ button:hover{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .inserimento label {
   display: block;
-
   color: white;
 }
 
 .inserimento input {
   flex: 1;
   margin-right: 20px;
-  padding: 50px;
+  padding: 10px;
   border: 1px solid #fff;
   border-radius: 10px;
-
 }
 
 .inserimento select {
   padding: 8px;
   border: 1px solid #fff;
   border-radius: 5px;
-
-
 }
 
-
-.dettagliSegnalazioni{
-
-	margin-top: 50px;
-
-	margin-left: auto;
-	margin-right: auto;
-
-	color: white;
-	border-style: solid;
-	border-color: #23548B;
-	background-color: #23548B;
-	height: 60vh;
-	width: 90%;
-
-	position: relative;
-	border-radius: 40px;
-	display: flex;
-	flex-direction: column;
-
+.dettagliSegnalazioni {
+  margin: 20px auto;
+  color: white;
+  border: 2px solid #23548B;
+  background-color: #23548B;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.barraStato {
+  background-color: #D70505;
+  height: 50px;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dettagliSegnalazioni p {
+  font-size: 18px;
+  margin: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .header .profile {
+      position: relative;
+  }
+
+  .header {
+  }
+
+  .logo {
+      width: 100%;
+  }
+
+  .containerSegnalazioni {
+      align-items: center;
+  }
+
+  .segnalazione {
+      width: 100%;
+      max-width: none;
+  }
+
+  .infoAccount, .creaSegnalazione, .creaSegnalazioni, .dettagliSegnalazioni {
+      width: 100%;
+      padding: 20px;
+  }
+}
+
 
 
 .barraStato {
-    background-color: #D70505;
-    height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin-left: auto;
-		margin-right: auto;
-		margin-top: 30px;
-		margin-bottom: 50px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dettagliSegnalazioni p{
-
-	font-size: 32px;
-	margin:20px;
-	margin-left: auto;
-	margin-right: 50px;
-
-
+margin-top: 0; 
+padding-top: 0; 
 }

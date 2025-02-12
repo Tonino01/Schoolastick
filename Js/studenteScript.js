@@ -59,7 +59,7 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
 }
 
@@ -67,6 +67,8 @@ function dettagliSegnalazione(){
 
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
+
+  document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
 
@@ -76,7 +78,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREAZIONE SEGNALAZIONE";
 
 
 
@@ -89,7 +91,7 @@ function mostraInfoAccount(){
 
   fetching('librerie/infoAccount.html');
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
 }
 
@@ -99,7 +101,7 @@ function mostraArchivio(){
 
   fetching('librerie/mostraArchivio.html');
 
-  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+  document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI"; 
   
 }
 
