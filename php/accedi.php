@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Reindirizza alla pagina specifica in base al tipo di utente
             switch ($tipo) {
                 case 'Studente':
-                    header("Location: ../ind.html");
+                    header("Location: ../indexStudente.html");
                     break;
                 case 'Docente':
                     header("Location: ../indexDocente.html");
