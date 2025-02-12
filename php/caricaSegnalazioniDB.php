@@ -1,5 +1,6 @@
 <?php
 
+
 require_once 'conn_db_SK.php';
 
 // Esegui la query per ottenere le segnalazioni
