@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
         echo "</div>";
     }
 } else {
-    echo "Nessuna segnalazione trovata.";
+    echo "gay.";
     ;
 }
 
