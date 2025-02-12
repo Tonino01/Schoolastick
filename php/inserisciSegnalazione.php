@@ -1,31 +1,44 @@
 <?php
+session_start();
+require_once 'conn_db_SK.php'; // Assicurati che il file contenga la connessione MySQLi
 
-  require_once 'conn_db_SK.php';
+if (!isset($_SESSION['user_id'])) {
+    die("Accesso non autorizzato.");
+}
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $descrizione = filter_input(INPUT_POST, 'descrizione', FILTER_SANITIZE_STRING);
+$user_id = $_SESSION['user_id'];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $descrizione = htmlspecialchars($_POST['descrizione'], ENT_QUOTES, 'UTF-8');
     $luogo_id = filter_input(INPUT_POST, 'luogo_id', FILTER_VALIDATE_INT);
-    $data_creazione = date("Y-m-d H:i:s"); // Data attuale
+    $data_creazione = date("Y-m-d H:i:s");
 
     if (!$descrizione || !$luogo_id) {
         die("Dati non validi.");
     }
 
-    // Query per l'inserimento
-    $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id) 
-            VALUES (:descrizione, :data_creazione, :id_utente_crea, :luogo_id)";
-    
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':descrizione', $descrizione);
-    $stmt->bindParam(':data_creazione', $data_creazione);
-    $stmt->bindParam(':id_utente_crea', $user_id);
-    $stmt->bindParam(':luogo_id', $luogo_id);
+    if (!$conn) {
+        die("Errore: Connessione al database non riuscita.");
+    }
 
-    if ($stmt->execute()) {
-        echo "Segnalazione inserita con successo!";
+    // Query corretta con 4 parametri
+    $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id) 
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        // Assicuriamoci che ci siano 4 parametri (s = stringa, s = stringa, i = intero, i = intero)
+        $stmt->bind_param("ssii", $descrizione, $data_creazione, $user_id, $luogo_id);
+
+        if ($stmt->execute()) {
+            echo "Segnalazione inserita con successo!";
+        } else {
+            echo "Errore durante l'inserimento: " . $stmt->error;
+        }
+
+        $stmt->close();
     } else {
-        echo "Errore durante l'inserimento.";
+        echo "Errore nella preparazione della query: " . $conn->error;
     }
 }
-
 ?>
