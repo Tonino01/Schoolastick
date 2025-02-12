@@ -281,16 +281,11 @@ async function creaNuovaSegnalazione() {
   }
   */
 
-
-
-
   inviaSegnalazioni();
 
   //inviare la segnalazione al DataBase
 
   segnalazioni();
-
-
 }
 
 function inviaSegnalazioni() {
