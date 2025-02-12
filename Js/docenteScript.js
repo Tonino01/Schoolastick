@@ -11,11 +11,21 @@ const segnalazione = {
 };
 
 
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+    fetch('logout.php', {
+        method: 'POST', // Usa POST se il logout modifica lo stato del server
+        credentials: 'include' // Invia i cookie di sessione se necessari
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = 'index.php'; // Reindirizza alla homepage dopo il logout
+        } else {
+            console.error('Errore nel logout');
+        }
+    })
+    .catch(error => console.error('Errore di rete:', error));
 }
+
 
 //ottimizazione fetch
 async function fetching(risorsa) {
@@ -212,7 +222,9 @@ function mostraArchivio(){
 
 function getUtenteId(){
 
-  //DA FARE!!!!
+  const response = await fetch('session.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
 
 }
 
