@@ -152,3 +152,14 @@ function creaNuovaSegnalazione(){
 
   segnalazioni();
 }
+
+document.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    const bc = document.querySelector('.bc');
+    if (window.scrollY >= header.offsetHeight) {
+        document.body.classList.add('scrolled');
+    } else {
+        document.body.classList.remove('scrolled');
+    }
+});
+
