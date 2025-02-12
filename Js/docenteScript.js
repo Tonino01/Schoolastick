@@ -6,19 +6,20 @@ const segnalazione = {
   luogo_id: "",
   stato: "",
   id_utente_crea: "",
+  categoria: "",
   report: ""
 
 };
 
 
 function logOut() {
-    fetch('logout.php', {
+    fetch('php/logout.php', {
         method: 'POST', // Usa POST se il logout modifica lo stato del server
         credentials: 'include' // Invia i cookie di sessione se necessari
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = 'index.php'; // Reindirizza alla homepage dopo il logout
+            window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
         } else {
             console.error('Errore nel logout');
         }
@@ -238,7 +239,7 @@ function mostraArchivio(){
 
 async function getUtenteId(){
 
-  const response = await fetch('getUtente.php', { credentials: 'include' });
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
   const userId = await response.text();
   return userId !== 'null' ? userId : null;
 
@@ -276,7 +277,7 @@ async function creaNuovaSegnalazione() {
   let categoria = selectElement.options[selectElement.selectedIndex];
 
 
-  categoria = categoria.value;
+  segnalazione.categoria = categoria.value;
 
 
   segnalazione.luogo_id = await getLuogoId(tempAula);
@@ -284,6 +285,7 @@ async function creaNuovaSegnalazione() {
   segnalazione.stato = "Da fare";
 
   segnalazione.id_utente_crea = await getUtenteId();
+
 
   /*
   if(categoria == "Pulire"){
@@ -294,12 +296,13 @@ async function creaNuovaSegnalazione() {
 
     segnalazione.perChi = "Tecnico";
 
-  }
   */
+  
+//inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
-  //inviare la segnalazione al DataBase
+  
 
   segnalazioni();
 }
@@ -309,6 +312,7 @@ function inviaSegnalazioni() {
     formData.append('descrizione', segnalazione.descrizione);
     formData.append('luogo_id', segnalazione.luogo_id);
     formData.append('id_utente_crea', segnalazione.id_utente_crea);
+    formData.append('categoria', segnalazione.categoria);
 
     // Effettua la richiesta POST al server
     fetch('php/inserisciSegnalazione.php', {

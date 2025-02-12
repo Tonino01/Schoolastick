@@ -14,10 +14,19 @@ const segnalazione = {
 };
 
 
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+  fetch('php/logout.php', {
+      method: 'POST', // Usa POST se il logout modifica lo stato del server
+      credentials: 'include' // Invia i cookie di sessione se necessari
+  })
+  .then(response => {
+      if (response.ok) {
+          window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
+      } else {
+          console.error('Errore nel logout');
+      }
+  })
+  .catch(error => console.error('Errore di rete:', error));
 }
 
 //ottimizazione fetch
@@ -66,13 +75,13 @@ function segnalazioni(){
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
-  caricaDettagli();
+  caricaSegnalazioni();
 
 
 
 }
 
-function caricaDettagli() {
+function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -84,12 +93,50 @@ function caricaDettagli() {
   });
 }
 
-function dettagliSegnalazione(){
+
+
+
+
+
+
+
+function dettagliSegnalazione(id) {
 
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
 
+  // Usa l'ID passato come parametro
+  caricaDettagli(id);
+
 }
+
+
+
+
+
+function caricaDettagli(id) {
+  fetch('php/caricaDettagliSegnalazioni.php?id=' + id) // Passa l'ID come parametro alla richiesta
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.text();
+  })
+  .then(data => {
+    const dettagliElement = document.getElementById('dettagli');
+    if (dettagliElement) {
+      // Aggiungi i dettagli nel div con id "dettagli"
+      dettagliElement.innerHTML = data;
+    } else {
+      console.error('Elemento con id "dettagli" non trovato.');
+    }
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+
 
 function nuovaSegnalazione(){
 
