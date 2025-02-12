@@ -6,7 +6,7 @@ const segnalazione = {
   luogo_id: "",
   stato: "",
   id_utente_crea: "",
-  reprt: ""
+  report: ""
 
 };
 
@@ -66,7 +66,9 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
+  document.getElementById("titolo").innerText = "Segnalazioni:";
+
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaDettagli();
 
@@ -210,17 +212,31 @@ function indietro(){
 
 }
 
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+    tmp = false;
 
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+    tmp = true;
+
+  }
 }
 
-function getUtenteId(){
+async function getUtenteId(){
 
   const response = await fetch('getUtente.php', { credentials: 'include' });
   const userId = await response.text();
@@ -267,7 +283,7 @@ async function creaNuovaSegnalazione() {
 
   segnalazione.stato = "Da fare";
 
-  segnalazione.id_utente_crea = getUtenteId();
+  segnalazione.id_utente_crea = await getUtenteId();
 
   /*
   if(categoria == "Pulire"){
