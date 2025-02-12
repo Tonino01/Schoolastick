@@ -1,6 +1,6 @@
 <?php
 
-  require_once 'php/connessioneDB.php';
+  require_once 'conn_db_SK.php';
 
   // Verifica se i dati necessari sono stati inviati tramite POST
   if (isset($_POST['descrizione'], $_POST['id_utente_crea'], $_POST['luogo_id'])) {
@@ -13,7 +13,7 @@
       $id_utente_lavora = NULL;
       $id_utente_completa = NULL;
       $luogo_id = $_POST['luogo_id'];
-      
+
       // Prepara la query di inserimento
       $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, report, stato, id_utente_crea, id_utente_lavora, id_utente_completa, luogo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -26,7 +26,7 @@
           if ($stmt->execute()) {
 
               echo "Segnalazione inserita con successo.";
-              
+
               exit;
 
           } else {
