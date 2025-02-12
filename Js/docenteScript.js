@@ -3,13 +3,10 @@
 const segnalazione = {
 
   descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
+  luogo_id: "",
   stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
+  id_utente_crea: "",
+  reprt: ""
 
 };
 
@@ -61,6 +58,20 @@ function segnalazioni(){
 
   document.getElementById("titolo").innerText = "Segnalazioni:"
 
+  caricaDettagli();
+
+}
+
+function caricaDettagli() {
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
@@ -69,6 +80,19 @@ function dettagliSegnalazione(){
   fetching('librerie/mostraDettagliSegnalazione.html');
 
 }
+
+function mostraInfoAccount(){
+
+  pulisciContenitore();
+
+
+  fetching('librerie/infoAccount.html');
+
+  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+
+}
+
+
 
 function nuovaSegnalazione(){
 
@@ -82,14 +106,25 @@ function nuovaSegnalazione(){
 
 }
 
-function mostraInfoAccount(){
+
+
+function nuovaSegnalazione_Sedi(){
 
   pulisciContenitore();
 
+  fetching('librerie/nuovaSegnalazione-Sedi.html');
 
-  fetching('librerie/infoAccount.html');
+  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+}
+
+function sede1(){
+
+  pulisciContenitore();
+
+  fetching('librerie/nuovaSegnalazione.html');
+
+
 
 }
 
@@ -121,7 +156,7 @@ function intermedio1Button(){
 
   tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio1.html');
 
 }
 function piano1Button(){
@@ -135,14 +170,14 @@ function intermedio2Button(){
 
   tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio2.html');
 
 }
 function piano2Button(){
 
   tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
+  fetching('librerie/nuovaSegnalazione - Piano2.html');
 
 }
 
@@ -172,17 +207,38 @@ function mostraArchivio(){
   fetching('librerie/mostraArchivio.html');
 
   document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
-  
+
 }
 
-function getUtente(){
+function getUtenteId(){
 
   //DA FARE!!!!
 
 }
 
-function creaNuovaSegnalazione(){
 
+
+async function getLuogoId(aula) {
+    const formData = new FormData();
+    formData.append('aula', aula);
+
+    try {
+        const response = await fetch('php/getLuogo.php', {
+            method: 'POST',
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const result = await response.text();
+        return result;
+    } catch (error) {
+        console.error('Errore:', error);
+        return null;
+    }
+}
+
+async function creaNuovaSegnalazione() {
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
@@ -194,16 +250,14 @@ function creaNuovaSegnalazione(){
 
   categoria = categoria.value;
 
-  segnalazione.categoria = categoria;
 
-  segnalazione.aula = tempAula;
+  segnalazione.luogo_id = await getLuogoId(tempAula);
 
-  segnalazione.piano = tempPiano;
+  segnalazione.stato = "Da fare";
 
-  segnalazione.stato = "DA FARE";
+  segnalazione.id_utente_crea = getUtenteId();
 
-  segnalazione.daChi = getUtente();
-
+  /*
   if(categoria == "Pulire"){
 
     segnalazione.perChi = "Collaboratore";
@@ -213,14 +267,38 @@ function creaNuovaSegnalazione(){
     segnalazione.perChi = "Tecnico";
 
   }
+  */
 
-  alert("segnalazione effettuata!!");
 
+
+
+  inviaSegnalazioni();
 
   //inviare la segnalazione al DataBase
 
-
-
-
   segnalazioni();
+
+
+}
+
+function inviaSegnalazioni() {
+    const formData = new FormData();
+    formData.append('descrizione', segnalazione.descrizione);
+    formData.append('luogo_id', segnalazione.luogo_id);
+    formData.append('id_utente_crea', segnalazione.id_utente_crea);
+
+    // Effettua la richiesta POST al server
+    fetch('php/inserisciSegnalazione.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Successo:', result);
+        alert("segnalazione effettuata!!");
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+        alert("segnalazione NON effettuata!!");
+    });
 }
