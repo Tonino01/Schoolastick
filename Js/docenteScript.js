@@ -222,7 +222,7 @@ function mostraArchivio(){
 
 function getUtenteId(){
 
-  const response = await fetch('session.php', { credentials: 'include' });
+  const response = await fetch('getUtente.php', { credentials: 'include' });
   const userId = await response.text();
   return userId !== 'null' ? userId : null;
 
