@@ -81,6 +81,19 @@ function dettagliSegnalazione(){
 
 }
 
+function mostraInfoAccount(){
+
+  pulisciContenitore();
+
+
+  fetching('librerie/infoAccount.html');
+
+  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+
+}
+
+
+
 function nuovaSegnalazione(){
 
   pulisciContenitore();
@@ -93,14 +106,25 @@ function nuovaSegnalazione(){
 
 }
 
-function mostraInfoAccount(){
+
+
+function nuovaSegnalazione_Sedi(){
 
   pulisciContenitore();
 
+  fetching('librerie/nuovaSegnalazione-Sedi.html');
 
-  fetching('librerie/infoAccount.html');
+  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+}
+
+function sede1(){
+
+  pulisciContenitore();
+
+  fetching('librerie/nuovaSegnalazione.html');
+
+
 
 }
 
@@ -186,7 +210,7 @@ function mostraArchivio(){
 
 }
 
-function getUtente(){
+function getUtenteId(){
 
   //DA FARE!!!!
 
@@ -231,7 +255,7 @@ async function creaNuovaSegnalazione() {
 
   segnalazione.stato = "Da fare";
 
-  segnalazione.id_utente_crea = getUtente();
+  segnalazione.id_utente_crea = getUtenteId();
 
   /*
   if(categoria == "Pulire"){
@@ -245,7 +269,7 @@ async function creaNuovaSegnalazione() {
   }
   */
 
-  alert("segnalazione effettuata!!");
+
 
 
   inviaSegnalazioni();
@@ -253,6 +277,8 @@ async function creaNuovaSegnalazione() {
   //inviare la segnalazione al DataBase
 
   segnalazioni();
+
+
 }
 
 function inviaSegnalazioni() {
@@ -269,8 +295,10 @@ function inviaSegnalazioni() {
     .then(response => response.text())
     .then(result => {
         console.log('Successo:', result);
+        alert("segnalazione effettuata!!");
     })
     .catch(error => {
         console.error('Errore:', error);
+        alert("segnalazione NON effettuata!!");
     });
 }
