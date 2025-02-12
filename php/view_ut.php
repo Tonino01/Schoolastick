@@ -11,7 +11,7 @@
 			echo "ID: " .$row["id"] . " - Nome: " . $row["nome"] . " - Email: " . $row["email"] . " - Password: " . $row["password"] . "<br>";
 		}
 	} else {
-		echo "Nessuno utent trovato.";
+		echo "Nessuno utente trovato.";
 	}
 
     //fine: chiusura dell'oggetto
