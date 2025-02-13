@@ -67,13 +67,15 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:";
+
+  document.getElementById("titolo").innerText = "SEGNALAZIONI"
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaDettagli();
 
 }
+
 
 function caricaDettagli() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
@@ -91,6 +93,7 @@ function dettagliSegnalazione(){
 
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
+  document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
 
@@ -113,7 +116,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE";
 
 
 
@@ -137,7 +140,7 @@ function sede1(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
 }
 
@@ -228,13 +231,13 @@ function mostraArchivio(){
 
     fetching('librerie/mostraArchivio.html');
 
-    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
 
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
 
+
     tmp = true;
 
-  }
 }
 
 async function getUtenteId(){
@@ -306,7 +309,18 @@ async function creaNuovaSegnalazione() {
 
   segnalazioni();
 }
+  
+document.addEventListener('scroll', function() {
+  const header = document.querySelector('.header');
+  const bc = document.querySelector('.bc');
+  if (window.scrollY >= header.offsetHeight) {
+      document.body.classList.add('scrolled');
+  } else {
+      document.body.classList.remove('scrolled');
+  }
+});
 
+  
 function inviaSegnalazioni() {
     const formData = new FormData();
     formData.append('descrizione', segnalazione.descrizione);
@@ -329,3 +343,5 @@ function inviaSegnalazioni() {
         alert("segnalazione NON effettuata!!");
     });
 }
+
+  
