@@ -19,7 +19,7 @@
       // Prepara lo statement
       if ($stmt = $conn->prepare($sql)) {
           // Associa i parametri
-          $stmt->bind_param("sssii", $descrizione, $data_creazione, $id_utente_crea, $luogo_id, $categoria);
+          $stmt->bind_param("ssiis", $descrizione, $data_creazione, $id_utente_crea, $luogo_id, $categoria);
 
           // Esegui lo statement
           if ($stmt->execute()) {

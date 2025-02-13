@@ -1,17 +1,4 @@
-//inizializazione degli oggetti
 
-const segnalazione = {
-
-  descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
-  stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
-
-};
 
 
 function logOut() {
@@ -100,7 +87,9 @@ function caricaSegnalazioni() {
 
 
 
-function dettagliSegnalazione(id) {
+function dettagliSegnalazione(id_segnalazione) {
+
+  let id = id_segnalazione;
 
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
@@ -114,25 +103,24 @@ function dettagliSegnalazione(id) {
 
 
 
-function caricaDettagli(id) {
-  fetch('php/caricaDettagliSegnalazioni.php?id=' + id) // Passa l'ID come parametro alla richiesta
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
+function caricaDettagli(id_segnalazione) {
+  const formData = new FormData();
+  formData.append('id', id_segnalazione);
+
+
+  // Effettua la richiesta POST al server
+  fetch('php/caricaDettagliSegnalazioni.php', {
+      method: 'POST',
+      body: formData
   })
-  .then(data => {
-    const dettagliElement = document.getElementById('dettagli');
-    if (dettagliElement) {
-      // Aggiungi i dettagli nel div con id "dettagli"
-      dettagliElement.innerHTML = data;
-    } else {
-      console.error('Elemento con id "dettagli" non trovato.');
-    }
+  .then(response => response.text())
+  .then(result => {
+      console.log('Successo:', result);
+
   })
   .catch(error => {
-    console.error('Errore nel caricamento dei dettagli:', error);
+      console.error('Errore:', error);
+
   });
 }
 
