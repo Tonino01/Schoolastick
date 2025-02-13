@@ -238,6 +238,7 @@ function mostraArchivio(){
 
     tmp = true;
 
+  }
 }
 
 async function getUtenteId(){
@@ -300,16 +301,16 @@ async function creaNuovaSegnalazione() {
     segnalazione.perChi = "Tecnico";
 
   */
-  
+
 //inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
-  
+
 
   segnalazioni();
 }
-  
+
 document.addEventListener('scroll', function() {
   const header = document.querySelector('.header');
   const bc = document.querySelector('.bc');
@@ -320,7 +321,7 @@ document.addEventListener('scroll', function() {
   }
 });
 
-  
+
 function inviaSegnalazioni() {
     const formData = new FormData();
     formData.append('descrizione', segnalazione.descrizione);
@@ -343,5 +344,3 @@ function inviaSegnalazioni() {
         alert("segnalazione NON effettuata!!");
     });
 }
-
-  
