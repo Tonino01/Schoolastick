@@ -1,361 +1,4 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
-.header {
-
-	position: relative;
-    display: flex;
-    align-items: center;
-
-}
-
-.header .profile {
-
-	margin-left: 53%;
-
-
-}
-
-*{
-
-	font-family: 'Poppins', sans-serif;
-
-}
-
-body {
-  background-color: #93719C;
-
-
-
-}
-
-
-
-h1 {
-    font-size: 48px;
-
-}
-
-.logo {
-
-	color: white;
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-style: solid;
-	border-color: #831E9C;
-	background-color: #831E9C;
-	width: 100%;
-	max-width: 735px;
-	height: auto;
-	padding: 10px;
-	position: relative;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	border-radius: 20px;
-
-
-}
-
-.titoloPagina {
-
-	padding-right: 170px;
-
-}
-
-.utente{
-
-	margin-left: 10px;
-	font-size: 30px;
-
-}
-
-.containerSegnalazioni {
-    color: white;
-    border-style: solid;
-    border-color: #360143;
-    background-color: #360143;
-    height: 100px;
-    padding: 10px;
-    position: relative;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-}
-
-
-
-.containerSegnalazioni h2 {
-    flex-grow: 1;
-		font-size: 48px;
-    text-align: center;
-    margin: 0;
-}
-
-.buttonNuova {
-  background-color: #831E9C;
-  border: 2px solid #831E9C;
-	color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 20px;
-  margin-right: 10px;
-	margin-left: 20px;
-	height: 70px;
-	width: 10%;
-	font-size: 24px;
-}
-
-.buttonNuova:hover{
-
-	background-color: #6750A4;
-	border: 2px solid #6750A4;
-
-}
-
-.noButton{
-
-  background: none;
-  border: none;
-  padding: 0;
-  margin-right: 5%;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-.noButton:hover{
-
-  background: none;
-  border: none;
-
-}
-
-
-.segnalazioni {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Distribuisce uniformemente gli elementi */
-    align-content: space-around; /* Distribuisce uniformemente le righe */
-    width: 100%;
-    height: 100hv;
-    margin: 0;
-    padding: 20px; /* Margini interni */
-    box-sizing: border-box;
-}
-
-.segnalazione {
-    background-color: #D9D9D9;
-    height: calc((100vh - 400px) / 2 - 20px); /* Calcola l'altezza tenendo conto dei padding e degli spazi tra le righe */
-    width: calc((100% - 80px) / 3 - 20px); /* Calcola la larghezza tenendo conto dei padding e degli spazi tra i div */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column; /* Disporre gli elementi in colonna */
-    justify-content: flex-start; /* Allineare gli elementi all'inizio */
-    align-items: center; /* Centra orizzontalmente */
-    padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
-}
-
-.barraSegnalazione {
-    background-color: #D70505;
-    height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.barraSegnalazione h4 {
-
-	font-size: 23px;
-	color: white;
-
-}
-
-
-
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(100%); /* Inizia fuori dalla visuale, sotto */
-    opacity: 0; /* Inizia invisibile */
-  }
-  100% {
-    transform: translateY(0); /* Torna alla posizione originale */
-    opacity: 1; /* Diventa visibile */
-  }
-}
-
-.div-animate {
-  animation: slide-up 0.5s ease-out forwards; /* Applica l'animazione */
-}
-
-
-
-
-.infoAccount {
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra verticalmente i contenuti */
-}
-
-.testa {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Posiziona il titolo DOCENTE in alto a sinistra */
-    display: flex;
-    align-items: center;
-}
-
-.testa h3 {
-    margin: 0;
-		color: white;
-    font-size: 48px;
-    border-style: solid;
-    border-color: #831E9C;
-    background-color: #831E9C;
-    width: 100%;
-    max-width: 735px;
-    height: auto;
-
-    padding-left: 50px;
-		padding-right: 50px;
-    position: relative;
-
-		border-radius: 20px;
-}
-
-.testa img {
-
-    margin-left: 545px; /* Spazio tra titolo e immagine */
-}
-
-.infoAccount p {
-    margin: 10px 0;
-    text-align: center; /* Centra il testo dei paragrafi */
-}
-
-.infoAccount #indietro {
-    position: absolute;
-    bottom: 20px; /* Posiziona i bottoni in basso */
-    left: 20px;  /* Posiziona i bottoni a sinistra */
-}
-
-
-
-
-
-
-
-.creaSegnalazione {
-
-    margin-top: 50px;
-
-		margin-left: auto;
-		margin-right: auto;
-
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-		justify-content: center;
-    align-items: center;
-
-}
-
-.selezionaPiano {
-
-  padding: 20px;
-  display: flex;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-  gap: 10px;
-}
-
-.selezionaPiano h4 {
-  width: 100%;
-  text-align: center;
-  color: white;
-
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-button .buttonAula {
-  background-color: #1A1A3D;
-  color: white;
-	position: absolute;
-	bottom: 20px; /* Posiziona i bottoni in basso */
-	left: 20px;  /* Posiziona i bottoni a sinistra */
-  font-size: 18px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button .buttonAula:hover {
-  background-color: #333366;
-}
-
-
-
-
-
-
-button {
-
-	background-color: #2C2C2C;
-  border: 2px solid #2C2C2C;
-	color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-
-}
-
-button:hover{
-
-	background-color: #777575;
-	border: 2px solid #777575;
-
-}
-
 
 .creaSegnalazioni {
 	margin-top: 50px;
@@ -410,8 +53,6 @@ button:hover{
   padding: 8px;
   border: 1px solid #fff;
   border-radius: 5px;
-
-
 }
 
 
@@ -436,22 +77,6 @@ button:hover{
 
 }
 
-
-.barraStato {
-    background-color: #D70505;
-    height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin-left: auto;
-		margin-right: auto;
-		margin-top: 30px;
-		margin-bottom: 50px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .dettagliSegnalazioni p{
 
 	font-size: 32px;
@@ -461,15 +86,6 @@ button:hover{
 
 
 }
-
-
-
-
-
-/*cacca*/
-
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
   position: relative;
@@ -502,31 +118,31 @@ h1 {
   color: #333;
 }
 .bc {
-  display: none; /* Hide by default */
+  display: none; 
   background-color: #404040;
   margin: 0;
   width: 100%;
   position: sticky;
   top: 0;
-  z-index: 1003; /* Ensure it appears above containerSegnalazioni */
+  z-index: 1003;
 }
 
 body.scrolled .bc {
-  display: block; /* Show when body has 'scrolled' class */
+  display: block; 
 }
 
 .bar{
   position: relative;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(to right,#9830ff, #ffa53000 );
+  background-image: linear-gradient(to right,#8408ff, #8408ff00 );
   width: 100%;
   height: 10px; 
 }
 .logo {
   color: white;
   display: flex;
-  background-image: linear-gradient(to right,#9830ff, #ffa53000 );
+  background-image: linear-gradient(to right,#8408ff, #8408ff00 );
   width: 100%;
   max-width: 90%;
   padding: 20px;
@@ -548,15 +164,14 @@ body.scrolled .bc {
 .containerSegnalazioni {
   color: white;
   background-color: #404040;
-  position: -webkit-sticky; /* For Safari */
-  position: sticky; /* Changed to sticky */
-  top: 0; /* Align to top */
-  z-index: 1002; /* Ensure it appears above other elements */
+  position: -webkit-sticky; 
+  position: sticky; 
+  top: 0; 
+  z-index: 1002; 
   max-width: 100%;
   height: 50px;
   padding: 20px 20px 20px 0;
   display: flex;
-  justify-content: center; /* Center the content horizontally */
   align-items: center; 
 }
 
@@ -564,9 +179,9 @@ body.scrolled .bc {
   font-size: 36px;
   text-align: center;
   margin: 0;
-  position: absolute; /* Make h2 absolute for better control */
+  position: absolute;
   left: 50%;
-  transform: translateX(-50%); /* Center it horizontally */
+  transform: translateX(-50%);
   font-size: 200%;
 }
 
@@ -578,8 +193,8 @@ body.scrolled .bc {
 }
 
 .parentContainer {
-  height: 100vh; /* Ensure the parent container has a height */
-  overflow: visible; /* Ensure no overflow property interferes */
+  height: 100vh; 
+  overflow: visible; 
 }
 
 .segnalazioni {
@@ -591,16 +206,40 @@ body.scrolled .bc {
   box-sizing: border-box;
 }
 
-.segnalazione button {
+.segnalazione button, .buttonAula {
   padding: 10px 20px;
   font-size: 14px;
   margin-bottom: 3%;
-  width: 60%;
+  width: 55%;
   margin-left: auto;
   margin-right: auto;
-  
+  background-color: #2C2C2C;
+  border: 2px solid #2C2C2C;
+  color: white;
+  border-radius: 10px;
+  transition: 0.5s;
 }
-
+.buttonAula{
+  height:70px;
+}
+.annulla{
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center; 
+  align-items: center; 
+  margin: auto 0 0 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold; 
+  width: 10%;
+  background-color: #8408ff;
+  border: none;
+  color: white;
+  text-decoration: none; 
+  border-radius: 10px;
+  transition: 0.5s;
+  text-align: center; 
+}
 .segnalazione {
 background-color: #ffffff;
 height: 230px;
@@ -615,13 +254,13 @@ transition: 0.5s;
 }
 
 .segnalazione h4 {
-margin: 10px 20px; /* Adjusted margin */
+margin: 10px 20px; 
 padding: 0 10px;
 text-align: center;
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
-width: calc(100% - 50px); /* Adjusted width */
+width: calc(100% - 50px); 
 }
 
 .barraSegnalazione {
@@ -634,9 +273,6 @@ align-items: center;
 border-radius: 20px 20px 0 0;
 margin: 0;
 }
-
-
-
 
 .barraSegnalazione h4 {
   font-size: 18px;
@@ -706,16 +342,17 @@ margin: 0;
 .creaSegnalazione {
   margin: 20px auto;
   color: white;
-  border: 2px solid #23548B;
-  background-color: #23548B;
+  background-color: #00000065;
   padding: 20px;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width:80%;
 }
 
 .selezionaPiano {
+  width:60%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -732,29 +369,11 @@ margin: 0;
   margin-bottom: 20px;
 }
 
-button .buttonAula {
-  background-color: #1A1A3D;
-  color: white;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button .buttonAula:hover {
-  background-color: #333366;
-}
-
 .noButton {
   background: none;
   border: none;
   padding: 0;
-  margin-right: 5%;
+  margin-right: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -766,16 +385,27 @@ button .buttonAula:hover {
   border: none;
 }
 
-button {
-  background-color: #2C2C2C;
-  border: 2px solid #2C2C2C;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+.containerSegnalazioni .buttonNuova {
   cursor: pointer;
+  display: inline-flex;
+  justify-content: center; 
+  align-items: center; 
+  margin: auto 0 0 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold; 
+  width: 10%;
+  background-color: #8408ff;
+  border: none;
+  color: white;
+  text-decoration: none; 
   border-radius: 10px;
-  margin: 10px;
   transition: 0.5s;
+  text-align: center; 
+}
+
+.containerSegnalazioni .buttonNuova:hover{
+  background-color: #9429ff;
 }
 
 button:hover {
@@ -863,9 +493,6 @@ button:hover {
       position: relative;
   }
 
-  .header {
-  }
-
   .logo {
       width: 100%;
   }
@@ -884,8 +511,6 @@ button:hover {
       padding: 20px;
   }
 }
-
-
 
 .barraStato {
 margin-top: 0; 
