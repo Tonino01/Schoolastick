@@ -88,41 +88,32 @@ function caricaSegnalazioni() {
 
 
 function dettagliSegnalazione(id_segnalazione) {
-
-  let id = id_segnalazione;
-
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  pulisciContenitore(); // Pulisce il contenitore dei dettagli
+  fetching('librerie/mostraDettagliSegnalazione.html'); // Carica il template HTML per la visualizzazione
 
   // Usa l'ID passato come parametro
-  caricaDettagli(id);
-
+  caricaDettagli(id_segnalazione);
 }
-
-
-
-
 
 function caricaDettagli(id_segnalazione) {
   const formData = new FormData();
   formData.append('id', id_segnalazione);
-
 
   // Effettua la richiesta POST al server
   fetch('php/caricaDettagliSegnalazioni.php', {
       method: 'POST',
       body: formData
   })
-  .then(response => response.text())
-  .then(result => {
-      console.log('Successo:', result);
-
+  .then(response => response.text()) // Gestisce la risposta del server come testo
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli"
+    document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
-      console.error('Errore:', error);
-
+    console.error('Errore nel caricamento dei dettagli:', error);
   });
 }
+
 
 
 
