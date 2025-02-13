@@ -40,6 +40,8 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
+
+
 //trovare soluzioni per transizioni
 function transizione(container){
 
@@ -59,14 +61,37 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
+  document.getElementById("titolo").innerText = "Segnalazioni:";
 
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
+
+
+  caricaDettagli();
+
+
+}
+
+function caricaDettagli() {
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
 
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+     pulisciContenitore();
+     fetching('librerie/mostraDettagliSegnalazione.html').then(() => {
+       let buttonContainer = document.createElement("button");
+      buttonCompletaSegnalazione(buttonContainer);
+      document.getElementById("mButton").appendChild(buttonContainer);
+    });
+
 
 }
 
@@ -165,35 +190,121 @@ function indietro(){
 
 }
 
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
-  
+    tmp = false;
+
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+    tmp = true;
+
+  }
 }
 
 function getUtente(){
 
   //DA FARE!!!!
+  return "Tecnico";
 
 }
 
-function buttonCompletaSegnalazione(){
+function getStato(){
 
-  const buttonInCorso = document.createElement('button');
-  buttonInCorso.textContent = 'CONTRASSEGNA COME IN CORSO';
-  buttonInCorso.className = 'buttonInCorso';
+  //DA FARE!!!!
+  return "Da Fare";
 
-  const buttonCompleta = document.createElement('button');
-  buttonCompleta.textContent = 'CONTRASSEGNA COME COMPLETATA';
-  buttonCompleta.className = 'buttonCompleta';
-
-  document.getElementsById/("buttonTecnico").appendChild(buttonInCorso);
 }
 
+function setStato(stato){
+
+  return stato;
+
+  //DA FARE!!!!
+
+}
+
+
+
+function buttonCompletaSegnalazione(buttonContainer) {
+
+
+  if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
+
+    if(getStato() == "Da Fare"){
+
+      buttonContainer.onclick = function() { contrassegnaInCorso(buttonContainer); };
+      buttonContainer.style.backgroundColor = "#D78605";
+      buttonContainer.style.borderColor = "#D78605";
+      buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
+
+    }else if(getStato() == "In Corso"){
+
+      buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
+      buttonContainer.style.backgroundColor = "#0A9B02";
+      buttonContainer.style.borderColor = "#0A9B02";
+      buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
+
+    }
+  }else{
+
+    buttonContainer.style.display = "none";
+
+  }
+
+}
+
+function contrassegnaInCorso(buttonContainer){
+
+
+
+
+  setStato("In Corso");
+
+  buttonContainer.onclick = function() { contrassegnaCompletata(buttonContainer); };
+  buttonContainer.style.backgroundColor = "#D78605";
+  buttonContainer.style.borderColor = "#D78605";
+  buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
+
+
+}
+
+function contrassegnaCompletata(buttonContainer){
+
+  buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
+  buttonContainer.style.backgroundColor = "#0A9B02";
+  buttonContainer.style.borderColor = "#0A9B02";
+  buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
+
+
+  setStato("Completata"); //da mettere finito il report
+
+
+}
+
+
+
+function mostraScriviReport(){
+
+  pulisciContenitore();
+
+  fetching('librerie/mostraScriviReport.html');
+
+  document.getElementById("titolo").innerText = "Scrivi Report:"
+
+}
 
 function creaNuovaSegnalazione(){
 

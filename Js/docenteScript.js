@@ -3,22 +3,29 @@
 const segnalazione = {
 
   descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
+  luogo_id: "",
   stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
+  id_utente_crea: "",
+  report: ""
 
 };
 
 
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+    fetch('logout.php', {
+        method: 'POST', // Usa POST se il logout modifica lo stato del server
+        credentials: 'include' // Invia i cookie di sessione se necessari
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = 'index.php'; // Reindirizza alla homepage dopo il logout
+        } else {
+            console.error('Errore nel logout');
+        }
+    })
+    .catch(error => console.error('Errore di rete:', error));
 }
+
 
 //ottimizazione fetch
 async function fetching(risorsa) {
@@ -59,8 +66,26 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
+
   document.getElementById("titolo").innerText = "SEGNALAZIONI"
 
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
+
+  caricaDettagli();
+
+}
+
+
+function caricaDettagli() {
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
@@ -70,6 +95,19 @@ function dettagliSegnalazione(){
   document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
+
+function mostraInfoAccount(){
+
+  pulisciContenitore();
+
+
+  fetching('librerie/infoAccount.html');
+
+  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+
+}
+
+
 
 function nuovaSegnalazione(){
 
@@ -83,12 +121,23 @@ function nuovaSegnalazione(){
 
 }
 
-function mostraInfoAccount(){
+
+
+function nuovaSegnalazione_Sedi(){
 
   pulisciContenitore();
 
+  fetching('librerie/nuovaSegnalazione-Sedi.html');
 
-  fetching('librerie/infoAccount.html');
+  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+
+}
+
+function sede1(){
+
+  pulisciContenitore();
+
+  fetching('librerie/nuovaSegnalazione.html');
 
   document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
@@ -122,7 +171,7 @@ function intermedio1Button(){
 
   tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio1.html');
 
 }
 function piano1Button(){
@@ -136,14 +185,14 @@ function intermedio2Button(){
 
   tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio2.html');
 
 }
 function piano2Button(){
 
   tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
+  fetching('librerie/nuovaSegnalazione - Piano2.html');
 
 }
 
@@ -166,24 +215,61 @@ function indietro(){
 
 }
 
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
-  
+    tmp = false;
+
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+
+    tmp = true;
+
 }
 
-function getUtente(){
+async function getUtenteId(){
 
-  //DA FARE!!!!
+  const response = await fetch('getUtente.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
 
 }
 
-function creaNuovaSegnalazione(){
 
+
+async function getLuogoId(aula) {
+    const formData = new FormData();
+    formData.append('aula', aula);
+
+    try {
+        const response = await fetch('php/getLuogo.php', {
+            method: 'POST',
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const result = await response.text();
+        return result;
+    } catch (error) {
+        console.error('Errore:', error);
+        return null;
+    }
+}
+
+async function creaNuovaSegnalazione() {
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
@@ -195,16 +281,14 @@ function creaNuovaSegnalazione(){
 
   categoria = categoria.value;
 
-  segnalazione.categoria = categoria;
 
-  segnalazione.aula = tempAula;
+  segnalazione.luogo_id = await getLuogoId(tempAula);
 
-  segnalazione.piano = tempPiano;
+  segnalazione.stato = "Da fare";
 
-  segnalazione.stato = "DA FARE";
+  segnalazione.id_utente_crea = await getUtenteId();
 
-  segnalazione.daChi = getUtente();
-
+  /*
   if(categoria == "Pulire"){
 
     segnalazione.perChi = "Collaboratore";
@@ -214,18 +298,15 @@ function creaNuovaSegnalazione(){
     segnalazione.perChi = "Tecnico";
 
   }
+  */
 
-  alert("segnalazione effettuata!!");
-
+  inviaSegnalazioni();
 
   //inviare la segnalazione al DataBase
 
-
-
-
   segnalazioni();
 }
-
+  
 document.addEventListener('scroll', function() {
   const header = document.querySelector('.header');
   const bc = document.querySelector('.bc');
@@ -236,3 +317,27 @@ document.addEventListener('scroll', function() {
   }
 });
 
+  
+function inviaSegnalazioni() {
+    const formData = new FormData();
+    formData.append('descrizione', segnalazione.descrizione);
+    formData.append('luogo_id', segnalazione.luogo_id);
+    formData.append('id_utente_crea', segnalazione.id_utente_crea);
+
+    // Effettua la richiesta POST al server
+    fetch('php/inserisciSegnalazione.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Successo:', result);
+        alert("segnalazione effettuata!!");
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+        alert("segnalazione NON effettuata!!");
+    });
+}
+
+  

@@ -58,9 +58,31 @@ function segnalazioni(){
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
-
   document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
+
+
+
+  document.getElementById("titolo").innerText = "Segnalazioni:";
+
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
+
+  caricaDettagli();
+
+
+
+}
+
+function caricaDettagli() {
+  fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function dettagliSegnalazione(){
@@ -95,15 +117,32 @@ function mostraInfoAccount(){
 
 }
 
+
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI"; 
-  
+    tmp = false;
+
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI"; 
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+    tmp = true;
+
+  }
+
 }
+
 
 function getUtente(){
 
