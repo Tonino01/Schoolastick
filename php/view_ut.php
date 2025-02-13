@@ -6,15 +6,23 @@
 	$result = $conn-> query($sql);
 	
 	echo ("<br>");
-	if ($result -> num_rows > 0) {
-		while ($row = $result->fetch_assoc()) {
-			echo "ID: " .$row["id"] . " - Nome: " . $row["nome"] . " - Email: " . $row["email"] . " - Password: " . $row["password"] . "<br>";
-		}
-	} else {
-		echo "Nessuno utente trovato.";
+	while ($row = $result->fetch_assoc()) {
+		// Mostra le informazioni dell'utente sulla stessa riga
+		echo "ID: " . $row["id"] . " - Nome: " . $row["nome"] . " - Email: " . $row["email"] . " - Tipo: " . $row["tipo"];
+	
+		// Aggiungi il form con il bottone "Elimina" sulla stessa riga
+		echo " <form method='POST' action='elimina_ut.php' style='display:inline;'>
+				<input type='hidden' name='id' value='" . $row["id"] . "'>
+				<input type='submit' value='Elimina'>
+			  </form>";
+		echo "<br>";
+	
+		// Puoi anche aggiungere un po' di spazio tra il bottone e le informazioni
+		echo "&nbsp;"; 
 	}
+	
 
     //fine: chiusura dell'oggetto
 	$conn->close();
 
-    ?>
+?>
