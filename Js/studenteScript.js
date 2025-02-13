@@ -1,6 +1,3 @@
-
-
-
 function logOut() {
   fetch('php/logout.php', {
       method: 'POST', // Usa POST se il logout modifica lo stato del server
@@ -89,13 +86,13 @@ function dettagliSegnalazione(id_segnalazione) {
   fetching('librerie/mostraDettagliSegnalazione.html'); // Carica il template HTML per la visualizzazione
 
   // Usa l'ID passato come parametro
-  caricaDettagli(id_segnalazione);
+  caricaDettagliSegnalazioni(id_segnalazione);
 
   document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
 
-function caricaDettagli(id_segnalazione) {
+function caricaDettagliSegnalazioni(id_segnalazione) {
   const formData = new FormData();
   formData.append('id', id_segnalazione);
 
@@ -129,15 +126,36 @@ function nuovaSegnalazione(){
 
 }
 
+
+
 function mostraInfoAccount(){
 
   pulisciContenitore();
-
-
   fetching('librerie/infoAccount.html');
-
   document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
+  caricaDettagliUtente();
+
+
+}
+
+function caricaDettagliUtente() {
+  const formData = new FormData();
+  formData.append('id', getUtenteId());
+
+  // Effettua la richiesta POST al server
+  fetch('php/caricaDettagliUtente.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text()) // Gestisce la risposta del server come testo
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli"
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 
@@ -167,55 +185,16 @@ function mostraArchivio(){
 }
 
 
-function getUtente(){
+async function getUtenteId(){
 
-  //DA FARE!!!!
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
 
 }
 
-function creaNuovaSegnalazione(){
 
 
-  segnalazione.descrizione = document.getElementById("descrizione").value;
-
-  let selectElement = document.getElementById('categoria');
-
-
-  let categoria = selectElement.options[selectElement.selectedIndex];
-
-
-  categoria = categoria.value;
-
-  segnalazione.categoria = categoria;
-
-  segnalazione.aula = tempAula;
-
-  segnalazione.piano = tempPiano;
-
-  segnalazione.stato = "DA FARE";
-
-  segnalazione.daChi = getUtente();
-
-  if(categoria == "Pulire"){
-
-    segnalazione.perChi = "Collaboratore";
-
-  }else{
-
-    segnalazione.perChi = "Tecnico";
-
-  }
-
-  alert("segnalazione effettuata!!");
-
-
-  //inviare la segnalazione al DataBase
-
-
-
-
-  segnalazioni();
-}
 
 document.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
