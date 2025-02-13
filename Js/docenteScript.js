@@ -103,7 +103,7 @@ function mostraInfoAccount(){
 
   fetching('librerie/infoAccount.html');
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
 }
 
@@ -129,7 +129,7 @@ function nuovaSegnalazione_Sedi(){
 
   fetching('librerie/nuovaSegnalazione-Sedi.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE"
 
 }
 
@@ -139,7 +139,7 @@ function sede1(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
+  
 
 }
 
@@ -238,10 +238,11 @@ function mostraArchivio(){
     tmp = true;
 
 }
+}
 
 async function getUtenteId(){
 
-  const response = await fetch('getUtente.php', { credentials: 'include' });
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
   const userId = await response.text();
   return userId !== 'null' ? userId : null;
 

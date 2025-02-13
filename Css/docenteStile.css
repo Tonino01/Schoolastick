@@ -222,16 +222,15 @@ body.scrolled .bc {
 .buttonAula{
   height:70px;
 }
-.annulla{
+.selezionaPiano .annulla{
   cursor: pointer;
   display: inline-flex;
   justify-content: center; 
-  align-items: center; 
-  margin: auto 0 0 20px;
+  align-items: center;
   padding: 10px 20px;
   font-size: 14px;
   font-weight: bold; 
-  width: 10%;
+  width: 20%;
   background-color: #8408ff;
   border: none;
   color: white;
@@ -239,6 +238,10 @@ body.scrolled .bc {
   border-radius: 10px;
   transition: 0.5s;
   text-align: center; 
+  margin-top:40px;
+}
+.selezionaPiano .annulla:hover{
+  background-color: #9429ff;
 }
 .segnalazione {
 background-color: #ffffff;
@@ -340,10 +343,10 @@ margin: 0;
 }
 
 .creaSegnalazione {
-  margin: 20px auto;
+  margin: 40px auto;
   color: white;
   background-color: #00000065;
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
   display: flex;
   justify-content: center;
