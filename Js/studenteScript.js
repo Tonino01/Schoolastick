@@ -131,7 +131,8 @@ function nuovaSegnalazione(){
 function mostraInfoAccount(){
 
   pulisciContenitore();
-  fetching('librerie/infoAccount.html');
+
+  fetching('librerie/InfoAccount.html');
   document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
   caricaDettagliUtente();
@@ -139,24 +140,38 @@ function mostraInfoAccount(){
 
 }
 
-function caricaDettagliUtente() {
-  const formData = new FormData();
-  formData.append('id', getUtenteId());
 
-  // Effettua la richiesta POST al server
-  fetch('php/caricaDettagliUtente.php', {
-      method: 'POST',
-      body: formData
-  })
-  .then(response => response.text()) // Gestisce la risposta del server come testo
-  .then(data => {
-    // Aggiungi i dettagli nel div con id "dettagli"
-    document.getElementById('dettagli').innerHTML = data;
-  })
-  .catch(error => {
-    console.error('Errore nel caricamento dei dettagli:', error);
-  });
+
+
+async function caricaDettagliUtente() {
+    let id = getUtenteId();
+
+    if (!id) {
+        console.error("ID utente non valido.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('id', id);
+
+    try {
+        let response = await fetch('php/caricaDettagliUtente.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Errore HTTP: ${response.status}`);
+        }
+
+        let data = await response.text();
+        document.getElementById('dettagli').innerHTML = data;
+    } catch (error) {
+        console.error('Errore nel caricamento dei dettagli:', error);
+        document.getElementById('dettagli').innerHTML = "<p>Errore nel caricamento dei dettagli utente.</p>";
+    }
 }
+
 
 
 let tmp = false;
@@ -174,7 +189,7 @@ function mostraArchivio(){
 
     fetching('librerie/mostraArchivio.html');
 
-     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI"; 
+     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
 
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
 
@@ -205,4 +220,3 @@ document.addEventListener('scroll', function() {
         document.body.classList.remove('scrolled');
     }
 });
-
