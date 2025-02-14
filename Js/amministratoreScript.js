@@ -131,12 +131,29 @@ function mostraInfoAccount(){
 
   pulisciContenitore();
 
+  fetching('librerie/InfoAccount.html');
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
-  fetching('librerie/infoAccount.html');
+  caricaDettagliUtente();
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
 
 }
+
+
+
+
+async function caricaDettagliUtente() {
+  fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
 
 function mostraUtenti(){
 
@@ -244,7 +261,7 @@ function mostraArchivio(){
     tmp = true;
 
   }
-}  
+}
 
 
 

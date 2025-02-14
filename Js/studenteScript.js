@@ -144,32 +144,15 @@ function mostraInfoAccount(){
 
 
 async function caricaDettagliUtente() {
-    let id = getUtenteId();
-
-    if (!id) {
-        console.error("ID utente non valido.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('id', id);
-
-    try {
-        let response = await fetch('php/caricaDettagliUtente.php', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error(`Errore HTTP: ${response.status}`);
-        }
-
-        let data = await response.text();
-        document.getElementById('dettagli').innerHTML = data;
-    } catch (error) {
-        console.error('Errore nel caricamento dei dettagli:', error);
-        document.getElementById('dettagli').innerHTML = "<p>Errore nel caricamento dei dettagli utente.</p>";
-    }
+  fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 
