@@ -343,5 +343,3 @@ function inviaSegnalazioni() {
         alert("segnalazione NON effettuata!!");
     });
 }
-
-  
