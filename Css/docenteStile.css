@@ -227,10 +227,16 @@ body.scrolled .bc {
   border-radius: 10px;
   transition: 0.5s;
 }
-.buttonAula{
-  height:70px;
+.buttonAula {
+  width:30%;
+  height:90px;
+  font-size: larger;
+  letter-spacing: 2px; 
+  position: relative;
+  display: inline-block;
 }
-.annulla{
+
+.selezionaPiano .annulla{
   cursor: pointer;
   display: inline-flex;
   justify-content: center; 
@@ -248,9 +254,8 @@ body.scrolled .bc {
   text-align: center; 
   margin-top:40px;
 }
-.annulla:hover{
+.selezionaPiano .annulla:hover{
   background-color: #9429ff;
-  border:none;
 }
 .segnalazione {
 background-color: #ffffff;
@@ -307,17 +312,16 @@ margin: 0;
 }
 
 .infoAccount {
-  margin: 40px auto;
+  margin: 20px auto;
   color: white;
-  background-color: #00000065;
-  padding: 10px;
+  border: 2px solid #23548B;
+  background-color: #23548B;
+  padding: 20px;
   border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  width:80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .testa {
@@ -367,7 +371,7 @@ margin: 0;
 }
 
 .selezionaPiano {
-  width:60%;
+  width:80%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -524,6 +528,11 @@ button:hover {
   .infoAccount, .creaSegnalazione, .creaSegnalazioni, .dettagliSegnalazioni {
       width: 100%;
       padding: 20px;
+  }
+
+  .buttonAula {
+    letter-spacing: normal;
+    width: 70%; 
   }
 }
 

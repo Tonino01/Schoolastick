@@ -34,7 +34,7 @@ function validateSignupForm() {
 
 // Funzione per alternare la visibilità della password
 function togglePassword() {
-    var passwordField = document.getElementById("password");
+    var passwordField = document.querySelector("input[name='password']");
     var toggleIcon = document.getElementById("toggle-password");
 
     if (passwordField.type === "password") {
@@ -43,22 +43,6 @@ function togglePassword() {
         toggleIcon.classList.add("fa-eye-slash");
     } else {
         passwordField.type = "password";
-        toggleIcon.classList.remove("fa-eye-slash");
-        toggleIcon.classList.add("fa-eye");
-    }
-}
-
-// Funzione per alternare la visibilità della conferma password
-function toggleConfirmPassword() {
-    var confirmPasswordField = document.getElementById("confirm-password");
-    var toggleIcon = document.getElementById("toggle-confirm-password");
-
-    if (confirmPasswordField.type === "password") {
-        confirmPasswordField.type = "text";
-        toggleIcon.classList.remove("fa-eye");
-        toggleIcon.classList.add("fa-eye-slash");
-    } else {
-        confirmPasswordField.type = "password";
         toggleIcon.classList.remove("fa-eye-slash");
         toggleIcon.classList.add("fa-eye");
     }
