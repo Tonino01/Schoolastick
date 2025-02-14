@@ -250,6 +250,7 @@ body.scrolled .bc {
 }
 .annulla:hover{
   background-color: #9429ff;
+  border:none;
 }
 .segnalazione {
 background-color: #ffffff;

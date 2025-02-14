@@ -189,6 +189,7 @@ body.scrolled .bc {
   }
   .annulla:hover{
     background-color: #9429ff;
+    border:none;
   }
 @keyframes slide-up {
     0% {
@@ -322,17 +323,19 @@ button .buttonAula:hover {
     border: none;
 }
 
-button {
+.segnalazione button{
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom: 3%;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #2C2C2C;
     border: 2px solid #2C2C2C;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 10px;
-    margin: 10px;
     transition: 0.5s;
-}
+  }
 
 button:hover {
     background-color: #4e4e4e;
