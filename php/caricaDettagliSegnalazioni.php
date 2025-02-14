@@ -15,9 +15,9 @@ if (isset($_POST['id'])) {
     // Prepara la query SQL
     $sql = "SELECT s.*, u.nome AS nome_utente, l.nome AS nome_luogo, p.nome AS nome_piano, se.nome AS nome_sede FROM segnalazioni s
             LEFT JOIN utenti u ON s.id_utente_crea = u.id
-            LEFT JOIN luoghi l ON s.luogo = l.id
-            LEFT JOIN piani p ON l.piano = p.id
-            LEFT JOIN sedi se ON p.sede = se.id
+            LEFT JOIN luoghi l ON s.luogo_id = l.id
+            LEFT JOIN piani p ON l.piano_id = p.id
+            LEFT JOIN sedi se ON p.sede_id = se.id
             WHERE s.id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
