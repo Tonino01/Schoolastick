@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: ../indexStudente.html");
                     break;
                 case 'Docente':
-                    header("Location: ../insert.html");
+                    header("Location: ../indexDocente.html");
                     break;
                 case 'Tecnico':
                     header("Location: ../indexTecnico.html");
