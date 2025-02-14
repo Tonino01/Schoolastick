@@ -43,8 +43,24 @@ if (isset($_POST['id'])) {
 
         echo "<div class='pulsanti'>";
         echo "<button type='button' onclick='segnalazioni()'>INDIETRO</button>";
+
+        if($row["stato" == "Nuova"]){
+
+          echo "<button type='button'>CONTRASSEGNA COME IN CORSO</button>";
+
+        }elseif($row["stato" == "In corso"]){
+
+          echo "<button type='button'>SCRIVI REPORT</button>";
+
+        }elseif ($row["stato" == "Completa"]) {
+          // code...
+        }
+
         echo "<div id='mButton'></div>";
-        echo "</div>";
+
+
+
+        echo "</div>"
     } else {
         echo "Nessuna segnalazione trovata.";
     }
