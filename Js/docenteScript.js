@@ -72,12 +72,12 @@ function segnalazioni(){
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
-  caricaDettagli();
+  caricaSegnalazioni();
 
 }
 
 
-function caricaDettagli() {
+function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -89,23 +89,60 @@ function caricaDettagli() {
   });
 }
 
-function dettagliSegnalazione(){
+function dettagliSegnalazione(id_segnalazione) {
+  pulisciContenitore(); // Pulisce il contenitore dei dettagli
+  fetching('librerie/mostraDettagliSegnalazione.html'); // Carica il template HTML per la visualizzazione
 
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  // Usa l'ID passato come parametro
+  caricaDettagliSegnalazioni(id_segnalazione);
+
   document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
+}
 
+function caricaDettagliSegnalazioni(id_segnalazione) {
+  const formData = new FormData();
+  formData.append('id', id_segnalazione);
+
+  // Effettua la richiesta POST al server
+  fetch('php/caricaDettagliSegnalazioni.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text()) // Gestisce la risposta del server come testo
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli"
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function mostraInfoAccount(){
 
   pulisciContenitore();
 
+  fetching('librerie/InfoAccount.html');
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
-  fetching('librerie/infoAccount.html');
+  caricaDettagliUtente();
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
 
+}
+
+
+
+
+async function caricaDettagliUtente() {
+  fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 
@@ -238,6 +275,7 @@ function mostraArchivio(){
 
     tmp = true;
 
+  }
 }
 
 async function getUtenteId(){
@@ -300,16 +338,16 @@ async function creaNuovaSegnalazione() {
     segnalazione.perChi = "Tecnico";
 
   */
-  
+
 //inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
-  
+
 
   segnalazioni();
 }
-  
+
 document.addEventListener('scroll', function() {
   const header = document.querySelector('.header');
   const bc = document.querySelector('.bc');
@@ -320,7 +358,7 @@ document.addEventListener('scroll', function() {
   }
 });
 
-  
+
 function inviaSegnalazioni() {
     const formData = new FormData();
     formData.append('descrizione', segnalazione.descrizione);
@@ -343,5 +381,3 @@ function inviaSegnalazioni() {
         alert("segnalazione NON effettuata!!");
     });
 }
-
-  
