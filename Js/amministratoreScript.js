@@ -102,7 +102,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "Creazione Segnalazione:";
 
 }
 
@@ -113,7 +113,7 @@ function mostraInfoAccount(){
 
   fetching('librerie/infoAccount.html');
 
-  document.getElementById("titolo").innerText = "Informazioni sull'Account:"
+  document.getElementById("titolo").innerText = "Informazioni sull'Account:";
 
 }
 
@@ -123,8 +123,22 @@ function mostraUtenti(){
 
   fetching('librerie/mostraUtenti.html');
 
-  document.getElementById("titolo").innerText = "Utenti Piattaforma:"
+  document.getElementById("titolo").innerText = "Utenti Piattaforma:";
 
+  caricaUtenti();
+
+}
+
+function caricaUtenti() {
+  fetch('php/view_ut.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 //gestione selezione luogo
