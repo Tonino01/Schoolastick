@@ -340,7 +340,7 @@ async function creaNuovaSegnalazione() {
 
 
 
-  segnalazioni();
+  
 }
 
 document.addEventListener('scroll', function() {
@@ -370,6 +370,7 @@ function inviaSegnalazioni() {
     .then(result => {
         console.log('Successo:', result);
         alert("segnalazione effettuata!!");
+        segnalazioni();
     })
     .catch(error => {
         console.error('Errore:', error);

@@ -110,10 +110,88 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli"
     document.getElementById('dettagli').innerHTML = data;
+    // Assicurati che l'ID della segnalazione sia passato correttamente
+    console.log('ID Segnalazione:', id_segnalazione);
   })
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
+}
+
+
+function modificaSegnalazione(id_segnalazione, stato_corrente) {
+  const formData = new FormData();
+  formData.append('id_segnalazione', id_segnalazione);
+  formData.append('stato_corrente', stato_corrente);
+
+  if (stato_corrente === "In corso") {
+    fetching('librerie/mostraScriviReport.html').then(() => {
+      const button = document.createElement('button');
+      button.id = 'buttonModificaSegnalazione';
+      button.type = 'button';
+      button.innerText = 'CONTRASSEGNA COME COMPLETATA';
+      button.onclick = async () => {
+
+        await inserisciReport(id_segnalazione);
+        
+        formData.set('stato_corrente', 'In corso');
+        fetch('php/setStato.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+          console.log('Successo modifica stato:', result);
+          dettagliSegnalazione(id_segnalazione); // Refresh the details view
+        })
+        .catch(error => {
+          console.error('Errore:', error);
+        });
+      };
+      document.getElementById('contenitore').appendChild(button);
+    });
+  } else {
+    fetch('php/setStato.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo modifica stato:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore:', error);
+    });
+  }
+}
+
+async function inserisciReport(id_segnalazione) {
+
+  let report = document.getElementById("report").value;
+
+  alert(report);
+
+  if(!(report == null || report == "")){ 
+    const formData = new FormData();
+    formData.append('id_segnalazione', id_segnalazione);
+    formData.append('report', report);
+
+    await fetch('php/setReport.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo iserito report:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore report:', error);
+    });
+  } else {
+    alert("Inserire un report valido");
+  }
 }
 
 function nuovaSegnalazione(){

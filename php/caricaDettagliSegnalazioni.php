@@ -5,7 +5,6 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-
 require_once 'conn_db_SK.php';
 
 // Ottiene l'ID della segnalazione dalla richiesta POST
@@ -28,7 +27,7 @@ if (isset($_POST['id'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Echo dei dettagli in formato HTML
+        // Prepara i dettagli in formato HTML
         echo "<div class='barraStato'>";
         echo "<h4><span id='stato'>" . htmlspecialchars($row["stato"]) . "</span></h4>";
         echo "</div>";
@@ -44,29 +43,34 @@ if (isset($_POST['id'])) {
         echo "<div class='pulsanti'>";
         echo "<button type='button' onclick='segnalazioni()'>INDIETRO</button>";
 
-        if($row["stato" == "Nuova"]){
+        // Ottieni il tipo di utente dalla sessione
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null';
+        $sql_user = "SELECT tipo FROM utenti WHERE id = ?";
+        $stmt_user = $conn->prepare($sql_user);
+        $stmt_user->bind_param("i", $user_id);
+        $stmt_user->execute();
+        $result_user = $stmt_user->get_result();
+        $user = $result_user->fetch_assoc();
+        $tipo_utente = $user['tipo'];
 
-          echo "<button type='button'>CONTRASSEGNA COME IN CORSO</button>";
-
-        }elseif($row["stato" == "In corso"]){
-
-          echo "<button type='button'>SCRIVI REPORT</button>";
-
-        }elseif ($row["stato" == "Completa"]) {
-          // code...
+        // Controlla il ruolo dell'utente della sessione
+        if ($tipo_utente == 'Tecnico' || $tipo_utente == 'Amministratore') {
+            if ($row["stato"] == 'Nuova') {
+                echo "<button id='buttonModificaSegnalazione' onclick='modificaSegnalazione($id, \"Nuova\")' type='button'>CONTRASSEGNA COME IN CORSO</button>";
+            } elseif ($row['stato'] == "In corso") {
+                echo "<button id='buttonModificaSegnalazione' onclick='modificaSegnalazione($id, \"In corso\")' type='button'>SCRIVI REPORT</button>";
+            } elseif ($row['stato'] == "Completa") {
+                echo "<button id='buttonModificaSegnalazione' onclick='modificaSegnalazione($id, \"Completa\")' type='button'>ARCHIVIA</button>";
+            }
         }
 
-        echo "<div id='mButton'></div>";
-
-
-
-        echo "</div>"
+        echo "</div>";
     } else {
-        echo "Nessuna segnalazione trovata.";
+        echo 'Nessuna segnalazione trovata.';
     }
 
 } else {
-    echo "Nessun ID ricevuto";
+    echo 'Nessun ID ricevuto';
 }
 
 // Chiude la connessione
