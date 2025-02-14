@@ -1,6 +1,7 @@
 <?php
 
-require_once 'connessioneDB.php';
+
+require_once 'conn_db_SK.php';
 
 // Esegui la query per ottenere le segnalazioni
 $sql = "SELECT * FROM segnalazioni";
@@ -13,19 +14,18 @@ if ($result->num_rows > 0) {
         echo "<div class='segnalazione'>";
 
         echo "<div class='barraSegnalazione'>";
-        echo "<h4><span id='completamento'>" . $row["stato"] . "</span></h4>";
+        echo "<h4>[<span id = 'idSegnalazione'>" . $row["id"] . "</span>]<span id='completamento'>" . $row["stato"] . "</span></h4>";
         echo "</div>";
 
         echo "<h4><span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
 
         // Aggiungi un bottone per i dettagli, passando l'id della segnalazione
-        echo "<button type='button' onclick='dettagliSegnalazione()' class='defaultButton'>Dettagli..</button>";
+        echo "<button type='button' onclick='dettagliSegnalazione(" . $row["id"] . ")' class='defaultButton'>Dettagli..</button>";
 
         echo "</div>";
     }
 } else {
     echo "Nessuna segnalazione trovata.";
-    ;
 }
 
 // Chiudi la connessione

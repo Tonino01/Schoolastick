@@ -6,16 +6,27 @@ const segnalazione = {
   luogo_id: "",
   stato: "",
   id_utente_crea: "",
-  reprt: ""
+  categoria: "",
+  report: ""
 
 };
 
 
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+    fetch('php/logout.php', {
+        method: 'POST', // Usa POST se il logout modifica lo stato del server
+        credentials: 'include' // Invia i cookie di sessione se necessari
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
+        } else {
+            console.error('Errore nel logout');
+        }
+    })
+    .catch(error => console.error('Errore di rete:', error));
 }
+
 
 //ottimizazione fetch
 async function fetching(risorsa) {
@@ -56,11 +67,15 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
+
+  document.getElementById("titolo").innerText = "SEGNALAZIONI"
+
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaDettagli();
 
 }
+
 
 function caricaDettagli() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
@@ -78,6 +93,7 @@ function dettagliSegnalazione(){
 
   pulisciContenitore();
   fetching('librerie/mostraDettagliSegnalazione.html');
+  document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
 
@@ -100,7 +116,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE";
 
 
 
@@ -124,7 +140,7 @@ function sede1(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-
+  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
 }
 
@@ -200,19 +216,35 @@ function indietro(){
 
 }
 
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+    tmp = false;
+
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+
+    tmp = true;
 
 }
 
-function getUtenteId(){
+async function getUtenteId(){
 
-  //DA FARE!!!!
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
 
 }
 
@@ -248,14 +280,15 @@ async function creaNuovaSegnalazione() {
   let categoria = selectElement.options[selectElement.selectedIndex];
 
 
-  categoria = categoria.value;
+  segnalazione.categoria = categoria.value;
 
 
   segnalazione.luogo_id = await getLuogoId(tempAula);
 
   segnalazione.stato = "Da fare";
 
-  segnalazione.id_utente_crea = getUtenteId();
+  segnalazione.id_utente_crea = await getUtenteId();
+
 
   /*
   if(categoria == "Pulire"){
@@ -266,26 +299,34 @@ async function creaNuovaSegnalazione() {
 
     segnalazione.perChi = "Tecnico";
 
-  }
   */
-
-
-
+  
+//inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
-  //inviare la segnalazione al DataBase
+  
 
   segnalazioni();
-
-
 }
+  
+document.addEventListener('scroll', function() {
+  const header = document.querySelector('.header');
+  const bc = document.querySelector('.bc');
+  if (window.scrollY >= header.offsetHeight) {
+      document.body.classList.add('scrolled');
+  } else {
+      document.body.classList.remove('scrolled');
+  }
+});
 
+  
 function inviaSegnalazioni() {
     const formData = new FormData();
     formData.append('descrizione', segnalazione.descrizione);
     formData.append('luogo_id', segnalazione.luogo_id);
     formData.append('id_utente_crea', segnalazione.id_utente_crea);
+    formData.append('categoria', segnalazione.categoria);
 
     // Effettua la richiesta POST al server
     fetch('php/inserisciSegnalazione.php', {
@@ -302,3 +343,5 @@ function inviaSegnalazioni() {
         alert("segnalazione NON effettuata!!");
     });
 }
+
+  

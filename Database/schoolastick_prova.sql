@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 07, 2025 alle 12:30
+-- Creato il: Feb 13, 2025 alle 12:54
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -34,6 +34,14 @@ CREATE TABLE `luoghi` (
   `piano_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dump dei dati per la tabella `luoghi`
+--
+
+INSERT INTO `luoghi` (`id`, `nome`, `tipo`, `piano_id`) VALUES
+(1, 'Aula 1', 'Aula', 1),
+(2, 'Aula 5', 'Laboratorio', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +54,13 @@ CREATE TABLE `piani` (
   `sede_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dump dei dati per la tabella `piani`
+--
+
+INSERT INTO `piani` (`id`, `nome`, `sede_id`) VALUES
+(1, 'Primo Piano', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +71,13 @@ CREATE TABLE `sedi` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `sedi`
+--
+
+INSERT INTO `sedi` (`id`, `nome`) VALUES
+(1, 'ITT');
 
 -- --------------------------------------------------------
 
@@ -72,8 +94,19 @@ CREATE TABLE `segnalazioni` (
   `id_utente_crea` int(11) DEFAULT NULL,
   `id_utente_lavora` int(11) DEFAULT NULL,
   `id_utente_completa` int(11) DEFAULT NULL,
-  `luogo_id` int(11) NOT NULL
+  `luogo_id` int(11) NOT NULL,
+  `categoria` enum('Riparare','Sostituire','Pulire') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dump dei dati per la tabella `segnalazioni`
+--
+
+INSERT INTO `segnalazioni` (`id`, `descrizione`, `data_creazione`, `report`, `stato`, `id_utente_crea`, `id_utente_lavora`, `id_utente_completa`, `luogo_id`, `categoria`) VALUES
+(1, 'NOn funziona', '2025-02-12 11:20:49', NULL, 'Nuova', 14, NULL, NULL, 1, NULL),
+(2, 'Ciao TONIN', '2025-02-12 11:23:17', NULL, 'Nuova', 14, NULL, NULL, 1, NULL),
+(3, 'ngn', '2025-02-12 11:34:46', NULL, 'Nuova', 14, NULL, NULL, 2, NULL),
+(4, 'nero', '2025-02-12 11:49:29', NULL, 'Nuova', 14, NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,6 +119,7 @@ CREATE TABLE `utenti` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `recupero_password` int(11) DEFAULT 0,
   `tipo` enum('Studente','Docente','Tecnico','Amministratore') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -93,12 +127,14 @@ CREATE TABLE `utenti` (
 -- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`id`, `nome`, `email`, `password`, `tipo`) VALUES
-(6, 'Uilian', 'uilian@gmail.com', '1234', 'Studente'),
-(10, 'Andrea', 'andrea@gmail.com', '12345', 'Studente'),
-(11, 'Mattia', 'mattia@azienda.com', '$2y$10$gQOo9eumM3w5XnfIjHbgruph4bHZ8w/hL3tGTB86MY2iW817d6qGy', 'Studente'),
-(12, 'Roberto', 'roberto@azienda.com', '$2y$10$ch3MZyxu3ZgkgqVquH9c9eYAnRU1E51X15kGewhlkZ5uD4vZ5M5ye', 'Studente'),
-(13, 'Andrei', 'andrei@azienda.com', '$2y$10$4sq1DrrW0LqHwe8qHHnB5.AFeAtJj6/zPTB.ZFDzngK315xm5V58W', 'Studente');
+INSERT INTO `utenti` (`id`, `nome`, `email`, `password`, `recupero_password`, `tipo`) VALUES
+(6, 'Uilian', 'uilian@gmail.com', '1234', 0, 'Studente'),
+(13, 'Andrei', 'andrei@azienda.com', '$2y$10$4sq1DrrW0LqHwe8qHHnB5.AFeAtJj6/zPTB.ZFDzngK315xm5V58W', 0, 'Studente'),
+(14, 'Uilian', 'uilian@iisvittorioveneto.it', '$2y$10$RfpUfYSrbYYtOXB9nVgkSuEMnlX.a3jODr9PlaGOpEFCr.0u/nxKq', 0, 'Docente'),
+(15, 'Studente', 'studente@iisvittorioveneto.it', '$2y$10$zrj1.BEasQn31wihPhtWGuMwhwHGmQ/YSWk6vyBfcWSQ55L.jKDAK', 0, 'Studente'),
+(16, 'Tecnico', 'tecnico@iisvittorioveneto.it', '$2y$10$PrYV7h2ELjTU4jBjd7vkGeUi/tP1m.oTolPvRtNbSG7Fq3jpWALV2', 0, 'Tecnico'),
+(17, 'Amministratore', 'amministratore@iisvittorioveneto.it', '$2y$10$uBbsLpD0l/9m7CFH2lokKumxxYgRrSm2vPZTT03VUh.aheTARpube', 0, 'Amministratore'),
+(18, 'Docente', 'docente@iisvittorioveneto.it', '$2y$10$oEpeLJ521YVoHmYbjJK5.uKBs9IYGpkNlbthmGRMeX1mQhQXWXS4m', 0, 'Docente');
 
 --
 -- Indici per le tabelle scaricate
@@ -150,31 +186,31 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `luoghi`
 --
 ALTER TABLE `luoghi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `piani`
 --
 ALTER TABLE `piani`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `sedi`
 --
 ALTER TABLE `sedi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `segnalazioni`
 --
 ALTER TABLE `segnalazioni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Limiti per le tabelle scaricate

@@ -14,10 +14,19 @@ const segnalazione = {
 };
 
 
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+  fetch('php/logout.php', {
+      method: 'POST', // Usa POST se il logout modifica lo stato del server
+      credentials: 'include' // Invia i cookie di sessione se necessari
+  })
+  .then(response => {
+      if (response.ok) {
+          window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
+      } else {
+          console.error('Errore nel logout');
+      }
+  })
+  .catch(error => console.error('Errore di rete:', error));
 }
 
 //ottimizazione fetch
@@ -61,7 +70,10 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:"
+  document.getElementById("titolo").innerText = "Segnalazioni:";
+
+  document.getElementById("archivioButton").src = "icone/box_icon.png";
+
 
   caricaDettagli();
 
@@ -187,14 +199,28 @@ function indietro(){
 
 }
 
+let tmp = false;
 function mostraArchivio(){
 
-  pulisciContenitore();
+  if(tmp){
 
-  fetching('librerie/mostraArchivio.html');
+    segnalazioni();
 
-  document.getElementById("titolo").innerText = "Archivio Segnalazioni:"
+    tmp = false;
 
+  }else{
+
+    pulisciContenitore();
+
+    fetching('librerie/mostraArchivio.html');
+
+    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
+
+    document.getElementById("archivioButton").src = "icone/indietro-48.png";
+
+    tmp = true;
+
+  }
 }
 
 function getUtente(){
@@ -289,46 +315,65 @@ function mostraScriviReport(){
 
 }
 
-function creaNuovaSegnalazione(){
+async function getUtenteId() {
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
+}
 
+async function getLuogoId(aula) {
+  const formData = new FormData();
+  formData.append('aula', aula);
 
+  try {
+    const response = await fetch('php/getLuogo.php', {
+      method: 'POST',
+      body: formData
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const result = await response.text();
+    return result;
+  } catch (error) {
+    console.error('Errore:', error);
+    return null;
+  }
+}
+
+async function creaNuovaSegnalazione() {
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
   let selectElement = document.getElementById('categoria');
-
-
   let categoria = selectElement.options[selectElement.selectedIndex];
+  segnalazione.categoria = categoria.value;
 
+  segnalazione.luogo_id = await getLuogoId(tempAula);
+  segnalazione.stato = "Da fare";
+  segnalazione.id_utente_crea = await getUtenteId();
 
-  categoria = categoria.value;
-
-  segnalazione.categoria = categoria;
-
-  segnalazione.aula = tempAula;
-
-  segnalazione.piano = tempPiano;
-
-  segnalazione.stato = "DA FARE";
-
-  segnalazione.daChi = getUtente();
-
-  if(categoria == "Pulire"){
-
-    segnalazione.perChi = "Collaboratore";
-
-  }else{
-
-    segnalazione.perChi = "Tecnico";
-
-  }
-
-  alert("segnalazione effettuata!!");
-
-
-  //inviare la segnalazione al DataBase
-
-
-
-
+  inviaSegnalazioni();
   segnalazioni();
+}
+
+function inviaSegnalazioni() {
+  const formData = new FormData();
+  formData.append('descrizione', segnalazione.descrizione);
+  formData.append('luogo_id', segnalazione.luogo_id);
+  formData.append('id_utente_crea', segnalazione.id_utente_crea);
+  formData.append('categoria', segnalazione.categoria);
+
+  fetch('php/inserisciSegnalazione.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    console.log('Successo:', result);
+    alert("segnalazione effettuata!!");
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("segnalazione NON effettuata!!");
+  });
 }

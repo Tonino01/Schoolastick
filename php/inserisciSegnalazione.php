@@ -1,44 +1,45 @@
 <?php
-session_start();
-require_once 'conn_db_SK.php'; // Assicurati che il file contenga la connessione MySQLi
 
-if (!isset($_SESSION['user_id'])) {
-    die("Accesso non autorizzato.");
-}
 
-$user_id = $_SESSION['user_id'];
+  session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $descrizione = htmlspecialchars($_POST['descrizione'], ENT_QUOTES, 'UTF-8');
-    $luogo_id = filter_input(INPUT_POST, 'luogo_id', FILTER_VALIDATE_INT);
-    $data_creazione = date("Y-m-d H:i:s");
+  require_once 'conn_db_SK.php';
 
-    if (!$descrizione || !$luogo_id) {
-        die("Dati non validi.");
-    }
+  // Verifica se i dati necessari sono stati inviati tramite POST
+  if (isset($_POST['descrizione'], $_POST['id_utente_crea'], $_POST['luogo_id'], $_POST['categoria'])) {
+      // Recupera i dati dal form
+      $descrizione = $_POST['descrizione'];
+      $data_creazione = date("Y-m-d H:i:s");
+      $id_utente_crea = $_POST['id_utente_crea'];
+      $luogo_id = $_POST['luogo_id'];
+      $categoria = $_POST['categoria'];
 
-    if (!$conn) {
-        die("Errore: Connessione al database non riuscita.");
-    }
+      // Prepara la query di inserimento
+      $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id, categoria) VALUES (?, ?, ?, ?, ?)";
 
-    // Query corretta con 4 parametri
-    $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id) 
-            VALUES (?, ?, ?, ?)";
+      // Prepara lo statement
+      if ($stmt = $conn->prepare($sql)) {
+          // Associa i parametri
+          $stmt->bind_param("ssiis", $descrizione, $data_creazione, $id_utente_crea, $luogo_id, $categoria);
 
-    $stmt = $conn->prepare($sql);
-    if ($stmt) {
-        // Assicuriamoci che ci siano 4 parametri (s = stringa, s = stringa, i = intero, i = intero)
-        $stmt->bind_param("ssii", $descrizione, $data_creazione, $user_id, $luogo_id);
+          // Esegui lo statement
+          if ($stmt->execute()) {
 
-        if ($stmt->execute()) {
-            echo "Segnalazione inserita con successo!";
-        } else {
-            echo "Errore durante l'inserimento: " . $stmt->error;
-        }
+              echo "Segnalazione inserita con successo.";
 
-        $stmt->close();
-    } else {
-        echo "Errore nella preparazione della query: " . $conn->error;
-    }
-}
+              exit;
+
+          } else {
+              echo "Errore durante l'inserimento della segnalazione: " . $stmt->error;
+          }
+
+          // Chiudi lo statement
+          $stmt->close();
+      } else {
+          echo "Errore nella preparazione dello statement: " . $conn->error;
+      }
+  } else {
+      echo "Dati mancanti. Assicurati di aver compilato tutti i campi richiesti.";
+  }
+
 ?>

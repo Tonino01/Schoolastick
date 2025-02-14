@@ -63,6 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 } else {
-    echo "Accesso non autorizzato!";
+    echo "Accesso non autorizzato!!";
 }
 ?>
