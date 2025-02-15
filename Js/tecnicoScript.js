@@ -3,16 +3,13 @@
 const segnalazione = {
 
   descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
+  luogo_id: "",
   stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
+  id_utente_crea: "",
+  categoria: "",
+  report: ""
 
 };
-
 
 function logOut() {
   fetch('php/logout.php', {
@@ -51,12 +48,7 @@ async function fetching(risorsa) {
 }
 
 
-//trovare soluzioni per transizioni
-function transizione(container){
 
-  document.getElementById(container).classList.add('div-animate');
-
-}
 
 function pulisciContenitore(){
 
@@ -115,10 +107,109 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli"
     document.getElementById('dettagli').innerHTML = data;
+    // Assicurati che l'ID della segnalazione sia passato correttamente
+    console.log('ID Segnalazione:', id_segnalazione);
   })
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
+}
+
+
+function modificaSegnalazione(id_segnalazione, stato_corrente) {
+
+
+
+  const formData = new FormData();
+  formData.append('id_segnalazione', id_segnalazione);
+  formData.append('stato_corrente', stato_corrente);
+
+
+  if (stato_corrente === "Nuova"){
+
+    fetch('php/setIdUtenteLavora.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo modifica stato:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore:', error);
+    });
+
+  }
+
+  if (stato_corrente === "In corso") {
+    fetching('librerie/mostraScriviReport.html').then(() => {
+      const button = document.createElement('button');
+      button.id = 'buttonModificaSegnalazione';
+      button.type = 'button';
+      button.innerText = 'CONTRASSEGNA COME COMPLETATA';
+      button.onclick = async () => {
+
+        await inserisciReport(id_segnalazione);
+
+        formData.set('stato_corrente', 'In corso');
+        fetch('php/setStato.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+          console.log('Successo modifica stato:', result);
+          dettagliSegnalazione(id_segnalazione); // Refresh the details view
+        })
+        .catch(error => {
+          console.error('Errore:', error);
+        });
+      };
+      document.getElementById('contenitore').appendChild(button);
+    });
+  } else {
+    fetch('php/setStato.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo modifica stato:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore:', error);
+    });
+  }
+}
+
+async function inserisciReport(id_segnalazione) {
+
+  let report = document.getElementById("report").value;
+
+
+
+  if(!(report == null || report == "")){
+    const formData = new FormData();
+    formData.append('id_segnalazione', id_segnalazione);
+    formData.append('report', report);
+
+    await fetch('php/setReport.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo iserito report:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore report:', error);
+    });
+  } else {
+    alert("Inserire un report valido");
+  }
 }
 
 function nuovaSegnalazione(){
@@ -256,85 +347,34 @@ function mostraArchivio(){
   }
 }
 
-function getUtente(){
 
-  //DA FARE!!!!
-  return "Tecnico";
-
-}
 
 function getStato(){
 
-  //DA FARE!!!!
-  return "Da Fare";
 
 }
 
-function setStato(stato){
+async function getLuogoId(aula) {
+  const formData = new FormData();
+  formData.append('aula', aula);
 
-  return stato;
-
-  //DA FARE!!!!
-
-}
-
-
-
-function buttonCompletaSegnalazione(buttonContainer) {
-
-
-  if(getUtente() == "Tecnico" || getUtente() == "Amministratore"){
-
-    if(getStato() == "Da Fare"){
-
-      buttonContainer.onclick = function() { contrassegnaInCorso(buttonContainer); };
-      buttonContainer.style.backgroundColor = "#D78605";
-      buttonContainer.style.borderColor = "#D78605";
-      buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
-
-    }else if(getStato() == "In Corso"){
-
-      buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
-      buttonContainer.style.backgroundColor = "#0A9B02";
-      buttonContainer.style.borderColor = "#0A9B02";
-      buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
-
+  try {
+    const response = await fetch('php/getLuogo.php', {
+      method: 'POST',
+      body: formData
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  }else{
-
-    buttonContainer.style.display = "none";
-
+    const result = await response.text();
+    return result;
+  } catch (error) {
+    console.error('Errore:', error);
+    return null;
   }
 
 }
 
-function contrassegnaInCorso(buttonContainer){
-
-
-
-
-  setStato("In Corso");
-
-  buttonContainer.onclick = function() { contrassegnaCompletata(buttonContainer); };
-  buttonContainer.style.backgroundColor = "#D78605";
-  buttonContainer.style.borderColor = "#D78605";
-  buttonContainer.textContent = 'CONTRASSEGNA COME IN CORSO';
-
-
-}
-
-function contrassegnaCompletata(buttonContainer){
-
-  buttonContainer.onclick = function() { mostraScriviReport(buttonContainer); };
-  buttonContainer.style.backgroundColor = "#0A9B02";
-  buttonContainer.style.borderColor = "#0A9B02";
-  buttonContainer.textContent = 'CONTRASSEGNA COME COMPLETATA';
-
-
-  setStato("Completata"); //da mettere finito il report
-
-
-}
 
 
 

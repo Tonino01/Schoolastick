@@ -39,9 +39,9 @@ $comando = $conn->prepare($sql);
 
 if ($comando) {
     $comando->bind_param("sss", $nome, $email, $passwordHash);
-    
+
     if ($comando->execute()) {
-        header("Location: ../accedi.html"); // Reindirizzamento alla pagina successiva
+        header("Location: accedi.html"); // Reindirizzamento alla pagina successiva
         exit;
     } else {
         die("Errore nell'inserimento: " . $comando->error);

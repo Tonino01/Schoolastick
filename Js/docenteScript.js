@@ -48,12 +48,7 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
-//trovare soluzioni per transizioni
-function transizione(container){
 
-  document.getElementById(container).classList.add('div-animate');
-
-}
 
 function pulisciContenitore(){
 
@@ -345,7 +340,7 @@ async function creaNuovaSegnalazione() {
 
 
 
-  segnalazioni();
+  
 }
 
 document.addEventListener('scroll', function() {
@@ -375,6 +370,7 @@ function inviaSegnalazioni() {
     .then(result => {
         console.log('Successo:', result);
         alert("segnalazione effettuata!!");
+        segnalazioni();
     })
     .catch(error => {
         console.error('Errore:', error);

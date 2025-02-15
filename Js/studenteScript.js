@@ -33,12 +33,7 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
-//trovare soluzioni per transizioni
-function transizione(container){
 
-  document.getElementById(container).classList.add('div-animate');
-
-}
 
 function pulisciContenitore(){
 
