@@ -18,11 +18,12 @@ while ($row = $result->fetch_assoc()) {
     $id = $row['id'];
 
     
-     echo   "<div class='user'>";
+    echo "<div class='user'>
             <div class='circle $tipo'>$initial</div>
             <div class='name'>$nome</div>
             <button class='button' onclick='mostraModificaUtente($id)'>MODIFICA</button>
-        </div>;
+        </div>";
+
 }
 
 $conn->close();
