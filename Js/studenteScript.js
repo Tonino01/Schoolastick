@@ -73,6 +73,50 @@ function caricaSegnalazioni() {
   });
 }
 
+let tmpFiltro = false;
+function mostraFiltro(){
+
+  let input = document.createElement("input");
+
+  if(tmpFiltro){
+
+    document.getElementById("input").value;
+
+    const formData = new FormData();
+    formData.append('parametroRicerca', document.getElementById("input").value);
+
+    // Effettua la richiesta POST al server
+    fetch('php/filtraSegnalazioni.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // Gestisce la risposta del server come testo
+    .then(data => {
+      // Aggiungi i dettagli nel div con id "dettagli"
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+
+
+
+  }else{
+
+
+    input.type = "text";
+    input.placeholder = "Inserisci qualcosa...";
+    input.id = "input";
+
+    document.getElementById("sezioneFiltro").appendChild(input);
+
+    tmpFiltro = true;
+
+  }
+
+
+}
+
 
 
 
@@ -152,14 +196,14 @@ async function caricaDettagliUtente() {
 
 
 
-let tmp = false;
+let tmpArchivio = false;
 function mostraArchivio(){
 
-  if(tmp){
+  if(tmpArchivio){
 
     segnalazioni();
 
-    tmp = false;
+    tmpArchivio = false;
 
   }else{
 
@@ -171,7 +215,7 @@ function mostraArchivio(){
 
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
 
-    tmp = true;
+    tmpArchivio = true;
 
   }
 
