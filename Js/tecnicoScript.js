@@ -117,9 +117,30 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
 
 
 function modificaSegnalazione(id_segnalazione, stato_corrente) {
+
+
+
   const formData = new FormData();
   formData.append('id_segnalazione', id_segnalazione);
   formData.append('stato_corrente', stato_corrente);
+
+
+  if (stato_corrente === "Nuova"){
+
+    fetch('php/setIdUtenteLavora.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      console.log('Successo modifica stato:', result);
+      dettagliSegnalazione(id_segnalazione); // Refresh the details view
+    })
+    .catch(error => {
+      console.error('Errore:', error);
+    });
+
+  }
 
   if (stato_corrente === "In corso") {
     fetching('librerie/mostraScriviReport.html').then(() => {
@@ -167,7 +188,7 @@ async function inserisciReport(id_segnalazione) {
 
   let report = document.getElementById("report").value;
 
-  
+
 
   if(!(report == null || report == "")){
     const formData = new FormData();
