@@ -259,7 +259,30 @@ function mostraModificaUtente(){
   fetching('librerie/modificaUtente.html');
 
   document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
+  modificaUtente();
+}
 
+function modificaUtente(idUtente) {
+  // Ottieni il nuovo valore del tipo di utente (ad esempio, da un select)
+  let nuovoTipo = document.getElementById("tipoUtente").value;
+  
+  // Crea un oggetto con i dati da inviare
+  let dati = new FormData();
+  dati.append("id", idUtente);
+  dati.append("tipo", nuovoTipo);
+  
+  // Esegui la richiesta fetch al PHP
+  fetch("librerie/modificaUtente.php", {
+      method: "POST",
+      body: dati
+  })
+  .then(response => response.text())
+  .then(data => {
+      alert(data); // Mostra un messaggio di successo o errore
+      // Ricarica la pagina o aggiorna la vista
+      mostraModificaUtente();
+  })
+  .catch(error => console.error("Errore nella richiesta: ", error));
 }
 
 async function getUtenteId() {
