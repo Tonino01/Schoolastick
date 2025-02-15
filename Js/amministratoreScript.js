@@ -259,16 +259,17 @@ function mostraModificaUtente(){
   fetching('librerie/modificaUtente.html');
 
   document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
+  
   modificaUtente();
 }
 
-function modificaUtente(idUtente) {
+function modificaUtente(id) {
   // Ottieni il nuovo valore del tipo di utente (ad esempio, da un select)
   let nuovoTipo = document.getElementById("tipoUtente").value;
   
   // Crea un oggetto con i dati da inviare
   let dati = new FormData();
-  dati.append("id", idUtente);
+  dati.append("id", id);
   dati.append("tipo", nuovoTipo);
   
   // Esegui la richiesta fetch al PHP
