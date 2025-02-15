@@ -3,16 +3,13 @@
 const segnalazione = {
 
   descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
+  luogo_id: "",
   stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
+  id_utente_crea: "",
+  categoria: "",
+  report: ""
 
 };
-
 
 function logOut() {
   fetch('php/logout.php', {
@@ -133,7 +130,7 @@ function modificaSegnalazione(id_segnalazione, stato_corrente) {
       button.onclick = async () => {
 
         await inserisciReport(id_segnalazione);
-        
+
         formData.set('stato_corrente', 'In corso');
         fetch('php/setStato.php', {
           method: 'POST',
@@ -170,9 +167,9 @@ async function inserisciReport(id_segnalazione) {
 
   let report = document.getElementById("report").value;
 
-  alert(report);
+  
 
-  if(!(report == null || report == "")){ 
+  if(!(report == null || report == "")){
     const formData = new FormData();
     formData.append('id_segnalazione', id_segnalazione);
     formData.append('report', report);

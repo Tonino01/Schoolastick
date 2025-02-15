@@ -33,6 +33,11 @@ if (isset($_POST['id'])) {
         echo "</div>";
 
         echo "<p>DESCRIZIONE: <span id='descrizione'>" . htmlspecialchars($row["descrizione"]) . "</span></p>";
+
+        if ($row["stato"] == 'Completa') {
+            echo "<p>REPORT: <span id='report'>" . htmlspecialchars($row["report"]) . "</span></p>";
+        }
+
         echo "<p>DATA CREAZIONE: <span id='data_creazione'>" . htmlspecialchars($row["data_creazione"]) . "</span></p>";
         echo "<p>CREATA DA: <span id='id_utente_crea'>" . htmlspecialchars($row["nome_utente"]) . "</span></p>";
         echo "<p>CATEGORIA: <span id='categoria'>" . htmlspecialchars($row["categoria"]) . "</span></p>";
