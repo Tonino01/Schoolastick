@@ -4,7 +4,7 @@
 require_once 'conn_db_SK.php';
 
 // Esegui la query per ottenere le segnalazioni
-$sql = "SELECT * FROM segnalazioni";
+$sql = "SELECT * FROM segnalazioni WHERE stato != 'Archiviata'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -17,7 +17,8 @@ if ($result->num_rows > 0) {
         echo "<h4>[<span id = 'idSegnalazione'>" . $row["id"] . "</span>]<span id='completamento'>" . $row["stato"] . "</span></h4>";
         echo "</div>";
 
-        echo "<h4><span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
+        echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
+        echo "<h4>Categoria:<br><span id='categoria'>" . $row["categoria"] . "</span></h4>";
 
         // Aggiungi un bottone per i dettagli, passando l'id della segnalazione
         echo "<button type='button' onclick='dettagliSegnalazione(" . $row["id"] . ")' class='defaultButton'>Dettagli..</button>";
