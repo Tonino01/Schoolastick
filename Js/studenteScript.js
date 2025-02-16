@@ -73,8 +73,62 @@ function caricaSegnalazioni() {
   });
 }
 
+let tmpFiltro = false;
+function mostraFiltro() {
+  let input = document.createElement("input");
+  let selectStato = document.createElement("select");
+  let selectCategoria = document.createElement("select");
 
+  if (tmpFiltro) {
+    let descrizione = document.getElementById("input").value;
 
+    let selectElementStato = document.getElementById('selectStato');
+    let stato = selectElementStato.options[selectElementStato.selectedIndex].value;
+
+    let selectElementCategoria = document.getElementById('selectCategoria');
+    let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
+
+    const formData = new FormData();
+    formData.append('descrizione', descrizione);
+    formData.append('stato', stato);
+    formData.append('categoria', categoria);
+
+    fetch('php/filtraSegnalazioni.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+
+  } else {
+    input.type = "text";
+    input.placeholder = "Inserisci qualcosa...";
+    input.id = "input";
+
+    selectStato.id = "selectStato";
+    selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
+    selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
+    selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
+    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
+
+    selectCategoria.id = "selectCategoria";
+    selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
+
+    document.getElementById("sezioneFiltro").appendChild(input);
+    document.getElementById("sezioneFiltro").appendChild(selectStato);
+    document.getElementById("sezioneFiltro").appendChild(selectCategoria);
+
+    tmpFiltro = true;
+  }
+}
 
 function dettagliSegnalazione(id_segnalazione) {
   pulisciContenitore(); // Pulisce il contenitore dei dettagli
@@ -152,14 +206,14 @@ async function caricaDettagliUtente() {
 
 
 
-let tmp = false;
+let tmpArchivio = false;
 function mostraArchivio(){
 
-  if(tmp){
+  if(tmpArchivio){
 
     segnalazioni();
 
-    tmp = false;
+    tmpArchivio = false;
 
   }else{
 
@@ -171,10 +225,24 @@ function mostraArchivio(){
 
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
 
-    tmp = true;
+    caricaSegnalazioniArchiviate();
+
+    tmpArchivio = true;
 
   }
 
+}
+
+function caricaSegnalazioniArchiviate() {
+  fetch('php/cariaSegnalazioniArchiviate.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 

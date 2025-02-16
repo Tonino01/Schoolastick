@@ -1,11 +1,24 @@
 <?php
-
-
 require_once 'conn_db_SK.php';
 
-// Esegui la query per ottenere le segnalazioni
-$sql = "SELECT * FROM segnalazioni WHERE stato != 'Archiviata'";
-$result = $conn->query($sql);
+// Ottieni il parametro di ricerca dal POST
+$descrizione = $_POST['descrizione'];
+$stato = $_POST['stato'];
+$categoria = $_POST['categoria'];
+
+// Costruisci la query in base ai parametri di ricerca
+$sql = "SELECT * FROM segnalazioni WHERE descrizione LIKE ? AND stato LIKE ? AND categoria LIKE ? AND stato != 'Archiviata'";
+$stmt = $conn->prepare($sql);
+
+// Aggiungi i parametri di ricerca con i caratteri jolly per la ricerca parziale
+$searchTerm = "%" . $descrizione . "%";
+$searchState = ($stato == "Qualunque") ? "%" : $stato;
+$searchCategory = ($categoria == "Qualunque") ? "%" : $categoria;
+$stmt->bind_param("sss", $searchTerm, $searchState, $searchCategory);
+
+// Esegui la query
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // Ciclo su ogni segnalazione per generare l'HTML
@@ -30,5 +43,6 @@ if ($result->num_rows > 0) {
 }
 
 // Chiudi la connessione
+$stmt->close();
 $conn->close();
 ?>
