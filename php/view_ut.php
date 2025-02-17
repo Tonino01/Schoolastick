@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once("conn_db_SK.php");
 
 $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
@@ -17,11 +19,13 @@ while ($row = $result->fetch_assoc()) {
     $nome = htmlspecialchars($row['nome']);
     $id = $row['id'];
 
+    $_SESSION['user_modificare_id'] = $id;
+
     
     echo "<div class='user'>
             <div class='circle $tipo'>$initial</div>
             <div class='name'>$nome</div>
-            <button class='button' onclick='mostraModificaUtente($id)'>MODIFICA</button>
+            <button class='button' onclick='mostraModificaUtente()'>MODIFICA</button>
         </div>";
 
 }

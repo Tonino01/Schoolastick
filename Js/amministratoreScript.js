@@ -117,6 +117,8 @@ function mostraInfoAccount(){
 
 }
 
+
+
 function mostraUtenti(){
 
   pulisciContenitore();
@@ -258,33 +260,56 @@ function mostraModificaUtente(){
 
   fetching('librerie/modificaUtente.html');
 
-  document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
-  
+  document.getElementById("titolo").innerText = "Modifica Permessi Utente:";
+
   modificaUtente();
+  
 }
 
-function modificaUtente(id) {
-  // Ottieni il nuovo valore del tipo di utente (ad esempio, da un select)
-  let nuovoTipo = document.getElementById("tipoUtente").value;
-  
-  // Crea un oggetto con i dati da inviare
-  let dati = new FormData();
-  dati.append("id", id);
-  dati.append("tipo", nuovoTipo);
-  
-  // Esegui la richiesta fetch al PHP
-  fetch("librerie/modificaUtente.php", {
-      method: "POST",
-      body: dati
-  })
+function modificaUtente() {
+
+  fetch('php/caricaDettagliUtenteModifica.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
-      alert(data); // Mostra un messaggio di successo o errore
-      // Ricarica la pagina o aggiorna la vista
-      mostraModificaUtente();
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
   })
-  .catch(error => console.error("Errore nella richiesta: ", error));
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+
+
+
+  let selectElement = document.getElementById('permesso');
+
+
+  let tipo = selectElement.options[selectElement.selectedIndex];
+
+
+  let tipoSelezionato = categoria.value;
+
+
+   const formData = new FormData();
+  formData.append('tipo', tipoSelezionato);
+  
+
+  fetch('php/modifica_tipo.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    console.log('Successo:', result);
+    alert("modifica effettuata!!");
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("modifica NON effettuata!!");
+  });
 }
+
+
 
 async function getUtenteId() {
   const response = await fetch('php/getUtente.php', { credentials: 'include' });

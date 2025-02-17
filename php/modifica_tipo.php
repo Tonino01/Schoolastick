@@ -1,9 +1,11 @@
 <?php
+
+session_start();
 require_once("conn_db_SK.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = intval($_POST["id"]);
-    $tipo = $conn->real_escape_string($_POST["tipo"]);
+    $id = $_SESSION['user_modificare_id'];
+    $tipo = $_POST["tipo"];
 
     // Query per aggiornare il tipo dell'utente
     $sql = "UPDATE utenti SET tipo = '$tipo' WHERE id = $id";
@@ -17,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Torna alla pagina principale
-    header("Location: view_ut.php");
+    header("Location: ../indexAmministratore.html");
     exit();
 }
 ?>
