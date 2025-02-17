@@ -3,6 +3,27 @@ session_start(); // Avvia la sessione
 
 require_once("conn_db_SK.php"); // Collegamento al database
 
+// Verifica se l'utente è gia autenticato.
+if (isset($_SESSION['email'])){
+    switch ($tipo) {
+        case 'Studente':
+            header("Location: ../indexStudente.html");
+            break;
+        case 'Docente':
+            header("Location: ../indexDocente.html");
+            break;
+        case 'Tecnico':
+            header("Location: ../indexTecnico.html");
+            break;
+        case 'Amministratore':
+            header("Location: ../indexAmministratore.html");
+            break;
+        default:
+            echo "Errore: Tipo di utente non valido.";
+            exit;
+    }
+}
+
 // Controlla se il form è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'] ?? null;
