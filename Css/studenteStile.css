@@ -39,6 +39,20 @@ h1 {
     font-size: 36px;
     color: #333;
 }
+
+a:hover{
+
+    cursor: pointer;
+
+}
+
+img:hover{
+
+    cursor: pointer;
+
+}
+
+
 .bc {
     display: none; /* Hide by default */
     background-color: #404040;

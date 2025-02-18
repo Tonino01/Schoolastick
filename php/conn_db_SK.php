@@ -1,10 +1,10 @@
 <?php
 
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "schoolastick_prova";
+    $servername = "http://srv1342.hstgr.io/";
+    $username = "u482179263_schoolastick";
+    $password = "&xP8boC7r1";
+    $dbname = "u482179263_schoolastick";
 
     //Creazione della connessione
     $conn = new mysqli ($servername, $username, $password, $dbname);
