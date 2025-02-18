@@ -247,11 +247,7 @@ function getUtente(){
 
 }
 
-function salvaRuoloUtente(){
 
-  //DA FARE!!!!
-
-}
 
 
 function mostraModificaUtente(){
@@ -273,13 +269,20 @@ function modificaUtente() {
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
+
+    //imposto la selezione con il tipo dell'account
+    document.getElementById('permesso').value = document.getElementById('tipoUtente').innerText;
+
+
   })
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
 
+  
+}
 
-
+function salvaTipoUtente(){
 
   let selectElement = document.getElementById('permesso');
 
@@ -290,7 +293,7 @@ function modificaUtente() {
   let tipoSelezionato = categoria.value;
 
 
-   const formData = new FormData();
+  const formData = new FormData();
   formData.append('tipo', tipoSelezionato);
   
 
@@ -307,6 +310,14 @@ function modificaUtente() {
     console.error('Errore:', error);
     alert("modifica NON effettuata!!");
   });
+
+
+}
+
+function eliminaUtente(){
+
+  
+
 }
 
 

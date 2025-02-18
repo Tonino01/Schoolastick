@@ -1,10 +1,13 @@
 <?php
 
+session_start();
+
 require_once("conn_db_SK.php"); // Collegamento al database
+
+$id = isset($_SESSION['user_modificare_id']) ? $_SESSION['user_modificare_id'] : 'null';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recupera l'ID dell'utente da eliminare
-    $id = $_POST['id'];
 
     // SQL per eliminare l'utente
     $sql = "DELETE FROM utenti WHERE id = ?";

@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
     ?>
     <div class='testa'>
         <h3><span id='tipoUtente'><?= htmlspecialchars($row["tipo"]) ?></span></h3>
-        <img id='tipoUtenteImg' src='icone/profile_test_icon.png' class='profile' onclick='mostraInfoAccount()'>
+        <img id='tipoUtenteImg' src='icone/profile_test_icon.png' class='profile'>
     </div>
     <p>Nome: <span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
