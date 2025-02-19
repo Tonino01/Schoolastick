@@ -162,7 +162,7 @@ function nuovaSegnalazione_Sedi(){
 
   fetching('librerie/nuovaSegnalazione-Sedi.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE"
 
 }
 
@@ -172,7 +172,7 @@ function sede1(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
+  
 
 }
 

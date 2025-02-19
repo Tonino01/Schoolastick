@@ -187,14 +187,33 @@ body.scrolled .bc {
   margin: 0;
 }
 
-
-
-
 .barraSegnalazione h4 {
     font-size: 18px;
     color: white;
 }
 
+.annulla{
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold; 
+    width: 20%;
+    background-color: #8408ff;
+    border: none;
+    color: white;
+    text-decoration: none; 
+    border-radius: 10px;
+    transition: 0.5s;
+    text-align: center; 
+    margin-top:40px;
+  }
+  .annulla:hover{
+    background-color: #9429ff;
+    border:none;
+  }
 @keyframes slide-up {
     0% {
         transform: translateY(100%);
@@ -211,16 +230,17 @@ body.scrolled .bc {
 }
 
 .infoAccount {
-    margin: 20px auto;
-    color: white;
-    border: 2px solid #23548B;
-    background-color: #23548B;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width:80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .testa {
@@ -256,17 +276,26 @@ body.scrolled .bc {
 }
 
 .creaSegnalazione {
-    margin: 20px auto;
-    color: white;
-    border: 2px solid #23548B;
-    background-color: #23548B;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width:80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
+.creaSegnalazione p{
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom:0;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 .selezionaPiano {
     padding: 20px;
     display: flex;
@@ -317,17 +346,19 @@ button .buttonAula:hover {
     border: none;
 }
 
-button {
+.segnalazione button{
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom: 3%;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #2C2C2C;
     border: 2px solid #2C2C2C;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 10px;
-    margin: 10px;
     transition: 0.5s;
-}
+  }
 
 button:hover {
     background-color: #4e4e4e;

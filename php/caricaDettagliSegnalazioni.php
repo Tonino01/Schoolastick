@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
     echo "<p>LUOGO: <span id='luogo'>" . htmlspecialchars($row["nome_luogo"]) . "</span></p>";
 
     echo "<div class='pulsanti'>";
-    echo "<button type='button' onclick='segnalazioni()'>INDIETRO</button>";
+    echo "<button type='button' onclick='segnalazioni()' class='annulla'>INDIETRO</button>";
 
     // Verifica l'ID utente nella sessione
     $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null';

@@ -1,6 +1,6 @@
 function togglePassword() {
-    const passwordField = document.getElementById("password");
-    const toggleIcon = document.getElementById("toggle-password");
+    var passwordField = document.querySelector("input[name='password']");
+    var toggleIcon = document.getElementById("toggle-password");
 
     if (passwordField.type === "password") {
       passwordField.type = "text";

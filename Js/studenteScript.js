@@ -48,11 +48,6 @@ function segnalazioni(){
   fetching('librerie/mostraSegnalazioni.html');
   document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
-
-
-
-  document.getElementById("titolo").innerText = "Segnalazioni:";
-
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaSegnalazioni();
