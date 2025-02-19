@@ -70,23 +70,17 @@ img:hover{
 
 
 .dettagliSegnalazioni{
-
-	margin-top: 50px;
-
-	margin-left: auto;
-	margin-right: auto;
-
-	color: white;
-	border-style: solid;
-	border-color: #23548B;
-	background-color: #23548B;
-	height: 60vh;
-	width: 90%;
-
-	position: relative;
-	border-radius: 40px;
-	display: flex;
-	flex-direction: column;
+  margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width:80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 

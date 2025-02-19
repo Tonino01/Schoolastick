@@ -1,7 +1,7 @@
 <?php
 
 
-    $servername = "http://srv1342.hstgr.io/";
+    $servername = "srv1342.hstgr.io";
     $username = "u482179263_schoolastick";
     $password = "&xP8boC7r1";
     $dbname = "u482179263_schoolastick";
