@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connessioneDB.php';
+require_once 'conn_db_SK.php';
 
 // Ottieni il nome dell'aula dal POST
 $aula = $_POST['aula'];
