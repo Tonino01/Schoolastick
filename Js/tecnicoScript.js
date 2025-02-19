@@ -13,8 +13,7 @@ const segnalazione = {
 
 function logOut() {
   fetch('php/logout.php', {
-      method: 'POST', // Usa POST se il logout modifica lo stato del server
-      credentials: 'include' // Invia i cookie di sessione se necessari
+      method: 'POST' // Usa POST se il logout modifica lo stato del server
   })
   .then(response => {
       if (response.ok) {
