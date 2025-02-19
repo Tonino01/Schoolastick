@@ -4,7 +4,7 @@
 require_once 'conn_db_SK.php';
 
 // Esegui la query per ottenere le segnalazioni
-$sql = "SELECT * FROM segnalazioni WHERE stato != 'Archiviata'";
+$sql = "SELECT * FROM segnalazioni WHERE stato = 'Archiviata'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

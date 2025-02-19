@@ -1,23 +1,16 @@
-//inizializazione degli oggetti
-
-const segnalazione = {
-
-  descrizione: "",
-  categoria: "",
-  aula:"",
-  piano: "",
-  stato: "",
-  perChi: "",
-  daChi: "",
-  risoluzione: ""
-
-};
-
-
-function logOut(){
-
-  window.location.href = "index.html";
-
+function logOut() {
+  fetch('php/logout.php', {
+      method: 'POST', // Usa POST se il logout modifica lo stato del server
+      credentials: 'include' // Invia i cookie di sessione se necessari
+  })
+  .then(response => {
+      if (response.ok) {
+          window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
+      } else {
+          console.error('Errore nel logout');
+      }
+  })
+  .catch(error => console.error('Errore di rete:', error));
 }
 
 //ottimizazione fetch
@@ -40,12 +33,7 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
-//trovare soluzioni per transizioni
-function transizione(container){
 
-  document.getElementById(container).classList.add('div-animate');
-
-}
 
 function pulisciContenitore(){
 
@@ -62,13 +50,13 @@ function segnalazioni(){
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
-  caricaDettagli();
+  caricaSegnalazioni();
 
 
 
 }
 
-function caricaDettagli() {
+function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -80,14 +68,95 @@ function caricaDettagli() {
   });
 }
 
-function dettagliSegnalazione(){
+let tmpFiltro = false;
+function mostraFiltro() {
+  let input = document.createElement("input");
+  let selectStato = document.createElement("select");
+  let selectCategoria = document.createElement("select");
 
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  if (tmpFiltro) {
+    let descrizione = document.getElementById("input").value;
+
+    let selectElementStato = document.getElementById('selectStato');
+    let stato = selectElementStato.options[selectElementStato.selectedIndex].value;
+
+    let selectElementCategoria = document.getElementById('selectCategoria');
+    let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
+
+    const formData = new FormData();
+    formData.append('descrizione', descrizione);
+    formData.append('stato', stato);
+    formData.append('categoria', categoria);
+
+    fetch('php/filtraSegnalazioni.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+
+  } else {
+    input.type = "text";
+    input.placeholder = "Inserisci qualcosa...";
+    input.id = "input";
+
+    selectStato.id = "selectStato";
+    selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
+    selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
+    selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
+    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
+
+    selectCategoria.id = "selectCategoria";
+    selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
+
+    document.getElementById("sezioneFiltro").appendChild(input);
+    document.getElementById("sezioneFiltro").appendChild(selectStato);
+    document.getElementById("sezioneFiltro").appendChild(selectCategoria);
+
+    tmpFiltro = true;
+  }
+}
+
+function dettagliSegnalazione(id_segnalazione) {
+  pulisciContenitore(); // Pulisce il contenitore dei dettagli
+  fetching('librerie/mostraDettagliSegnalazione.html'); // Carica il template HTML per la visualizzazione
+
+  // Usa l'ID passato come parametro
+  caricaDettagliSegnalazioni(id_segnalazione);
 
   document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
 
 }
+
+function caricaDettagliSegnalazioni(id_segnalazione) {
+  const formData = new FormData();
+  formData.append('id', id_segnalazione);
+
+  // Effettua la richiesta POST al server
+  fetch('php/caricaDettagliSegnalazioni.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text()) // Gestisce la risposta del server come testo
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli"
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+
+
 
 function nuovaSegnalazione(){
 
@@ -101,26 +170,45 @@ function nuovaSegnalazione(){
 
 }
 
+
+
 function mostraInfoAccount(){
 
   pulisciContenitore();
 
-
-  fetching('librerie/infoAccount.html');
-
+  fetching('librerie/InfoAccount.html');
   document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
+
+  caricaDettagliUtente();
+
 
 }
 
 
-let tmp = false;
+
+
+async function caricaDettagliUtente() {
+  fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+
+
+let tmpArchivio = false;
 function mostraArchivio(){
 
-  if(tmp){
+  if(tmpArchivio){
 
     segnalazioni();
 
-    tmp = false;
+    tmpArchivio = false;
 
   }else{
 
@@ -128,66 +216,41 @@ function mostraArchivio(){
 
     fetching('librerie/mostraArchivio.html');
 
-     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI"; 
+     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
 
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
 
-    tmp = true;
+    caricaSegnalazioniArchiviate();
+
+    tmpArchivio = true;
 
   }
 
 }
 
+function caricaSegnalazioniArchiviate() {
+  fetch('php/cariaSegnalazioniArchiviate.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
 
-function getUtente(){
 
-  //DA FARE!!!!
+async function getUtenteId(){
+
+  const response = await fetch('php/getUtente.php', { credentials: 'include' });
+  const userId = await response.text();
+  return userId !== 'null' ? userId : null;
 
 }
 
-function creaNuovaSegnalazione(){
 
 
-  segnalazione.descrizione = document.getElementById("descrizione").value;
-
-  let selectElement = document.getElementById('categoria');
-
-
-  let categoria = selectElement.options[selectElement.selectedIndex];
-
-
-  categoria = categoria.value;
-
-  segnalazione.categoria = categoria;
-
-  segnalazione.aula = tempAula;
-
-  segnalazione.piano = tempPiano;
-
-  segnalazione.stato = "DA FARE";
-
-  segnalazione.daChi = getUtente();
-
-  if(categoria == "Pulire"){
-
-    segnalazione.perChi = "Collaboratore";
-
-  }else{
-
-    segnalazione.perChi = "Tecnico";
-
-  }
-
-  alert("segnalazione effettuata!!");
-
-
-  //inviare la segnalazione al DataBase
-
-
-
-
-  segnalazioni();
-}
 
 document.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
@@ -198,4 +261,3 @@ document.addEventListener('scroll', function() {
         document.body.classList.remove('scrolled');
     }
 });
-

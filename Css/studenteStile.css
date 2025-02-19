@@ -6,17 +6,26 @@
     background-color: #333;
     color: white;
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 .header .profile {
-    margin-left: auto; 
+    margin-left: auto;
 }
 
 * {
     font-family: 'Poppins', sans-serif;
+}
+
+.ricercaButton {
+
+  max-width: 48px;
+  max-height: 48px;
+  margin-left: 1200px;
+
+
 }
 
 body {
@@ -30,6 +39,20 @@ h1 {
     font-size: 36px;
     color: #333;
 }
+
+a:hover{
+
+    cursor: pointer;
+
+}
+
+img:hover{
+
+    cursor: pointer;
+
+}
+
+
 .bc {
     display: none; /* Hide by default */
     background-color: #404040;
@@ -50,7 +73,7 @@ body.scrolled .bc {
     left: 0;
     background-image: linear-gradient(to right,#ff7011, #ffa53000 );
     width: 100%;
-    height: 10px; 
+    height: 10px;
 }
 .logo {
     color: white;
@@ -62,7 +85,7 @@ body.scrolled .bc {
     margin: 5px 5px 5px 20px;
     border-radius: 20px;
     align-items: center;
-    
+
 }
 .logo #utenteImg {
     height: 100%;
@@ -86,7 +109,7 @@ body.scrolled .bc {
     padding: 20px 20px 20px 0;
     display: flex;
     justify-content: center; /* Center the content horizontally */
-    align-items: center; 
+    align-items: center;
 }
 
 .containerSegnalazioni h2 {
@@ -127,7 +150,7 @@ body.scrolled .bc {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    
+
 }
 
 .segnalazione {
@@ -447,7 +470,6 @@ button:hover {
 
 
 .barraStato {
-  margin-top: 0; 
-  padding-top: 0; 
+  margin-top: 0;
+  padding-top: 0;
 }
-

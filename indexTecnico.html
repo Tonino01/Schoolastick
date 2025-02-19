@@ -5,7 +5,7 @@
 	<head>
 
 		<link rel="stylesheet" type="text/css" href = "Css/tecnicoStile.css">
-		<link rel="icon" type="image/x-icon" href="icone/logo_tecnico.png" onclick = "logOut()">
+		<link rel="icon" type="image/x-icon" href="icone/logo_tecnico.png" >
 		<script src = "Js/tecnicoScript.js"></script>
 
 		<title>Schoolastick-Tecnico</title>
@@ -16,8 +16,8 @@
 		<div class = "header">
 
 			<div class = "logo">
-				<img id="utenteImg" src="icone/logo_tecnico.png" onclick = "logOut()">
-				<p><span calss = "utente">Area Tecnico</span></p>
+				<img id="utenteImg" src="icone/logo_tecnico.png" onclick = "segnalazioni()">
+				<p><a onclick="segnalazioni()" calss = "utente">Area Tecnico</a></p>
 			</div>
 			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
 
@@ -30,7 +30,7 @@
 
 			<button class = "buttonNuova" onclick = "nuovaSegnalazione()">
 
-			<img id = "archivioButton" src = "icone/edit_icon.png" class = "editIcon"></img>
+			<img src = "icone/edit_icon.png" class = "editIcon"></img>
 
 			Nuova</button>
 
@@ -41,6 +41,12 @@
 				<img id = "archivioButton" src = "icone/box_icon.png" class = "editIcon"></img>
 
 			</button>
+
+			<div id="sezioneFiltro">
+				<button class="noButton" onclick="mostraFiltro()">
+					<img class="ricercaButton" src="icone/ricerca-64.png" class="editIcon"></img>
+				</button>
+			</div>
 
 		</div>
 

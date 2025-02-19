@@ -16,8 +16,8 @@
 		<div class = "header">
 
 			<div class = "logo">
-				<img id="utenteImg" src="icone/logo_amministratore.png" onclick = "logOut()">
-				<p><span calss = "utente">Area Amministratore</span></p>
+				<img id="utenteImg" src="icone/logo_amministratore.png" onclick = "segnalazioni()">
+				<p><a onclick="segnalazioni()" calss = "utente">Area Amministratore</a></p>
 			</div>
 			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
 
@@ -47,6 +47,12 @@
 				<img id = "archivioButton" src = "icone/box_icon.png" class = "editIcon"></img>
 
 			</button>
+
+      <div id="sezioneFiltro">
+        <button class="noButton" onclick="mostraFiltro()">
+          <img class="ricercaButton" src="icone/ricerca-64.png" class="editIcon"></img>
+        </button>
+      </div>
 
 		</div>
 

@@ -1,5 +1,10 @@
 <?php
+
+ini_set('session.gc_maxlifetime', 3600);
+
 session_start(); // Avvia la sessione
+
+
 
 require_once("conn_db_SK.php"); // Collegamento al database
 
@@ -24,6 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
 
         if (password_verify($password, $passwordHash)) {
+            if ($recupera_password == 1) {
+                $_SESSION['reset_user_id'] = $id; // Salva l'ID per il reset
+                header("Location: cambia_password.php");
+                exit();
+            }
             // Salva i dati nella sessione
             $_SESSION['user_id'] = $id;
             $_SESSION['user_name'] = $nome;

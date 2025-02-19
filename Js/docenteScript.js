@@ -6,19 +6,20 @@ const segnalazione = {
   luogo_id: "",
   stato: "",
   id_utente_crea: "",
+  categoria: "",
   report: ""
 
 };
 
 
 function logOut() {
-    fetch('logout.php', {
+    fetch('php/logout.php', {
         method: 'POST', // Usa POST se il logout modifica lo stato del server
         credentials: 'include' // Invia i cookie di sessione se necessari
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = 'index.php'; // Reindirizza alla homepage dopo il logout
+            window.location.href = 'index.html'; // Reindirizza alla homepage dopo il logout
         } else {
             console.error('Errore nel logout');
         }
@@ -47,12 +48,7 @@ async function fetching(risorsa) {
         console.error('Si è verificato un errore:', error);
     }
 }
-//trovare soluzioni per transizioni
-function transizione(container){
 
-  document.getElementById(container).classList.add('div-animate');
-
-}
 
 function pulisciContenitore(){
 
@@ -71,12 +67,12 @@ function segnalazioni(){
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
-  caricaDettagli();
+  caricaSegnalazioni();
 
 }
 
 
-function caricaDettagli() {
+function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -88,23 +84,60 @@ function caricaDettagli() {
   });
 }
 
-function dettagliSegnalazione(){
+function dettagliSegnalazione(id_segnalazione) {
+  pulisciContenitore(); // Pulisce il contenitore dei dettagli
+  fetching('librerie/mostraDettagliSegnalazione.html'); // Carica il template HTML per la visualizzazione
 
-  pulisciContenitore();
-  fetching('librerie/mostraDettagliSegnalazione.html');
+  // Usa l'ID passato come parametro
+  caricaDettagliSegnalazioni(id_segnalazione);
+
   document.getElementById("titolo").innerText = "DETTAGLI SEGNALAZIONE";
+}
 
+function caricaDettagliSegnalazioni(id_segnalazione) {
+  const formData = new FormData();
+  formData.append('id', id_segnalazione);
+
+  // Effettua la richiesta POST al server
+  fetch('php/caricaDettagliSegnalazioni.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text()) // Gestisce la risposta del server come testo
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli"
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 function mostraInfoAccount(){
 
   pulisciContenitore();
 
-
-  fetching('librerie/infoAccount.html');
-
+  fetching('librerie/InfoAccount.html');
   document.getElementById("titolo").innerText = "INFORMAZIONI ACCOUNT";
 
+  caricaDettagliUtente();
+
+
+}
+
+
+
+
+async function caricaDettagliUtente() {
+  fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
 
 
@@ -237,7 +270,7 @@ function mostraArchivio(){
 
     tmp = true;
 
-}
+  }
 }
 
 async function getUtenteId(){
@@ -280,7 +313,7 @@ async function creaNuovaSegnalazione() {
   let categoria = selectElement.options[selectElement.selectedIndex];
 
 
-  categoria = categoria.value;
+  segnalazione.categoria = categoria.value;
 
 
   segnalazione.luogo_id = await getLuogoId(tempAula);
@@ -288,6 +321,7 @@ async function creaNuovaSegnalazione() {
   segnalazione.stato = "Da fare";
 
   segnalazione.id_utente_crea = await getUtenteId();
+
 
   /*
   if(categoria == "Pulire"){
@@ -298,16 +332,17 @@ async function creaNuovaSegnalazione() {
 
     segnalazione.perChi = "Tecnico";
 
-  }
   */
+
+//inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
-  //inviare la segnalazione al DataBase
 
-  segnalazioni();
-}
+
   
+}
+
 document.addEventListener('scroll', function() {
   const header = document.querySelector('.header');
   const bc = document.querySelector('.bc');
@@ -318,12 +353,13 @@ document.addEventListener('scroll', function() {
   }
 });
 
-  
+
 function inviaSegnalazioni() {
     const formData = new FormData();
     formData.append('descrizione', segnalazione.descrizione);
     formData.append('luogo_id', segnalazione.luogo_id);
     formData.append('id_utente_crea', segnalazione.id_utente_crea);
+    formData.append('categoria', segnalazione.categoria);
 
     // Effettua la richiesta POST al server
     fetch('php/inserisciSegnalazione.php', {
@@ -334,6 +370,7 @@ function inviaSegnalazioni() {
     .then(result => {
         console.log('Successo:', result);
         alert("segnalazione effettuata!!");
+        segnalazioni();
     })
     .catch(error => {
         console.error('Errore:', error);
@@ -341,4 +378,59 @@ function inviaSegnalazioni() {
     });
 }
 
-  
+let tmpFiltro = false;
+function mostraFiltro() {
+  let input = document.createElement("input");
+  let selectStato = document.createElement("select");
+  let selectCategoria = document.createElement("select");
+
+  if (tmpFiltro) {
+    let descrizione = document.getElementById("input").value;
+
+    let selectElementStato = document.getElementById('selectStato');
+    let stato = selectElementStato.options[selectElementStato.selectedIndex].value;
+
+    let selectElementCategoria = document.getElementById('selectCategoria');
+    let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
+
+    const formData = new FormData();
+    formData.append('descrizione', descrizione);
+    formData.append('stato', stato);
+    formData.append('categoria', categoria);
+
+    fetch('php/filtraSegnalazioni.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+
+  } else {
+    input.type = "text";
+    input.placeholder = "Inserisci qualcosa...";
+    input.id = "input";
+
+    selectStato.id = "selectStato";
+    selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
+    selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
+    selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
+    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
+
+    selectCategoria.id = "selectCategoria";
+    selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
+    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
+
+    document.getElementById("sezioneFiltro").appendChild(input);
+    document.getElementById("sezioneFiltro").appendChild(selectStato);
+    document.getElementById("sezioneFiltro").appendChild(selectCategoria);
+
+    tmpFiltro = true;
+  }
+}
