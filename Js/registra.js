@@ -50,7 +50,7 @@ function togglePassword() {
 
 // Funzione per alternare la visibilità della conferma password
 function toggleConfirmPassword() {
-    var confirmPasswordField = document.getElementById("confirm-password");
+    var confirmPasswordField = document.querySelector("input[name = 'confirm-password']");
     var toggleIcon = document.getElementById("toggle-confirm-password");
 
     if (confirmPasswordField.type === "password") {
