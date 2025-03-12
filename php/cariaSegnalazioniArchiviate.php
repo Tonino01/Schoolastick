@@ -31,4 +31,5 @@ if ($result->num_rows > 0) {
 
 // Chiudi la connessione
 $conn->close();
+$result->close();
 ?>

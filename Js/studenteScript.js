@@ -73,6 +73,7 @@ function mostraFiltro() {
   let input = document.createElement("input");
   let selectStato = document.createElement("select");
   let selectCategoria = document.createElement("select");
+  let selectSede = document.createElement("select");
 
   if (tmpFiltro) {
     let descrizione = document.getElementById("input").value;
@@ -83,10 +84,14 @@ function mostraFiltro() {
     let selectElementCategoria = document.getElementById('selectCategoria');
     let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
 
+    let selectElementSede = document.getElementById('selectSede');
+    let sede = selectElementSede.options[selectElementSede.selectedIndex].value;
+
     const formData = new FormData();
     formData.append('descrizione', descrizione);
     formData.append('stato', stato);
     formData.append('categoria', categoria);
+    formData.append('sede', sede);
 
     fetch('php/filtraSegnalazioni.php', {
         method: 'POST',
@@ -106,20 +111,30 @@ function mostraFiltro() {
     input.id = "input";
 
     selectStato.id = "selectStato";
+    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
     selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
     selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
     selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
-    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
+    
 
     selectCategoria.id = "selectCategoria";
+    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
     selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
     selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
     selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
+
+    selectSede.id = "selectSede";
+    selectSede.options[selectSede.options.length] = new Option('Tutte', 'Tutte');
+    selectSede.options[selectSede.options.length] = new Option('ITT', 'ITT');
+    selectSede.options[selectSede.options.length] = new Option('IPSIA', 'IPSIA');
+    selectSede.options[selectSede.options.length] = new Option('ITE', 'ITE');
+  
+    
 
     document.getElementById("sezioneFiltro").appendChild(input);
     document.getElementById("sezioneFiltro").appendChild(selectStato);
     document.getElementById("sezioneFiltro").appendChild(selectCategoria);
+    document.getElementById("sezioneFiltro").appendChild(selectSede);
 
     tmpFiltro = true;
   }
