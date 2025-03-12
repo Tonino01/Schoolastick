@@ -5,16 +5,26 @@ require_once 'conn_db_SK.php';
 $descrizione = $_POST['descrizione'];
 $stato = $_POST['stato'];
 $categoria = $_POST['categoria'];
+$sede = $_POST['sede'];
 
 // Costruisci la query in base ai parametri di ricerca
-$sql = "SELECT * FROM segnalazioni WHERE descrizione LIKE ? AND stato LIKE ? AND categoria LIKE ? AND stato != 'Archiviata'";
+$sql = "SELECT s.id, s.descrizione, s.stato, s.categoria FROM segnalazioni s 
+        JOIN utenti u ON s.id_utente_crea = u.id
+        JOIN luoghi l ON s.luogo_id = l.id
+        JOIN piani p ON l.piano_id = p.id
+        JOIN sedi se ON p.sede_id = se.id
+        WHERE s.descrizione LIKE ? OR l.nome LIKE ? OR p.nome LIKE ?
+        AND se.nome LIKE ? AND s.stato LIKE ? AND s.categoria LIKE ? AND s.stato != 'Archiviata'
+        ";
+
 $stmt = $conn->prepare($sql);
 
 // Aggiungi i parametri di ricerca con i caratteri jolly per la ricerca parziale
-$searchTerm = "%" . $descrizione . "%";
-$searchState = ($stato == "Qualunque") ? "%" : $stato;
-$searchCategory = ($categoria == "Qualunque") ? "%" : $categoria;
-$stmt->bind_param("sss", $searchTerm, $searchState, $searchCategory);
+$termineCercato = "%" . $descrizione . "%";
+$statoCercato = ($stato == "Qualunque") ? "%" : $stato;
+$categoriaCercata = ($categoria == "Qualunque") ? "%" : $categoria;
+$sedeCercata = ($sede == "Tutte") ? "%" : $sede;
+$stmt->bind_param("ssssss", $termineCercato, $termineCercato, $termineCercato, $sedeCercata, $statoCercato, $categoriaCercata);
 
 // Esegui la query
 $stmt->execute();
