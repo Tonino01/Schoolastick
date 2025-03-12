@@ -493,6 +493,8 @@ function mostraFiltro() {
     selectSede.options[selectSede.options.length] = new Option('IPSIA', 'IPSIA');
     selectSede.options[selectSede.options.length] = new Option('ITE', 'ITE');
 
+    
+
     document.getElementById("sezioneFiltro").appendChild(input);
     document.getElementById("sezioneFiltro").appendChild(selectStato);
     document.getElementById("sezioneFiltro").appendChild(selectCategoria);
