@@ -19,14 +19,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.ricercaButton {
-
-  max-width: 48px;
-  max-height: 48px;
-  margin-left: 1200px;
 
 
-}
 
 body {
     background-color: #ff660031;
@@ -34,6 +28,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+
 
 h1 {
     font-size: 36px;
@@ -124,7 +120,25 @@ body.scrolled .bc {
 
 .containerSegnalazioni .editIcon {
     position: absolute;
-    right: 20px;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.containerSegnalazioni .ricercaButton {
+    max-width: 48px;
+    max-height: 48px;
+    margin-left: 1200px;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.containerSegnalazioni .sezFiltro{
+
+    position: absolute;
+    right: 14%;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -155,7 +169,7 @@ body.scrolled .bc {
 
 .segnalazione {
   background-color: #ffffff;
-  height: 230px;
+  height: 250px;
   width: calc(33% - 40px);
   margin: 10px;
   border-radius: 20px;
