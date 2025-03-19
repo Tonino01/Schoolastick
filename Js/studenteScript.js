@@ -70,6 +70,7 @@ function caricaSegnalazioni() {
 
 let tmpFiltro = false;
 function mostraFiltro() {
+  let button = document.createElement('button');
   let input = document.createElement("input");
   let selectStato = document.createElement("select");
   let selectCategoria = document.createElement("select");
@@ -106,6 +107,19 @@ function mostraFiltro() {
     });
 
   } else {
+    
+    button.classList.add('XButton');
+    button.setAttribute('onclick', 'nascondiFiltro()');
+
+    
+    let img = document.createElement('img');
+    img.classList.add('nascondiButton');
+    img.setAttribute('src', 'icone/cancButton.png');
+
+    
+    button.appendChild(img);
+
+
     input.type = "text";
     input.placeholder = "Inserisci qualcosa...";
     input.id = "input";
@@ -135,10 +149,31 @@ function mostraFiltro() {
     document.getElementById("sezioneFiltro").appendChild(selectStato);
     document.getElementById("sezioneFiltro").appendChild(selectCategoria);
     document.getElementById("sezioneFiltro").appendChild(selectSede);
+    document.getElementById('sezioneFiltro').appendChild(button);
 
     tmpFiltro = true;
+    
   }
 }
+
+
+
+function nascondiFiltro(){
+
+  tmpFiltro = false;
+
+  document.getElementById("sezioneFiltro").removeChild(input);
+  document.getElementById("sezioneFiltro").removeChild(selectStato);
+  document.getElementById("sezioneFiltro").removeChild(selectCategoria);
+  document.getElementById("sezioneFiltro").removeChild(selectSede);
+  document.getElementById("sezioneFiltro").removeChild(img);
+  document.getElementById("sezioneFiltro").removeChild(button);
+
+  
+
+}
+
+
 
 function dettagliSegnalazione(id_segnalazione) {
   pulisciContenitore(); // Pulisce il contenitore dei dettagli

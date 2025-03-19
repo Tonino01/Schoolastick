@@ -19,14 +19,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.ricercaButton {
-
-  max-width: 48px;
-  max-height: 48px;
-  margin-left: 1200px;
 
 
-}
 
 body {
     background-color: #ff660031;
@@ -34,6 +28,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+
 
 h1 {
     font-size: 36px;
@@ -124,7 +120,25 @@ body.scrolled .bc {
 
 .containerSegnalazioni .editIcon {
     position: absolute;
-    right: 20px;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.containerSegnalazioni .ricercaButton {
+    max-width: 48px;
+    max-height: 48px;
+    margin-left: 1200px;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.containerSegnalazioni .sezFiltro{
+
+    position: absolute;
+    right: 14%;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -155,7 +169,7 @@ body.scrolled .bc {
 
 .segnalazione {
   background-color: #ffffff;
-  height: 230px;
+  height: 250px;
   width: calc(33% - 40px);
   margin: 10px;
   border-radius: 20px;
@@ -208,7 +222,7 @@ body.scrolled .bc {
     border-radius: 10px;
     transition: 0.5s;
     text-align: center; 
-    margin-top:40px;
+    margin: 40px auto 0; /* Center horizontally */
   }
   .annulla:hover{
     background-color: #9429ff;
@@ -412,16 +426,26 @@ button:hover {
 }
 
 .dettagliSegnalazioni {
-    margin: 20px auto;
-    color: white;
-    border: 2px solid #23548B;
-    background-color: #23548B;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width:80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left; /* Align text to the left */
+}
+
+.dettagliSegnalazioni p {
+  font-size: 18px;
+  margin: 20px;
+  text-align: left; /* Align text to the left */
+  width: 100%;
+  padding-left: 20px; /* Add left padding */
 }
 
 .barraStato {
@@ -432,12 +456,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.dettagliSegnalazioni p {
-    font-size: 18px;
-    margin: 20px;
-    text-align: center;
+    text-align: center; /* Center the text */
 }
 
 @media (max-width: 768px) {
