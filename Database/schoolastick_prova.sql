@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 13, 2025 alle 12:54
+-- Creato il: Mar 22, 2025 alle 08:55
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -64,6 +64,19 @@ INSERT INTO `piani` (`id`, `nome`, `sede_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `recupero_password`
+--
+
+CREATE TABLE `recupero_password` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `scadenza` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `sedi`
 --
 
@@ -106,7 +119,9 @@ INSERT INTO `segnalazioni` (`id`, `descrizione`, `data_creazione`, `report`, `st
 (1, 'NOn funziona', '2025-02-12 11:20:49', NULL, 'Nuova', 14, NULL, NULL, 1, NULL),
 (2, 'Ciao TONIN', '2025-02-12 11:23:17', NULL, 'Nuova', 14, NULL, NULL, 1, NULL),
 (3, 'ngn', '2025-02-12 11:34:46', NULL, 'Nuova', 14, NULL, NULL, 2, NULL),
-(4, 'nero', '2025-02-12 11:49:29', NULL, 'Nuova', 14, NULL, NULL, 1, NULL);
+(4, 'nero', '2025-02-12 11:49:29', NULL, 'Nuova', 14, NULL, NULL, 1, NULL),
+(5, 'Prova Uilian', '2025-02-14 11:11:21', NULL, 'Nuova', 18, NULL, NULL, 2, 'Sostituire'),
+(6, 'Prova Uilian 2', '2025-02-14 11:15:16', NULL, 'Nuova', 18, NULL, NULL, 2, 'Pulire');
 
 -- --------------------------------------------------------
 
@@ -119,7 +134,6 @@ CREATE TABLE `utenti` (
   `nome` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `recupero_password` int(11) DEFAULT 0,
   `tipo` enum('Studente','Docente','Tecnico','Amministratore') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -127,14 +141,15 @@ CREATE TABLE `utenti` (
 -- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`id`, `nome`, `email`, `password`, `recupero_password`, `tipo`) VALUES
-(6, 'Uilian', 'uilian@gmail.com', '1234', 0, 'Studente'),
-(13, 'Andrei', 'andrei@azienda.com', '$2y$10$4sq1DrrW0LqHwe8qHHnB5.AFeAtJj6/zPTB.ZFDzngK315xm5V58W', 0, 'Studente'),
-(14, 'Uilian', 'uilian@iisvittorioveneto.it', '$2y$10$RfpUfYSrbYYtOXB9nVgkSuEMnlX.a3jODr9PlaGOpEFCr.0u/nxKq', 0, 'Docente'),
-(15, 'Studente', 'studente@iisvittorioveneto.it', '$2y$10$zrj1.BEasQn31wihPhtWGuMwhwHGmQ/YSWk6vyBfcWSQ55L.jKDAK', 0, 'Studente'),
-(16, 'Tecnico', 'tecnico@iisvittorioveneto.it', '$2y$10$PrYV7h2ELjTU4jBjd7vkGeUi/tP1m.oTolPvRtNbSG7Fq3jpWALV2', 0, 'Tecnico'),
-(17, 'Amministratore', 'amministratore@iisvittorioveneto.it', '$2y$10$uBbsLpD0l/9m7CFH2lokKumxxYgRrSm2vPZTT03VUh.aheTARpube', 0, 'Amministratore'),
-(18, 'Docente', 'docente@iisvittorioveneto.it', '$2y$10$oEpeLJ521YVoHmYbjJK5.uKBs9IYGpkNlbthmGRMeX1mQhQXWXS4m', 0, 'Docente');
+INSERT INTO `utenti` (`id`, `nome`, `email`, `password`, `tipo`) VALUES
+(6, 'Uilian', 'uilian@gmail.com', '1234', 'Amministratore'),
+(13, 'Andrei', 'andrei@azienda.com', '$2y$10$4sq1DrrW0LqHwe8qHHnB5.AFeAtJj6/zPTB.ZFDzngK315xm5V58W', 'Studente'),
+(14, 'Uilian', 'uilian@iisvittorioveneto.it', '$2y$10$RfpUfYSrbYYtOXB9nVgkSuEMnlX.a3jODr9PlaGOpEFCr.0u/nxKq', 'Docente'),
+(15, 'Studente', 'studente@iisvittorioveneto.it', '$2y$10$zrj1.BEasQn31wihPhtWGuMwhwHGmQ/YSWk6vyBfcWSQ55L.jKDAK', 'Studente'),
+(16, 'Tecnico', 'tecnico@iisvittorioveneto.it', '$2y$10$PrYV7h2ELjTU4jBjd7vkGeUi/tP1m.oTolPvRtNbSG7Fq3jpWALV2', 'Tecnico'),
+(17, 'Amministratore', 'amministratore@iisvittorioveneto.it', '$2y$10$uBbsLpD0l/9m7CFH2lokKumxxYgRrSm2vPZTT03VUh.aheTARpube', 'Amministratore'),
+(18, 'Docente', 'docente@iisvittorioveneto.it', '$2y$10$oEpeLJ521YVoHmYbjJK5.uKBs9IYGpkNlbthmGRMeX1mQhQXWXS4m', 'Docente'),
+(19, 'uilian', 'uilian.maksuti@iisvittorioveneto.it', '$2y$10$rOwlFqrQLrD/3O1asYipyOpe5LMILoPihwt7U8R6C6ahvGgU/Qjsy', 'Studente');
 
 --
 -- Indici per le tabelle scaricate
@@ -153,6 +168,13 @@ ALTER TABLE `luoghi`
 ALTER TABLE `piani`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sede_id` (`sede_id`);
+
+--
+-- Indici per le tabelle `recupero_password`
+--
+ALTER TABLE `recupero_password`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indici per le tabelle `sedi`
@@ -195,6 +217,12 @@ ALTER TABLE `piani`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT per la tabella `recupero_password`
+--
+ALTER TABLE `recupero_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `sedi`
 --
 ALTER TABLE `sedi`
@@ -204,13 +232,13 @@ ALTER TABLE `sedi`
 -- AUTO_INCREMENT per la tabella `segnalazioni`
 --
 ALTER TABLE `segnalazioni`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Limiti per le tabelle scaricate
@@ -227,6 +255,12 @@ ALTER TABLE `luoghi`
 --
 ALTER TABLE `piani`
   ADD CONSTRAINT `piani_ibfk_1` FOREIGN KEY (`sede_id`) REFERENCES `sedi` (`id`) ON DELETE CASCADE;
+
+--
+-- Limiti per la tabella `recupero_password`
+--
+ALTER TABLE `recupero_password`
+  ADD CONSTRAINT `recupero_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `utenti` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `segnalazioni`
