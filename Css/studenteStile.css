@@ -130,7 +130,7 @@ body.scrolled .bc {
     max-height: 48px;
     margin-left: 1200px;
     position: absolute;
-    right: 10%;
+    right: 7%;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -138,9 +138,40 @@ body.scrolled .bc {
 .containerSegnalazioni .sezFiltro{
 
     position: absolute;
-    right: 14%;
+    right: 12%;
     top: 50%;
     transform: translateY(-50%);
+    align-items: center;
+    display: flex;
+
+}
+
+.containerSegnalazioni .sezFiltro select{
+    padding: 6px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 1%;
+}
+
+.containerSegnalazioni .sezFiltro input{
+    padding: 6px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 1%;
+}
+
+.sezFiltro .XButton{
+    padding: 0px;
+    border-radius: 5px;
+    background: none;
+    margin: 1%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .parentContainer {

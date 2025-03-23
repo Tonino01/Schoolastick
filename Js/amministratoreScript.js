@@ -433,72 +433,76 @@ function inviaSegnalazioni() {
 }
 
 let tmpFiltro = false;
-function mostraFiltro() {
-  let input = document.createElement("input");
-  let selectStato = document.createElement("select");
-  let selectCategoria = document.createElement("select");
-  let selectSede = document.createElement("select");
+let descrizione = '';
+let stato = '';
+let categoria = '';
+let sede = '';
 
-  if (tmpFiltro) {
-    let descrizione = document.getElementById("input").value;
+function Filtro() {
+    const sezioneFiltro = document.getElementById("sezioneFiltro");
+    if (tmpFiltro) {
 
-    let selectElementStato = document.getElementById('selectStato');
-    let stato = selectElementStato.options[selectElementStato.selectedIndex].value;
-
-    let selectElementCategoria = document.getElementById('selectCategoria');
-    let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
-
-    let selectElementSede = document.getElementById('selectSede');
-    let sede = selectElementSede.options[selectElementSede.selectedIndex].value;
-
-    const formData = new FormData();
-    formData.append('descrizione', descrizione);
-    formData.append('stato', stato);
-    formData.append('categoria', categoria);
-    formData.append('sede', sede);
-
-    fetch('php/filtraSegnalazioni.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('dettagli').innerHTML = data;
-    })
-    .catch(error => {
-      console.error('Errore nel caricamento dei dettagli:', error);
-    });
-
-  } else {
-    input.type = "text";
-    input.placeholder = "Inserisci qualcosa...";
-    input.id = "input";
-
-    selectStato.id = "selectStato";
-    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
-    selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
-    selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
-    selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
-
-    selectCategoria.id = "selectCategoria";
-    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
-
-    selectSede.id = "selectSede";
-    selectSede.options[selectSede.options.length] = new Option('Tutte', 'Tutte');
-    selectSede.options[selectSede.options.length] = new Option('ITT', 'ITT');
-    selectSede.options[selectSede.options.length] = new Option('IPSIA', 'IPSIA');
-    selectSede.options[selectSede.options.length] = new Option('ITE', 'ITE');
-
+        descrizione = document.getElementById('input').value;
+        stato = document.getElementById('selectStato').value; 
+        categoria = document.getElementById('selectCategoria').value;
+        sede = document.getElementById('selectSede').value;
+        
+        applicaFiltro();
+        
+        
+    } else {
+        sezioneFiltro.innerHTML = `
+            <button class='XButton' onclick='nascFiltro()'>
+                <img class='nascondiButton' src='icone/cancButton.png'>
+            </button>
+            <input type="text" id="input" placeholder="Inserisci qualcosa...">
+            <select id="selectStato">
+                <option>Qualunque</option>
+                <option>Nuova</option>
+                <option>In corso</option>
+                <option>Completa</option>
+            </select>
+            <select id="selectCategoria">
+                <option>Qualunque</option>
+                <option>Riparare</option>
+                <option>Sostituire</option>
+                <option>Pulire</option>
+            </select>
+            <select id="selectSede">
+                <option>Tutte</option>
+                <option>ITT</</option>
+                <option>IPSIA</option>
+                <option>ITE</option>
+            </select>
+        `;
+        tmpFiltro = !tmpFiltro;
+    }
     
+}
 
-    document.getElementById("sezioneFiltro").appendChild(input);
-    document.getElementById("sezioneFiltro").appendChild(selectStato);
-    document.getElementById("sezioneFiltro").appendChild(selectCategoria);
-    document.getElementById("sezioneFiltro").appendChild(selectSede);
+function nascFiltro() {
+    const sezioneFiltro = document.getElementById("sezioneFiltro");
+    sezioneFiltro.innerHTML = '';
+    tmpFiltro = !tmpFiltro;
+    caricaSegnalazioni();
+}
 
-    tmpFiltro = true;
-  }
+function applicaFiltro() {
+  const formData = new FormData();
+  formData.append('descrizione', descrizione);
+  formData.append('stato', stato);
+  formData.append('categoria', categoria);
+  formData.append('sede', sede);
+
+  fetch('php/filtraSegnalazioni.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
 }
