@@ -250,7 +250,26 @@ function mostraUtenti(){
 
   document.getElementById("titolo").innerText = "UTENTI PIATTAFORMA";
 
+  caricaUtenti();
+
 }
+
+function caricaUtenti() {
+  fetch('php/view_ut.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+
+
+
+
 
 //gestione selezione luogo
 
