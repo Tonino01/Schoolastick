@@ -273,7 +273,7 @@ function mostraModificaUtente(){
 
   fetching('librerie/modificaUtente.html');
 
-  document.getElementById("titolo").innerText = "Modifica Permessi Utente:";
+  document.getElementById("titolo").innerText = "MODIFICA PERMESSI UTENTE";
 
   modificaUtente();
   
