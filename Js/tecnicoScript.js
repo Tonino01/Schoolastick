@@ -490,3 +490,14 @@ function applicaFiltro() {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
 }
+
+function nuovaSegnalazione_Sedi() {
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione-Sedi.html');
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE";
+}
+
+function sede1() {
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione.html');
+}
