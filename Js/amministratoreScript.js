@@ -267,7 +267,69 @@ function caricaUtenti() {
 }
 
 
+function mostraModificaUtente(){
 
+  pulisciContenitore();
+
+  fetching('librerie/modificaUtente.html');
+
+  document.getElementById("titolo").innerText = "Modifica Permessi Utente:";
+
+  modificaUtente();
+  
+}
+
+function modificaUtente() {
+
+  fetch('php/caricaDettagliUtenteModifica.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+
+    //imposto la selezione con il tipo dell'account
+    document.getElementById('permesso').value = document.getElementById('tipoUtente').innerText;
+
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  
+}
+
+function salvaTipoUtente(){
+
+  let selectElement = document.getElementById('permesso');
+
+
+  let tipo = selectElement.options[selectElement.selectedIndex];
+
+
+  let tipoSelezionato = categoria.value;
+
+
+  const formData = new FormData();
+  formData.append('tipo', tipoSelezionato);
+  
+
+  fetch('php/modifica_tipo.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    console.log('Successo:', result);
+    alert("modifica effettuata!!");
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("modifica NON effettuata!!");
+  });
+
+
+}
 
 
 
@@ -371,22 +433,6 @@ function caricaSegnalazioniArchiviate() {
     });
 }
 
-function salvaRuoloUtente(){
-
-  //DA FARE!!!!
-
-}
-
-
-function mostraModificaUtente(){
-
-  pulisciContenitore();
-
-  fetching('librerie/modificaUtente.html');
-
-  document.getElementById("titolo").innerText = "MODIFICA PERMESSI UTENTE";
-
-}
 
 async function getUtenteId() {
   const response = await fetch('php/getUtente.php', { credentials: 'include' });
