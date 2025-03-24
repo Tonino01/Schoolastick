@@ -59,7 +59,7 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:";
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
@@ -210,7 +210,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREAZIONE SEGNALAZIONE";
 
 }
 
@@ -248,7 +248,7 @@ function mostraUtenti(){
 
   fetching('librerie/mostraUtenti.html');
 
-  document.getElementById("titolo").innerText = "Utenti Piattaforma:"
+  document.getElementById("titolo").innerText = "UTENTI PIATTAFORMA";
 
 }
 
@@ -327,30 +327,30 @@ function indietro(){
 }
 
 let tmp = false;
-function mostraArchivio(){
-
-  if(tmp){
-
+function mostraArchivio() {
+  if (tmp) {
     segnalazioni();
-
     tmp = false;
-
-  }else{
-
+  } else {
     pulisciContenitore();
-
     fetching('librerie/mostraArchivio.html');
-
-    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
-
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
-
+    caricaSegnalazioniArchiviate();
     tmp = true;
-
   }
 }
 
-
+function caricaSegnalazioniArchiviate() {
+  fetch('php/cariaSegnalazioniArchiviate.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+}
 
 function salvaRuoloUtente(){
 
@@ -365,7 +365,7 @@ function mostraModificaUtente(){
 
   fetching('librerie/modificaUtente.html');
 
-  document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
+  document.getElementById("titolo").innerText = "MODIFICA PERMESSI UTENTE";
 
 }
 

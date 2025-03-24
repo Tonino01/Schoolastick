@@ -61,7 +61,7 @@ function segnalazioni(){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
 
-  document.getElementById("titolo").innerText = "Segnalazioni:";
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
@@ -217,7 +217,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREAZIONE SEGNALAZIONE"
 
 
 
@@ -323,67 +323,33 @@ function indietro(){
 }
 
 let tmp = false;
-function mostraArchivio(){
-
-  if(tmp){
-
+function mostraArchivio() {
+  if (tmp) {
     segnalazioni();
-
     tmp = false;
-
-  }else{
-
+  } else {
     pulisciContenitore();
-
     fetching('librerie/mostraArchivio.html');
-
-    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
-
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
-
+    caricaSegnalazioniArchiviate();
     tmp = true;
-
   }
 }
 
-
+function caricaSegnalazioniArchiviate() {
+  fetch('php/cariaSegnalazioniArchiviate.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
+}
 
 function getStato(){
 
-
-}
-
-async function getLuogoId(aula) {
-  const formData = new FormData();
-  formData.append('aula', aula);
-
-  try {
-    const response = await fetch('php/getLuogo.php', {
-      method: 'POST',
-      body: formData
-    });
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const result = await response.text();
-    return result;
-  } catch (error) {
-    console.error('Errore:', error);
-    return null;
-  }
-
-}
-
-
-
-
-function mostraScriviReport(){
-
-  pulisciContenitore();
-
-  fetching('librerie/mostraScriviReport.html');
-
-  document.getElementById("titolo").innerText = "Scrivi Report:"
 
 }
 

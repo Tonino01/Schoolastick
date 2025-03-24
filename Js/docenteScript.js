@@ -248,28 +248,29 @@ function indietro(){
 }
 
 let tmp = false;
-function mostraArchivio(){
-
-  if(tmp){
-
+function mostraArchivio() {
+  if (tmp) {
     segnalazioni();
-
     tmp = false;
-
-  }else{
-
+  } else {
     pulisciContenitore();
-
     fetching('librerie/mostraArchivio.html');
-
     document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
-
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
-
-
+    caricaSegnalazioniArchiviate();
     tmp = true;
-
   }
+}
+
+function caricaSegnalazioniArchiviate() {
+  fetch('php/cariaSegnalazioniArchiviate.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
 }
 
 async function getUtenteId(){

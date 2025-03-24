@@ -1,5 +1,83 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
+a:hover {
+    cursor: pointer;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+.creaSegnalazioni {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    border-style: solid;
+    border-color: #D70505;
+    background-color: #D70505;
+    height: 60vh;
+    width: 90%;
+    position: relative;
+    border-radius: 40px;
+    display: flex;
+}
+
+.creaSegnalazioni h4 {
+    font-size: 24px;
+    margin: 0;
+    position: absolute;
+}
+
+.inserimento {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inserimento label {
+    display: block;
+    color: white;
+}
+
+.inserimento input {
+    flex: 1;
+    margin-right: 20px;
+    padding: 50px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+.inserimento select {
+    padding: 8px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.dettagliSegnalazioni {
+    margin: 40px auto;
+    color: white;
+    background-color: #00000065;
+    padding: 10px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.dettagliSegnalazioni p {
+    font-size: 18px;
+    margin: 20px;
+    text-align: left;
+    width: 100%;
+    padding-left: 20px;
+}
+
 .header {
     position: relative;
     padding: 20px 20px 20px 0;
@@ -99,7 +177,7 @@ body.scrolled .bc {
     font-size: 200%;
 }
 
-..containerSegnalazioni .editIcon {
+.containerSegnalazioni .editIcon {
     position: absolute;
     right: 3%;
     top: 50%;
@@ -167,9 +245,88 @@ body.scrolled .bc {
     box-sizing: border-box;
 }
 
+.creaSegnalazione p {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom: 0;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.segnalazione button, .buttonAula {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-bottom: 3%;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2C2C2C;
+    border: 2px solid #2C2C2C;
+    color: white;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.buttonAula {
+    width: 30%;
+    height: 90px;
+    font-size: larger;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.annulla {
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20%;
+    background-color: #D70505;
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    text-align: center;
+    margin: auto;
+}
+
+.annulla:hover {
+    background-color: #A45050;
+    border: none;
+}
+
+.selezionaPiano .annulla {
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20%;
+    background-color: #D70505;
+    border: none;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.selezionaPiano .annulla:hover {
+    background-color: #A45050;
+}
+
 .segnalazione {
     background-color: #ffffff;
-    height: 230px;
+    height: 250px;
     width: calc(33% - 40px);
     margin: 10px;
     border-radius: 20px;
@@ -224,8 +381,8 @@ body.scrolled .bc {
 .infoAccount {
     margin: 20px auto;
     color: white;
-    border: 2px solid #23548B;
-    background-color: #23548B;
+    border: 2px solid #D70505;
+    background-color: #D70505;
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -324,7 +481,7 @@ body.scrolled .bc {
     font-size: 14px;
     font-weight: bold;
     width: 10%;
-    background-color: #D00E0E;
+    background-color: #D70505;
     border: none;
     color: white;
     text-decoration: none;
@@ -341,13 +498,14 @@ button:hover {
     background-color: #4e4e4e;
     border: 2px solid #4e4e4e;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .creaSegnalazioni {
     margin: 20px auto;
     color: white;
-    border: 2px solid #23548B;
-    background-color: #23548B;
+    border: 2px solid #D70505;
+    background-color: #D70505;
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -397,6 +555,14 @@ button:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.reimg {
+    max-width: 24px;
+    max-height: 24px;
+    object-fit: cover;
+    margin-right: 7%;
+    margin-left: none;
 }
 
 @media (max-width: 768px) {

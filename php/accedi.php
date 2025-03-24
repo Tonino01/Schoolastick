@@ -59,10 +59,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit;
             }
         } else {
-            echo "Errore: Password errata. <br><a href='accedi.html'>Torna indietro</a>";
+            ?>
+            <!DOCTYPE html>
+            <html lang="it">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+            <link rel="stylesheet" href="Css/accedi.css">
+            <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+            <head>
+                <meta charset="UTF-8">
+                
+                <title>Errore</title>
+            </head>
+            <body>
+                <h1>PASSWORD ERRATA</h1>
+                
+                <a href="../accedi.html">Torna al login</a>
+            </body>
+            </html>
+            <?php
         }
     } else {
-        echo "Errore: Utente non trovato. <br><a href='accedi.html'>Torna indietro</a>";
+        ?>
+        <!DOCTYPE html>
+            <html lang="it">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+            <link rel="stylesheet" href="Css/accedi.css">
+            <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+            <head>
+                <meta charset="UTF-8">
+                
+                <title>Errore</title>
+            </head>
+            <body>
+                <h1>UTENTE INESISTENTE</h1>
+                
+                <a href="../accedi.html">Torna al login</a>
+            </body>
+            </html>
+        <?php
     }
 
     $stmt->close();
