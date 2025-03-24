@@ -148,10 +148,7 @@ body.scrolled .bc {
     align-self: center;
 }
 
-.utente {
-    margin: 0 0 0 40px;
-    font-size: 27px;
-}
+
 
 .containerSegnalazioni {
     color: white;
@@ -379,16 +376,18 @@ body.scrolled .bc {
 }
 
 .infoAccount {
-    margin: 20px auto;
+    margin: 40px auto;
     color: white;
-    border: 2px solid #D70505;
-    background-color: #D70505;
-    padding: 20px;
+    background-color: #00000065;
+    padding: 10px;
     border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    text-align: left;
 }
 
 .testa {
@@ -417,11 +416,7 @@ body.scrolled .bc {
     text-align: center;
 }
 
-.infoAccount #indietro {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-}
+
 
 .creaSegnalazione {
     margin: 40px auto;
@@ -583,6 +578,11 @@ button:hover {
         max-width: none;
     }
 
+    .utente {
+        width: 100%;
+        max-width: none;
+    }
+
     .infoAccount, .creaSegnalazione, .creaSegnalazioni, .dettagliSegnalazioni {
         width: 100%;
         padding: 20px;
@@ -598,5 +598,55 @@ button:hover {
     margin-top: 0;
     padding-top: 0;
 }
+
+.mostraUtenti {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.utente {
+    background-color: #ffffff;
+    height: 200px;
+    width: calc(20% - 40px);
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.utente h4 {
+    margin: 10px 20px;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 50px);
+}
+
+.barraUtente {
+    background-color: #D70505;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+}
+
+.barraUtente h4 {
+    font-size: 18px;
+    color: white;
+}
+
 
 

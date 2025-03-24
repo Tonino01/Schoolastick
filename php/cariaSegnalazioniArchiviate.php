@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
         echo "<div class='segnalazione'>";
 
         echo "<div class='barraSegnalazione'>";
-        echo "<h4>[<span id = 'idSegnalazione'>" . $row["id"] . "</span>]<span id='completamento'>" . $row["stato"] . "</span></h4>";
+        echo "<h4><span id = 'idSegnalazione'></span><span id='completamento'>" . $row["stato"] . "</span></h4>";
         echo "</div>";
 
         echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
