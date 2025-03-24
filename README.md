@@ -1,10 +1,14 @@
 # Schoolastick
-sito di segnalazioni per la scuola
-![Screenshot 2025-01-21 191107](https://github.com/user-attachments/assets/16419665-cfa9-4e93-9b67-de90eb1f3b0a)
-![Screenshot 2025-01-21 191113](https://github.com/user-attachments/assets/a493d47b-fa91-4b8a-ab78-2b34660b70c1)
-![Screenshot 2025-01-21 191124](https://github.com/user-attachments/assets/4cf3d567-4725-4590-8a81-e999f161053e)
-![Screenshot (4)](https://github.com/user-attachments/assets/4a8d6c22-875e-45ea-878f-fd49727c24ff)
-![Screenshot (5)](https://github.com/user-attachments/assets/a3962199-7c27-4bd3-b64c-d81d87e1966e)
-![Screenshot (6)](https://github.com/user-attachments/assets/c77dffec-dbcf-49e1-bb37-3f8fa2bcfb78)
-![Screenshot (8)](https://github.com/user-attachments/assets/0bd264a6-4ce8-4aa1-a036-f209b4790dfe)
+SCHOOLASTICK è un applicazione web sviluppata da un gruppo  della 5^C dell'itis di vittorio veneto
+Questa applicazione ha come scopo quello di facilitare il personale scolastico nella gestione di eventuali segnalazioni in base alle esigenze
 
+QUESTO PROGETTO è IN FASE DI SVILUPPO:
+
+
+![Screenshot 2025-03-24 210710](https://github.com/user-attachments/assets/9d452222-e33e-4eb2-9554-61e72d1cc8ff)
+![Screenshot 2025-03-24 210723](https://github.com/user-attachments/assets/2fd6d9fe-e64c-4b50-8a6b-241deacf6a8b)
+![Screenshot 2025-03-24 210843](https://github.com/user-attachments/assets/54017f8e-e5d8-4a05-b5a8-dc8813a7ebe7)
+![Screenshot 2025-03-24 210823](https://github.com/user-attachments/assets/0367e481-81be-4827-ac4a-40947b9fa499)
+![Screenshot 2025-03-24 210754](https://github.com/user-attachments/assets/b0cc349b-14dd-484b-bd86-1b738f01e9c7)
+![Screenshot 2025-03-24 210736](https://github.com/user-attachments/assets/dc726eb5-6026-4538-b5c2-587bb416ce0a)
+![Screenshot 2025-03-24 210901](https://github.com/user-attachments/assets/1c05ea99-14ba-4a24-9ba2-ca469f723b37)
