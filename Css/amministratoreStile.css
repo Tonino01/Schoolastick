@@ -416,11 +416,7 @@ body.scrolled .bc {
     text-align: center;
 }
 
-.infoAccount #indietro {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-}
+
 
 .creaSegnalazione {
     margin: 40px auto;

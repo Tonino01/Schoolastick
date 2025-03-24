@@ -267,7 +267,9 @@ function caricaUtenti() {
 }
 
 
-function mostraModificaUtente(){
+function mostraModificaUtente(id_utente){
+
+  let id = id_utente;
 
   pulisciContenitore();
 
@@ -275,13 +277,14 @@ function mostraModificaUtente(){
 
   document.getElementById("titolo").innerText = "MODIFICA PERMESSI UTENTE";
 
-  modificaUtente();
+  modificaUtente(id);
   
 }
 
-function modificaUtente() {
+function modificaUtente(id_utente) {
+  let id = id_utente;
 
-  fetch('php/caricaDettagliUtenteModifica.php') // Qui chiami il file PHP
+  fetch('php/caricaDettagliUtenteModifica.php?id=' + id) // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
@@ -299,7 +302,9 @@ function modificaUtente() {
   
 }
 
-function salvaTipoUtente(){
+function salvaTipoUtente(id_utente){
+
+  let id = id_utente;
 
   let selectElement = document.getElementById('permesso');
 
@@ -307,11 +312,12 @@ function salvaTipoUtente(){
   let tipo = selectElement.options[selectElement.selectedIndex];
 
 
-  let tipoSelezionato = categoria.value;
+  let tipoSelezionato = tipo.value;
 
 
   const formData = new FormData();
   formData.append('tipo', tipoSelezionato);
+  formData.append('id', id);
   
 
   fetch('php/modifica_tipo.php', {
@@ -322,12 +328,37 @@ function salvaTipoUtente(){
   .then(result => {
     console.log('Successo:', result);
     alert("modifica effettuata!!");
+    mostraUtenti();
   })
   .catch(error => {
     console.error('Errore:', error);
     alert("modifica NON effettuata!!");
   });
 
+
+}
+
+function eliminaUtente( id_utente){
+
+  let id = id_utente;
+  const formData = new FormData();
+  formData.append('id', id);
+
+  fetch('php/elimina_ut.php', {
+    method: 'POST',
+    body: formData
+
+  })
+  .then(response => response.text())
+  .then(result => {
+    console.log('Successo:', result);
+    alert("eliminazione effettuata!!");
+    mostraUtenti();
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("eliminazione NON effettuata!!");
+  });
 
 }
 

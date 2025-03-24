@@ -19,13 +19,13 @@ while ($row = $result->fetch_assoc()) {
     $nome = htmlspecialchars($row['nome']);
     $id = $row['id'];
 
-    $_SESSION['user_modificare_id'] = $id;
+    
 
     
     echo "    <div class='utente'>
         <div class='circle $tipo'>$initial</div>
             <div class='name'>$nome        </div>
-                <button class='button' onclick='mostraModificaUtente()'>MODIFICA</button>
+                <button class='button' onclick='mostraModificaUtente(".$id.")'>MODIFICA</button>
     </div>";
 }
 
