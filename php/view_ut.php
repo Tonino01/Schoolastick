@@ -22,13 +22,14 @@ while ($row = $result->fetch_assoc()) {
     $_SESSION['user_modificare_id'] = $id;
 
     
-    echo "<div class='user'>
-            <div class='circle $tipo'>$initial</div>
-            <div class='name'>$nome</div>
-            <button class='button' onclick='mostraModificaUtente()'>MODIFICA</button>
-        </div>";
-
+    echo "    <div class='utente'>
+        <div class='circle $tipo'>$initial</div>
+            <div class='name'>$nome        </div>
+                <button class='button' onclick='mostraModificaUtente()'>MODIFICA</button>
+    </div>";
 }
+
+echo $utenti_html;
 
 $conn->close();
 ?>
