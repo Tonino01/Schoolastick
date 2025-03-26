@@ -278,40 +278,35 @@ body.scrolled .bc {
   margin: 40px auto;
   color: white;
   background-color: #00000065;
-  padding: 10px;
+  padding: 1%;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  width:80%;
+  width:60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.testa {
-    position: relative;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-}
 
-.testa h3 {
+
+.testa {
     margin: 0;
     color: white;
     font-size: 24px;
     background-color: #E16B04;
     padding: 10px 20px;
     border-radius: 20px;
+    align-items: center;
 }
 
-.testa img {
-    margin-left: 20px;
-}
+
 
 .infoAccount p {
+    padding: 3%;
     margin: 10px 0;
     text-align: center;
+    font-size: 23px;
 }
 
 .infoAccount #indietro {

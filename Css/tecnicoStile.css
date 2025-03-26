@@ -240,37 +240,27 @@ a:hover, img:hover {
 }
 
 .infoAccount {
-  margin: 20px auto;
+  margin: 40px auto;
   color: white;
-  border: 2px solid #23548B;
-  background-color: #23548B;
-  padding: 20px;
+  background-color: #00000065;
+  padding: 1%;
   border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .testa {
-  position: relative;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.testa h3 {
   margin: 0;
   color: white;
   font-size: 24px;
   background-color: #E16B04;
   padding: 10px 20px;
   border-radius: 20px;
-}
-
-.testa img {
-  margin-left: 20px;
+  align-items: center;
 }
 
 .infoAccount p {
