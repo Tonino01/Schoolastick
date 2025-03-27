@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         // Stampa l'HTML con i dati della segnalazione
         echo "<div class='segnalazione'>";
 
-        echo "<div class='barraSegnalazione'>";
+        echo "<div id='" . $row["stato"] ."'  class='barraSegnalazione'>";
         echo "<h4><span id = 'idSegnalazione'></span><span id='completamento'>" . $row["stato"] . "</span></h4>";
         echo "</div>";
 
