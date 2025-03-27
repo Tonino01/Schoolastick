@@ -222,7 +222,7 @@ body.scrolled .bc {
 }
 
 .barraSegnalazione {
-  background-color: #D70505;
+  background-color: #df5900;
   height: 50px;
   width: 100%;
   display: flex;
@@ -235,6 +235,26 @@ body.scrolled .bc {
 .barraSegnalazione h4 {
     font-size: 18px;
     color: white;
+}
+
+#Nuova.barraSegnalazione{
+
+    background-color: #D70505;
+
+}
+
+
+
+#Completa.barraSegnalazione {
+
+    background-color: #1c8107;
+
+}
+
+#Archiviata.barraSegnalazione {
+
+    background-color: #272727;
+
 }
 
 .annulla{

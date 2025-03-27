@@ -359,7 +359,7 @@ width: calc(100% - 50px);
 }
 
 .barraSegnalazione {
-background-color: #D70505;
+  background-color: #df5900;
 height: 50px;
 width: 100%;
 display: flex;
@@ -367,6 +367,18 @@ justify-content: center;
 align-items: center;
 border-radius: 20px 20px 0 0;
 margin: 0;
+}
+
+#Nuova.barraSegnalazione {
+  background-color: #D70505;
+}
+
+#Completa.barraSegnalazione {
+  background-color: #1c8107;
+}
+
+#Archiviata.barraSegnalazione {
+  background-color: #272727;
 }
 
 .barraSegnalazione h4 {
