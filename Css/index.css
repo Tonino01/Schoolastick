@@ -30,6 +30,7 @@ nav .logo {
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
+    align-items: center;
 }
 
 nav a {
@@ -39,6 +40,7 @@ nav a {
     margin: 0 20px;
     padding: 10px 20px;
     position: relative;
+    justify-content: center;
     transition: background-color 0.3s, transform 0.3s;
 }
 
