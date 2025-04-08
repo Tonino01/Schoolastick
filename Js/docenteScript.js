@@ -323,18 +323,6 @@ async function creaNuovaSegnalazione() {
   segnalazione.id_utente_crea = await getUtenteId();
 
 
-  /*
-  if(categoria == "Pulire"){
-
-    segnalazione.perChi = "Collaboratore";
-
-  }else{
-
-    segnalazione.perChi = "Tecnico";
-
-  */
-
-//inviare la segnalazione al DataBase
 
   inviaSegnalazioni();
 
