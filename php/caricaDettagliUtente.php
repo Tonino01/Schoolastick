@@ -42,6 +42,7 @@ if ($result->num_rows > 0) {
     <?php
 } else {
     echo "Nessun utente trovato.";
+    echo "<button type='button' onclick='logOut()' class='annulla'>LOG OUT</button>";
     echo "<button type='button' onclick='segnalazioni()'' class='annulla'>INDIETRO</button>";
 }
 

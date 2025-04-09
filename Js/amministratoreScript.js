@@ -394,7 +394,7 @@ function intermedio1Button(){
 
   tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio1.html');
 
 }
 function piano1Button(){
@@ -408,14 +408,14 @@ function intermedio2Button(){
 
   tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio2.html');
 
 }
 function piano2Button(){
 
   tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
+  fetching('librerie/nuovaSegnalazione - Piano2.html');
 
 }
 
