@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     ?>
     
-    <h3 class='testa'><span id='tipoUtente'><?= htmlspecialchars($row["tipo"]) ?></span></h3>
+    <h3 id='<?= htmlspecialchars($row["tipo"]) ?>' class='testa'><span ><?= htmlspecialchars($row["tipo"]) ?></span></h3>
     
     <p>Nome: <br><span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
