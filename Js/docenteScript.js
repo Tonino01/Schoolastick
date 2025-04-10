@@ -263,7 +263,7 @@ function mostraArchivio() {
 }
 
 function caricaSegnalazioniArchiviate() {
-  fetch('php/cariaSegnalazioniArchiviate.php')
+  fetch('php/caricaSegnalazioniArchiviate.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('dettagli').innerHTML = data;
