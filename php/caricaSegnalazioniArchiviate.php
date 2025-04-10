@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
 
         echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
 
-        echo "<p>REPORT: <span id='report'>" . $row["report"] . "</span></p>";
+        
 
         echo "<h4>Categoria:<br><span id='categoria'>" . $row["categoria"] . "</span></h4>";
 
