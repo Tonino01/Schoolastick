@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
 
     echo "<p>DESCRIZIONE: <span id='descrizione'>" . htmlspecialchars($row["descrizione"]) . "</span></p>";
 
-    if ($row["stato"] == 'Completa') {
+    if ($row["stato"] == 'Completa' || $row["stato"] == 'Archiviata') {
         echo "<p>REPORT: <span id='report'>" . htmlspecialchars($row["report"]) . "</span></p>";
     }
 

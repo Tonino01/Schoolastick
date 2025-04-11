@@ -262,7 +262,8 @@ body.scrolled .bc {
     display: inline-flex;
     justify-content: center; 
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 70px;
+    
     font-size: 14px;
     font-weight: bold; 
     width: 20%;
