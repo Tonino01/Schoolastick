@@ -7,6 +7,17 @@ error_reporting(E_ALL);
 
 require_once 'conn_db_SK.php';
 
+session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 300;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
+
 
 $id = $_GET['id'];
 

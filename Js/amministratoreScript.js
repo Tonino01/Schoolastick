@@ -72,6 +72,15 @@ function caricaSegnalazioni() {
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -100,7 +109,15 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
-    // Aggiungi i dettagli nel div con id "dettagli"
+    
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -233,6 +250,14 @@ async function caricaDettagliUtente() {
   fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -258,6 +283,14 @@ function caricaUtenti() {
   fetch('php/view_ut.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -288,7 +321,17 @@ function modificaUtente(id_utente) {
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     document.getElementById('dettagli').innerHTML = data;
+
+    
 
     //imposto la selezione con il tipo dell'account
     document.getElementById('permesso').value = document.getElementById('tipoUtente').innerText;
@@ -326,6 +369,14 @@ function salvaTipoUtente(id_utente){
   })
   .then(response => response.text())
   .then(result => {
+
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     console.log('Successo:', result);
     alert("modifica effettuata!!");
     mostraUtenti();
@@ -457,6 +508,15 @@ function caricaSegnalazioniArchiviate() {
   fetch('php/caricaSegnalazioniArchiviate.php')
     .then(response => response.text())
     .then(data => {
+
+      if(data == "exit"){
+
+        alert("sessione scaduta!");
+  
+        logOut();
+  
+      }
+
       document.getElementById('dettagli').innerHTML = data;
     })
     .catch(error => {
@@ -519,6 +579,13 @@ function inviaSegnalazioni() {
   })
   .then(response => response.text())
   .then(result => {
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     console.log('Successo:', result);
     alert("segnalazione effettuata!!");
   })
@@ -596,6 +663,15 @@ function applicaFiltro() {
   })
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {

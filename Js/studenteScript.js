@@ -60,6 +60,10 @@ function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -166,6 +170,10 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli"
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -268,8 +276,31 @@ async function getUtenteId(){
 
 }
 
+function inviaSegnalazioni() {
+  const formData = new FormData();
+  formData.append('descrizione', segnalazione.descrizione);
+  formData.append('luogo_id', segnalazione.luogo_id);
+  formData.append('id_utente_crea', segnalazione.id_utente_crea);
+  formData.append('categoria', segnalazione.categoria);
 
-
+  fetch('php/inserisciSegnalazione.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    if(result == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
+    console.log('Successo:', result);
+    alert("segnalazione effettuata!!");
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("segnalazione NON effettuata!!");
+  });
+}
 
 document.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
