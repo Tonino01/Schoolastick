@@ -315,10 +315,38 @@ body.scrolled .bc {
     margin: 0;
     color: white;
     font-size: 24px;
-    background-color: #E16B04;
+    background-color: #d6d6d6;
     padding: 10px 20px;
     border-radius: 20px;
     align-items: center;
+}
+
+#Studente {
+    font-size: 24px;
+    color: white;
+    background-color: #ff7011;
+    
+}
+
+#Docente {
+    font-size: 24px;
+    background-color: #8408ff;
+    color: white;
+    
+}
+
+#Tecnico {
+    font-size: 24px;
+    background-color: #0f0f0f;
+    color: white;
+    
+}
+
+#Amministratore{
+    background-color: #D70505;
+    font-size: 24px;
+    color: white;
+    
 }
 
 

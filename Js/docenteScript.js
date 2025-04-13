@@ -75,6 +75,10 @@ function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -104,6 +108,10 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli"
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -356,6 +364,10 @@ function inviaSegnalazioni() {
     })
     .then(response => response.text())
     .then(result => {
+        if(result == "exit") {
+          alert("sessione scaduta!");
+          logOut();
+        }
         console.log('Successo:', result);
         alert("segnalazione effettuata!!");
         segnalazioni();

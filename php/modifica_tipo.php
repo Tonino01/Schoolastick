@@ -1,6 +1,17 @@
 <?php
 require_once("conn_db_SK.php");
 
+session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 300;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = intval($_POST["id"]);
     $tipo = $conn->real_escape_string($_POST["tipo"]);
