@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config.php';
+require_once("conn_db_SK.php");
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
