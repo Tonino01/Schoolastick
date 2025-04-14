@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!DOCTYPE html>
             <html lang="it">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-            <link rel="stylesheet" href="Css/accedi.css">
+            <link rel="stylesheet" href="../Css/accedi.css">
             <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
             <head>
                 <meta charset="UTF-8">
