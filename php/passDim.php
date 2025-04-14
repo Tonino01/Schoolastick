@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "La tua password temporanea è: $temp_password\nAccedi e cambiala subito.";
         mail($email, $subject, $message, "From: no-reply@tuodominio.com");
 
-        echo "Email inviata! Controlla la tua casella di posta.";
+        header("Location: ../cambia_password.php");
     } else {
         echo "Email non trovata!";
     }
