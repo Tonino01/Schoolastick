@@ -56,7 +56,77 @@ function pulisciContenitore(){
 }
 
 
+function caricaIconaProfilo(){
+
+  
+  let circle = document.createElement("div");
+  circle.id = "profilo"; // Assegna un ID al cerchio
+  circle.className = "circle";
+  
+
+  //prendo il nome
+
+  fetch('php/getNomeUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let nome = data;
+
+    let initial = nome.charAt(0).toUpperCase(); // Prende la prima lettera e la mette in maiuscolo
+  
+  circle.textContent = initial;
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  //prendo il tipo
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo === "Studente"){
+
+      circle.style.backgroundColor = "#ff7011";
+      
+    }else if(tipo === "Docente"){
+      circle.style.backgroundColor = "#8408ff";
+    }else if(tipo === "Tecnico"){
+      circle.style.backgroundColor = "#2C2C2C"; 
+    }else if(tipo === "Amministratore"){   
+      circle.style.backgroundColor = "#D70505";
+    }
+    else{ 
+      circle.style.backgroundColor = "#ffffff";
+    }
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
+
+    // Inserisce il cerchio nel contenitore
+    document.getElementById("IconaProfilo").appendChild(circle);
+
+    
+
+}
+
+
 function segnalazioni(){
+
+  if(document.getElementById("profilo") != null){
+    
+    document.getElementById("profilo").remove(); // Rimuovi il cerchio esistente
+
+  }else{
+    caricaIconaProfilo(); 
+  } 
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
