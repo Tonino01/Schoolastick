@@ -117,7 +117,13 @@ function caricaIconaProfilo(){
 
 function segnalazioni(){
 
-  caricaIconaProfilo();
+  if(document.getElementById("profilo") != null){
+    
+    document.getElementById("profilo").remove(); // Rimuovi il cerchio esistente
+
+  }else{
+    caricaIconaProfilo(); 
+  }
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');

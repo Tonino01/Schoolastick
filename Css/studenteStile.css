@@ -536,14 +536,25 @@ button:hover {
     text-align: center; /* Center the text */
 }
 
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .header .profile {
         position: relative;
     }
 
-    .header {
-    }
-
+   
     .logo {
         width: 100%;
     }
