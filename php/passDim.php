@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Invia email con la password temporanea
         $subject = "Recupero Password";
         $message = "La tua password temporanea è: $temp_password\nAccedi e cambiala subito.";
-        mail($email, $subject, $message, "From: no-reply@tuodominio.com");
+        mail($email, $subject, $message, "From: no-reply@schoolastick.com");
 
         echo "La mail con la password temporanea è stata inviata:";
         echo "<a href = '../cambia_password.html' >Cambia Password</a>";
