@@ -1,26 +1,36 @@
 <?php
 
+
+
+  session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 300;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
+
   require_once 'conn_db_SK.php';
 
   // Verifica se i dati necessari sono stati inviati tramite POST
-  if (isset($_POST['descrizione'], $_POST['id_utente_crea'], $_POST['luogo_id'])) {
+  if (isset($_POST['descrizione'], $_POST['id_utente_crea'], $_POST['luogo_id'], $_POST['categoria'])) {
       // Recupera i dati dal form
       $descrizione = $_POST['descrizione'];
       $data_creazione = date("Y-m-d H:i:s");
-      $report = "";
-      $stato = "Da fare";
       $id_utente_crea = $_POST['id_utente_crea'];
-      $id_utente_lavora = NULL;
-      $id_utente_completa = NULL;
       $luogo_id = $_POST['luogo_id'];
+      $categoria = $_POST['categoria'];
 
       // Prepara la query di inserimento
-      $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, report, stato, id_utente_crea, id_utente_lavora, id_utente_completa, luogo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id, categoria) VALUES (?, ?, ?, ?, ?)";
 
       // Prepara lo statement
       if ($stmt = $conn->prepare($sql)) {
           // Associa i parametri
-          $stmt->bind_param("sii", $descrizione, $id_utente_crea, $luogo_id);
+          $stmt->bind_param("ssiis", $descrizione, $data_creazione, $id_utente_crea, $luogo_id, $categoria);
 
           // Esegui lo statement
           if ($stmt->execute()) {

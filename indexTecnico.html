@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <html>
-	
+
 	<head>
 
 		<link rel="stylesheet" type="text/css" href = "Css/tecnicoStile.css">
-		<link rel="icon" type="image/x-icon" href="icone/logo_tecnico.png" onclick = "logOut()">
+		<link rel="icon" type="image/x-icon" href="icone/logo_tecnico.png" >
 		<script src = "Js/tecnicoScript.js"></script>
 
 		<title>Schoolastick-Tecnico</title>
@@ -16,30 +16,36 @@
 		<div class = "header">
 
 			<div class = "logo">
-				<img id="utenteImg" src="icone/logo_tecnico.png" onclick = "logOut()">
-				<p><span calss = "utente">Area Tecnico</span></p>
+				<img id="utenteImg" src="icone/logo_tecnico.png" onclick = "segnalazioni()">
+				<h2><a onclick="segnalazioni()" calss = "utente">Area Tecnico</a></h2>
 			</div>
-			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
+			<div id="IconaProfilo" class = "profile" onclick="mostraInfoAccount()"></div>
 
 		</div>
 
-
+		<div class="bc"><div class="bar"></div></div>
 
 		<div class = "containerSegnalazioni">
 
 
-			<button class = "buttonNuova" onclick = "nuovaSegnalazione()">
+			<button class = "buttonNuova" onclick = "nuovaSegnalazione_Sedi()">
 
-			<img src = "icone/edit_icon.png" class = "editIcon"></img>
+			<img src = "icone/edit_icon.png" class = ""></img>
 
-			Nuova</button>
+			NUOVA</button>
 
-			<h2 class = "titoloPagina"><span id = "titolo">Segnalazioni:</span></h2>
+			<h2 class = "titoloPagina"><span id = "titolo"></span></h2>
 
 			<button class = "noButton" onclick = "mostraArchivio()">
 
-				<img src = "icone/box_icon.png" class = "editIcon"></img>
-	
+				<img id = "archivioButton" src = "icone/box_icon.png" class = "editIcon"></img>
+
+			</button>
+
+			<div class="sezFiltro" id="sezioneFiltro"></div>
+
+			<button class="noButton" onclick="Filtro()">
+				<img class="ricercaButton" src="icone/ricerca-64.png"></img>
 			</button>
 
 		</div>

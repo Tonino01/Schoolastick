@@ -4,47 +4,55 @@
 
 	<head>
 
-		<link rel="stylesheet" type="text/css" href = "Css/studenteStile.css">
-		<link rel="icon" type="image/x-icon" href="icone/logo_studente.png" onclick = "logOut()">
-		<script src = "Js/studenteScript.js"></script>
+		<link rel="stylesheet" type="text/css" href="Css/studenteStile.css">
+		<link rel="icon" type="image/x-icon" href="icone/logo_studente.png" >
+		<script src="Js/studenteScript.js"></script>
 
 		<title>Schoolastick-Studente</title>
 
 	</head>
 
-	<body onload = "segnalazioni()">
-		<div class = "header">
+	<body onload="segnalazioni()">
+		<div class="header">
 
-			<div class = "logo">
-				<img id="utenteImg" src="icone/logo_studente.png" onclick = "logOut()">
-				<p><span calss = "utente">Area Studenti</span></p>
+			<div class="logo">
+				<img id="utenteImg" src="icone/logo_studente.png" onclick="segnalazioni()">
+				<h2><a onclick="segnalazioni()" class="utente">Area Studenti</a></h2>
 			</div>
-			<img src = "icone/profile_test_icon.png" class = "profile" onclick="mostraInfoAccount()">
+			<div id="IconaProfilo" class = "profile" onclick="mostraInfoAccount()"></div>
 
 		</div>
+		<div class="bc"><div class="bar"></div></div>
 
 
+		<div class="containerSegnalazioni">
 
-		<div class = "containerSegnalazioni">
+			<h2 ><span id="titolo"></span></h2>
 
-			<h2><span id = "titolo">Segnalazioni :</span></h2>
 
-			<button class = "noButton" onclick = "mostraArchivio()">
+			<div class = "sezFiltro" id = "sezioneFiltro">
 
-				<img src = "icone/box_icon.png" class = "editIcon"></img>
+				
 
+			</div>
+
+			
+
+			<button class="noButton" onclick="Filtro()">
+				<img class="ricercaButton" src="icone/ricerca-64.png"></img>
+			</button>
+
+			<button class="noButton" onclick="mostraArchivio()">
+				<img id="archivioButton" src="icone/box_icon.png" class="editIcon"></img>
 			</button>
 
 		</div>
 
-		<div id = "contenitore">
+		<div id="contenitore">
 
 
 		</div>
 
-
-
 	</body>
 
 </html>
-

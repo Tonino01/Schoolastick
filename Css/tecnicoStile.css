@@ -1,304 +1,340 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 .header {
-
-	position: relative;
-    display: flex;
-    align-items: center;
-
+  position: relative;
+  padding: 20px 20px 20px 0;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 .header .profile {
-
-	margin-left: 53%;
-
-
+  margin-left: auto;
 }
 
-*{
-
-	font-family: 'Poppins', sans-serif;
-
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #999999;
-
-
-
+  background-color: #b8b8b8;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-
 h1 {
-    font-size: 48px;
+  font-size: 36px;
+  color: #333;
+}
 
+a:hover, img:hover {
+  cursor: pointer;
 }
 
 .logo {
-
-	color: white;
-	position: relative;
-	display: flex;
-	align-items: center;
-	border-style: solid;
-	border-color: #3A3A3A;
-	background-color: #3A3A3A;
-	width: 100%;
-	max-width: 735px;
-	height: auto;
-	padding: 10px;
-	position: relative;
-	margin-top: 30px;
-	margin-bottom: 30px;
-	border-radius: 20px;
-
-
+  color: white;
+  display: flex;
+  background-image: linear-gradient(to right,#0f0f0f, #333 );
+  width: 100%;
+  max-width: 90%;
+  padding: 20px;
+  margin: 5px 5px 5px 20px;
+  border-radius: 20px;
+  align-items: center;
+  
+}
+.logo #utenteImg {
+  height: 100%;
+  align-self: center;
 }
 
-.titoloPagina {
-
-	padding-right: 170px;
-
-}
-
-.utente{
-
-	margin-left: 10px;
-	font-size: 30px;
-
+.utente {
+  margin: 0 0 0 40px;
+  font-size: 27px;
 }
 
 .containerSegnalazioni {
-    color: white;
-    border-style: solid;
-    border-color: #101010;
-    background-color: #101010;
-    height: 100px;
-    padding: 10px;
-    position: relative;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
+  color: white;
+  background-color: #404040;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+  max-width: 100%;
+  height: 50px;
+  padding: 20px 20px 20px 0;
+  display: flex;
+  align-items: center;
 }
-
-
 
 .containerSegnalazioni h2 {
-    flex-grow: 1;
-		font-size: 48px;
-    text-align: center;
-    margin: 0;
+  font-size: 36px;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 200%;
 }
 
-.buttonNuova {
-  background-color: #3A3A3A;
-  border: 2px solid #3A3A3A;
-	color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 20px;
-  margin-right: 10px;
-	margin-left: 20px;
-	height: 70px;
-	width: 10%;
-	font-size: 24px;
+.containerSegnalazioni .editIcon, .containerSegnalazioni .ricercaButton, .containerSegnalazioni .sezFiltro {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.buttonNuova:hover{
-
-	background-color: #686868;
-	border: 2px solid #686868;
-
+.containerSegnalazioni .editIcon {
+  right: 3%;
 }
 
-.noButton{
+.containerSegnalazioni .ricercaButton {
+  max-width: 48px;
+  max-height: 48px;
+  right: 7%;
+}
 
+.containerSegnalazioni .sezFiltro {
+  right: 12%;
+  align-items: center;
+  display: flex;
+}
+
+.containerSegnalazioni .sezFiltro select, .containerSegnalazioni .sezFiltro input {
+  padding: 6px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  margin: 1%;
+}
+
+.sezFiltro .XButton {
+  padding: 0px;
+  border-radius: 5px;
   background: none;
+  margin: 1%;
   border: none;
-  padding: 0;
-  margin-right: 5%;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
 }
 
-.noButton:hover{
-
-  background: none;
-  border: none;
-
+.parentContainer {
+  height: 100vh;
+  overflow: visible;
 }
-
-
 
 .segnalazioni {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Distribuisce uniformemente gli elementi */
-    align-content: space-around; /* Distribuisce uniformemente le righe */
-    width: 100%;
-    height: 100hv;
-    margin: 0;
-    padding: 20px; /* Margini interni */
-    box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.creaSegnalazione p, .segnalazione button, .buttonAula {
+  padding: 10px 20px;
+  font-size: 14px;
+  margin-bottom: 3%;
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #2C2C2C;
+  border: 2px solid #2C2C2C;
+  color: white;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.buttonAula {
+  width: 30%;
+  height: 90px;
+  font-size: larger;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.annulla {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 20%;
+  background-color: #0f0f0f;
+  border: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: 0.5s;
+  text-align: center;
+  margin: auto;
+}
+
+.annulla:hover {
+  background-color: #0f0f0f;
+  border: none;
+}
+
+.selezionaPiano .annulla {
+  margin-top: 40px;
 }
 
 .segnalazione {
-    background-color: #D9D9D9;
-    height: calc((100vh - 400px) / 2 - 20px); /* Calcola l'altezza tenendo conto dei padding e degli spazi tra le righe */
-    width: calc((100% - 80px) / 3 - 20px); /* Calcola la larghezza tenendo conto dei padding e degli spazi tra i div */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column; /* Disporre gli elementi in colonna */
-    justify-content: flex-start; /* Allineare gli elementi all'inizio */
-    align-items: center; /* Centra orizzontalmente */
-    padding-top: 10px; /* Aggiunge un po' di spazio dall'alto */
+  background-color: #ffffff;
+  height: 250px;
+  width: calc(33% - 40px);
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.5s;
+}
+
+.segnalazione h4 {
+  margin: 10px 20px;
+  padding: 0 10px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 50px);
 }
 
 .barraSegnalazione {
-    background-color: #D70505;
-    height: 7vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 27vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin: 10px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #df5900;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+  margin: 0;
 }
 
+#Nuova.barraSegnalazione {
+  background-color: #D70505;
+}
+
+#Completa.barraSegnalazione {
+  background-color: #1c8107;
+}
+
+#Archiviata.barraSegnalazione {
+  background-color: #272727;
+}
 
 .barraSegnalazione h4 {
-
-	font-size: 23px;
-	color: white;
-
+  font-size: 18px;
+  color: white;
 }
-
-
-
 
 @keyframes slide-up {
   0% {
-    transform: translateY(100%); /* Inizia fuori dalla visuale, sotto */
-    opacity: 0; /* Inizia invisibile */
+    transform: translateY(100%);
+    opacity: 0;
   }
   100% {
-    transform: translateY(0); /* Torna alla posizione originale */
-    opacity: 1; /* Diventa visibile */
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 .div-animate {
-  animation: slide-up 0.5s ease-out forwards; /* Applica l'animazione */
+  animation: slide-up 0.5s ease-out forwards;
 }
 
-
-
-
 .infoAccount {
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra verticalmente i contenuti */
+  margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 1%;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .testa {
-    position: absolute;
-    top: 20px;
-    left: 20px; /* Posiziona il titolo DOCENTE in alto a sinistra */
-    display: flex;
-    align-items: center;
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  background-color: #d6d6d6;
+  padding: 10px 20px;
+  border-radius: 20px;
+  align-items: center;
 }
 
-.testa h3 {
-    margin: 0;
-		color: white;
-    font-size: 48px;
-    border-style: solid;
-    border-color: #831E9C;
-    background-color: #831E9C;
-    width: 100%;
-    max-width: 735px;
-    height: auto;
-
-    padding-left: 50px;
-		padding-right: 50px;
-    position: relative;
-
-		border-radius: 20px;
+#Studente {
+  font-size: 24px;
+  color: white;
+  background-color: #ff7011;
+  
 }
 
-.testa img {
+#Docente {
+  font-size: 24px;
+  background-color: #8408ff;
+  color: white;
+  
+}
 
-    margin-left: 545px; /* Spazio tra titolo e immagine */
+#Tecnico {
+  font-size: 24px;
+  background-color: #0f0f0f;
+  color: white;
+  
+}
+
+#Amministratore{
+  background-color: #D70505;
+  font-size: 24px;
+  color: white;
+  
 }
 
 .infoAccount p {
-    margin: 10px 0;
-    text-align: center; /* Centra il testo dei paragrafi */
+  margin: 10px 0;
+  text-align: center;
 }
 
 .infoAccount #indietro {
-    position: absolute;
-    bottom: 20px; /* Posiziona i bottoni in basso */
-    left: 20px;  /* Posiziona i bottoni a sinistra */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
-
-
-
-
-
-
-.creaSegnalazione {
-
-    margin-top: 50px;
-
-		margin-left: auto;
-		margin-right: auto;
-
-    color: white;
-    border-style: solid;
-    border-color: #23548B;
-    background-color: #23548B;
-    height: 60vh;
-    width: 90%;
-
-    position: relative;
-    border-radius: 40px;
-    display: flex;
-		justify-content: center;
-    align-items: center;
-
+.creaSegnalazione, .creaSegnalazioni, .dettagliSegnalazioni {
+  margin: 40px auto;
+  color: white;
+  background-color: #00000065;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .selezionaPiano {
-
+  width: 80%;
   padding: 20px;
   display: flex;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -306,214 +342,112 @@ h1 {
   width: 100%;
   text-align: center;
   color: white;
-
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 20px;
 }
 
-button .buttonAula {
-  background-color: #1A1A3D;
-  color: white;
-	position: absolute;
-	bottom: 20px; /* Posiziona i bottoni in basso */
-	left: 20px;  /* Posiziona i bottoni a sinistra */
-  font-size: 18px;
-  padding: 10px 20px;
+.noButton {
+  background: none;
   border: none;
-  border-radius: 5px;
+  padding: 0;
+  margin-right: 0;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button .buttonAula:hover {
-  background-color: #333366;
-}
-
-
-
-
-
-
-button {
-
-	background-color: #2C2C2C;
-  border: 2px solid #2C2C2C;
-	color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-
-}
-
-button:hover{
-
-	background-color: #777575;
-	border: 2px solid #777575;
-
-}
-
-.buttonInCorso{
-
-  background-color: #D78605;
-  border: 2px solid #D78605;
-	color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-}
-
-.buttonCompleta{
-
-  background-color: #0A9B02;
-  border: 2px solid #0A9B02;
-	color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-right: 10px;
-	margin-left: 20px;
-
-}
-
-
-.creaSegnalazioni {
-	margin-top: 50px;
-
-	margin-left: auto;
-	margin-right: auto;
-
-	color: white;
-	border-style: solid;
-	border-color: #23548B;
-	background-color: #23548B;
-	height: 60vh;
-	width: 90%;
-
-	position: relative;
-	border-radius: 40px;
-	display: flex;
-
-}
-
-.creaSegnalazioni h4 {
-	font-size: 24px;
-  margin: 0;
-  position: absolute;
-
-}
-
-.inserimento {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: inline-flex;
   align-items: center;
-
+  justify-content: center;
 }
 
-.inserimento label {
-  display: block;
+.noButton:hover {
+  background: none;
+  border: none;
+}
 
+.containerSegnalazioni .buttonNuova {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0 0 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  width: 10%;
+  background-color: #0f0f0f;
+  border: none;
   color: white;
-}
-
-.inserimento input {
-  flex: 1;
-  margin-right: 20px;
-  padding: 50px;
-  border: 1px solid #fff;
+  text-decoration: none;
   border-radius: 10px;
-
+  transition: 0.5s;
+  text-align: center;
 }
 
-.inserimento select {
-  padding: 8px;
-  border: 1px solid #fff;
-  border-radius: 5px;
-
-
+.containerSegnalazioni .buttonNuova:hover {
+  background-color: #2c2c2c;
 }
 
-
-.dettagliSegnalazioni{
-
-	margin-top: 50px;
-
-	margin-left: auto;
-	margin-right: auto;
-
-	color: white;
-	border-style: solid;
-	border-color: #23548B;
-	background-color: #23548B;
-	height: 60vh;
-	width: 90%;
-
-	position: relative;
-	border-radius: 40px;
-	display: flex;
-	flex-direction: column;
-
+button:hover {
+  background-color: #4e4e4e;
+  border: 2px solid #4e4e4e;
+  color: #ffffff;
+  cursor: pointer;
 }
-
 
 .barraStato {
-    background-color: #D70505;
-    height: 6vh; /* Altezza dinamica in base all'altezza della viewport */
-    width: 50vw; /* Larghezza dinamica in base alla larghezza della viewport */
-    margin-left: auto;
-		margin-right: auto;
-		margin-top: 30px;
-		margin-bottom: 50px;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dettagliSegnalazioni p{
-
-	font-size: 32px;
-	margin:20px;
-	margin-left: auto;
-	margin-right: 50px;
-
-
-}
-
-
-.pulsanti {
-
+  background-color: #D70505;
+  height: 50px;
+  width: 100%;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-
+  align-items: center;
+  text-align: center;
 }
 
-.reportSection {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 20px;
+.circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.reportSection textarea {
-  width: 100%;
-  height: 200px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 16px;
-  resize: none;
+@media (max-width: 768px) {
+  .header .profile {
+    position: relative;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .containerSegnalazioni {
+    align-items: center;
+  }
+
+  .segnalazione {
+    width: 100%;
+    max-width: none;
+  }
+
+  .infoAccount, .creaSegnalazione, .creaSegnalazioni, .dettagliSegnalazioni {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .buttonAula {
+    letter-spacing: normal;
+    width: 70%;
+  }
+}
+
+.barraStato {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 
