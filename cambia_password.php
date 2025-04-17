@@ -12,19 +12,19 @@
     <div class="title"><span>Cambia Password</span></div>
 
 
-    <form id="login-form" action="php/cambia_password.php" method="POST" onsubmit="return validateForm()">
+    <form id="login-form" action="php/cambia_passwordDB.php?token=<?php echo $_GET['token']; ?>" method="POST" onsubmit="return validateForm()">
       <div class="row">   
         <i class="fas fa-user"></i>
-        <input type="password" name="password" placeholder="Vecchia Password" required />
+        <input type="password" name="password" placeholder="Nuova Password" required />
       </div>
 
       <div class="row">   
         <i class="fas fa-user"></i>
-        <input type="password" name="Npassword" placeholder="Nuova Password" required />
+        <input type="password" name="Rpassword" placeholder="Ripeti Password" required />
       </div>
 
       <div class="row button">
-        <input type="submit" value="Continua" />
+        <input type="submit" value="Cambia Password" />
       </div>
 
     </form>

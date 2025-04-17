@@ -26,18 +26,22 @@ $utenti_html = "";
 
 while ($row = $result->fetch_assoc()) {
     $initial = strtoupper(substr($row['nome'], 0, 1));
-    $tipo = htmlspecialchars($row['tipo']);
     $nome = htmlspecialchars($row['nome']);
     $id = $row['id'];
 
     
+    ?>
 
-    
-    echo "    <div class='utente'>
-        <div class='circle $tipo'>$initial</div>
-            <div class='name'>$nome        </div>
+    <div class='utente'>
+        <div id ='<?= htmlspecialchars($row["tipo"]) ?>' class='circle <?= htmlspecialchars($row["tipo"]) ?>'>   <?= htmlspecialchars($initial) ?>    </div>
+            <div class='name'><?= htmlspecialchars($nome) ?> </div>
                 <button class='button' onclick='mostraModificaUtente(".$id.")'>MODIFICA</button>
-    </div>";
+    </div>
+
+
+    <?php
+    
+    echo "    ";
 }
 
 echo $utenti_html;
