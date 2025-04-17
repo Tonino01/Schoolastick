@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -37,12 +37,12 @@ if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
 
     ?>
-    <div class='testa'>
-        <h3><span id='tipoUtente'><?= htmlspecialchars($row["tipo"]) ?></span></h3>
-        <img id='tipoUtenteImg' src='icone/profile_test_icon.png' class='profile'>
-    </div>
-    <p>Nome: <span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
+    <h3 id='<?= htmlspecialchars($row["tipo"]) ?>' class='testa'><span ><?= htmlspecialchars($row["tipo"]) ?></span></h3>
+    
+    <p>Nome: <br><span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
+
+    
 
     <label for="permesso"><h5>SELEZIONA PERMESSO:</h5></label>
     <select id="permesso" name="ruolo" method="post">
@@ -58,6 +58,7 @@ if ($result->num_rows == 1) {
 
     <button type="button" id = "indietro" class = "button" onclick="mostraUtenti()" >INDIETRO</button>
     <?php
+
 } else {
     echo "Nessun utente trovato.";
     echo "<button type='button' id = 'indietro' class = 'button' onclick='mostraUtenti()' >INDIETRO</button>";
