@@ -115,14 +115,23 @@ function caricaIconaProfilo(){
 }
 
 
-function segnalazioni(){
+function segnalazioni(vediIconaProfilo){
 
-  if(document.getElementById("profilo") != null){
+  if(vediIconaProfilo == null){
+
+    vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
+
+  }
+
+
+  if(vediIconaProfilo){
     
-    document.getElementById("profilo").remove(); // Rimuovi il cerchio esistente
+    caricaIconaProfilo(); // Carica l'icona del profilo
 
   }else{
-    caricaIconaProfilo(); 
+    
+    //non fare nulla
+
   }
 
   pulisciContenitore();
