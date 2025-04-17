@@ -103,28 +103,24 @@ function caricaIconaProfilo(){
 
 }
 
-function segnalazioni(){
-
-  if(document.getElementById("profilo") != null){
-    
-    document.getElementById("profilo").remove(); // Rimuovi il cerchio esistente
-
-  }else{
-    caricaIconaProfilo(); 
+function segnalazioni(vediIconaProfilo) {
+  if (vediIconaProfilo == null) {
+    vediIconaProfilo = false; // Se non viene passato, impostalo a false di default
   }
 
-  
+  if (vediIconaProfilo) {
+    caricaIconaProfilo(); // Carica l'icona del profilo
+  } else {
+    // Non fare nulla
+  }
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
-  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaSegnalazioni();
-
-
-
 }
 
 function caricaSegnalazioni() {
