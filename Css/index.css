@@ -92,7 +92,15 @@ header h1 {
     display: none;
 }
 
+.Vocari-box, .schoolQ-box {
+    display: none;
+}
+
 .info-box.show, .NetStrike-box.show {
+    display: block;
+}
+
+.Vocari-box.show, .schoolQ-box.show {
     display: block;
 }
 
