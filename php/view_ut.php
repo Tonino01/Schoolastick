@@ -35,7 +35,7 @@ while ($row = $result->fetch_assoc()) {
     <div class='utente'>
         <div id ='<?= htmlspecialchars($row["tipo"]) ?>' class='circle <?= htmlspecialchars($row["tipo"]) ?>'>   <?= htmlspecialchars($initial) ?>    </div>
             <div class='name'><?= htmlspecialchars($nome) ?> </div>
-                <button class='button' onclick='mostraModificaUtente(".$id.")'>MODIFICA</button>
+                <button class='button' onclick='mostraModificaUtente(<?= htmlspecialchars($id) ?>)'>MODIFICA</button>
     </div>
 
 
