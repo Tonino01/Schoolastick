@@ -771,12 +771,25 @@ function sede1() {
 
 function aggiungiSede(){
   
+  fetching('librerie/nuovaSede.html');
+  document.getElementById("titolo").innerText = "AGGIUNGI SEDE";
+
+  
+
   
 
 
+
+}
+
+function setSede(){
+
+  let sede  = document.getElementById("n_sede").value;
+
   fetch('php/aggiungiSede.php', {
-      method: 'GET',
-      
+    method: 'POST',
+    formData: sede
+    
   })
   .then(response => response.text())
   .then(data => {
@@ -787,12 +800,12 @@ function aggiungiSede(){
       logOut();
 
     }
-    document.getElementById('contenitore').innerHTML = "";
-    document.getElementById('contenitore').innerHTML = data;
+    alert("Sede aggiunta con successo!");
+    fetching('librerie/nuovaSegnalazione-Sedi.html');
+    console.log('Successo:', data);
   })
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
-
-
+  
 }

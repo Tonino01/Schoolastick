@@ -7,7 +7,7 @@ if (!isset($_SESSION['start_time'])) {
     $_SESSION['start_time'] = time();
 }
 
-$session_duration = 300;
+$session_duration = 900;
 if (time() - $_SESSION['start_time'] > $session_duration) {
     
     die("exit");
