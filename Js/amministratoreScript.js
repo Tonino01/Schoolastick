@@ -53,11 +53,90 @@ function pulisciContenitore(){
 
 }
 
+function caricaIconaProfilo(){
 
-function segnalazioni(){
+  
+  let circle = document.createElement("div");
+  circle.id = "profilo"; // Assegna un ID al cerchio
+  circle.className = "circle";
+  
+
+  //prendo il nome
+
+  fetch('php/getNomeUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let nome = data;
+
+    let initial = nome.charAt(0).toUpperCase(); // Prende la prima lettera e la mette in maiuscolo
+  
+  circle.textContent = initial;
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  //prendo il tipo
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo === "Studente"){
+
+      circle.style.backgroundColor = "#ff7011";
+      
+    }else if(tipo === "Docente"){
+      circle.style.backgroundColor = "#8408ff";
+    }else if(tipo === "Tecnico"){
+      circle.style.backgroundColor = "#2C2C2C"; 
+    }else if(tipo === "Amministratore"){   
+      circle.style.backgroundColor = "#D70505";
+    }
+    else{ 
+      circle.style.backgroundColor = "#ffffff";
+    }
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
+
+    // Inserisce il cerchio nel contenitore
+    document.getElementById("IconaProfilo").appendChild(circle);
+
+    
+
+}
+
+
+function segnalazioni(vediIconaProfilo){
+
+  if(vediIconaProfilo == null){
+
+    vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
+
+  }
+
+
+  if(vediIconaProfilo){
+    
+    caricaIconaProfilo(); // Carica l'icona del profilo
+
+  }else{
+    
+    //non fare nulla
+
+  }
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
+  
 
   document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
@@ -72,6 +151,15 @@ function caricaSegnalazioni() {
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -100,7 +188,15 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
-    // Aggiungi i dettagli nel div con id "dettagli"
+    
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -233,6 +329,14 @@ async function caricaDettagliUtente() {
   fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -258,6 +362,14 @@ function caricaUtenti() {
   fetch('php/view_ut.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -288,7 +400,17 @@ function modificaUtente(id_utente) {
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     document.getElementById('dettagli').innerHTML = data;
+
+    
 
     //imposto la selezione con il tipo dell'account
     document.getElementById('permesso').value = document.getElementById('tipoUtente').innerText;
@@ -326,6 +448,14 @@ function salvaTipoUtente(id_utente){
   })
   .then(response => response.text())
   .then(result => {
+
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     console.log('Successo:', result);
     alert("modifica effettuata!!");
     mostraUtenti();
@@ -454,9 +584,18 @@ function mostraArchivio() {
 }
 
 function caricaSegnalazioniArchiviate() {
-  fetch('php/cariaSegnalazioniArchiviate.php')
+  fetch('php/caricaSegnalazioniArchiviate.php')
     .then(response => response.text())
     .then(data => {
+
+      if(data == "exit"){
+
+        alert("sessione scaduta!");
+  
+        logOut();
+  
+      }
+
       document.getElementById('dettagli').innerHTML = data;
     })
     .catch(error => {
@@ -519,6 +658,13 @@ function inviaSegnalazioni() {
   })
   .then(response => response.text())
   .then(result => {
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     console.log('Successo:', result);
     alert("segnalazione effettuata!!");
   })
@@ -596,6 +742,15 @@ function applicaFiltro() {
   })
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {

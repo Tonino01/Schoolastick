@@ -41,25 +41,96 @@ function pulisciContenitore(){
 
 }
 
+function caricaIconaProfilo(){
 
-function segnalazioni(){
+  
+
+  let circle = document.createElement("div");
+  circle.id = "profilo"; // Assegna un ID al cerchio
+  circle.className = "circle";
+  
+
+  //prendo il nome
+
+  fetch('php/getNomeUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let nome = data;
+
+    let initial = nome.charAt(0).toUpperCase(); // Prende la prima lettera e la mette in maiuscolo
+  
+  circle.textContent = initial;
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  //prendo il tipo
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo === "Studente"){
+
+      circle.style.backgroundColor = "#ff7011";
+      
+    }else if(tipo === "Docente"){
+      circle.style.backgroundColor = "#8408ff";
+    }else if(tipo === "Tecnico"){
+      circle.style.backgroundColor = "#2C2C2C"; 
+    }else if(tipo === "Amministratore"){   
+      circle.style.backgroundColor = "#D70505";
+    }
+    else{ 
+      circle.style.backgroundColor = "#ffffff";
+    }
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
+
+    // Inserisce il cerchio nel contenitore
+    document.getElementById("IconaProfilo").appendChild(circle);
+
+    
+
+}
+
+function segnalazioni(vediIconaProfilo) {
+  if (vediIconaProfilo == null) {
+    vediIconaProfilo = false; // Se non viene passato, impostalo a false di default
+  }
+
+  if (vediIconaProfilo) {
+    caricaIconaProfilo(); // Carica l'icona del profilo
+  } else {
+    // Non fare nulla
+  }
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
-  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
   caricaSegnalazioni();
-
-
-
 }
 
 function caricaSegnalazioni() {
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -166,6 +237,10 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
+    if(data == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
     // Aggiungi i dettagli nel div con id "dettagli"
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -248,7 +323,7 @@ function mostraArchivio(){
 }
 
 function caricaSegnalazioniArchiviate() {
-  fetch('php/cariaSegnalazioniArchiviate.php') // Qui chiami il file PHP
+  fetch('php/caricaSegnalazioniArchiviate.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
@@ -268,8 +343,31 @@ async function getUtenteId(){
 
 }
 
+function inviaSegnalazioni() {
+  const formData = new FormData();
+  formData.append('descrizione', segnalazione.descrizione);
+  formData.append('luogo_id', segnalazione.luogo_id);
+  formData.append('id_utente_crea', segnalazione.id_utente_crea);
+  formData.append('categoria', segnalazione.categoria);
 
-
+  fetch('php/inserisciSegnalazione.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+    if(result == "exit") {
+      alert("sessione scaduta!");
+      logOut();
+    }
+    console.log('Successo:', result);
+    alert("segnalazione effettuata!!");
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("segnalazione NON effettuata!!");
+  });
+}
 
 document.addEventListener('scroll', function() {
     const header = document.querySelector('.header');

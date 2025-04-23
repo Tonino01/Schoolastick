@@ -262,7 +262,8 @@ body.scrolled .bc {
     display: inline-flex;
     justify-content: center; 
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 70px;
+    
     font-size: 14px;
     font-weight: bold; 
     width: 20%;
@@ -535,14 +536,25 @@ button:hover {
     text-align: center; /* Center the text */
 }
 
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .header .profile {
         position: relative;
     }
 
-    .header {
-    }
-
+   
     .logo {
         width: 100%;
     }
