@@ -588,14 +588,26 @@ button:hover {
 }
 
 .barraStato {
-  background-color: #D70505;
-  height: 50px;
-  width: 100%;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center; /* Center the text */
+    background-color: #df5900;
+    height: 50px;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#Nuova.barraStato {
+    background-color: #D70505;
+}
+
+#Completa.barraStato {
+    background-color: #1c8107;
+}
+
+#Archiviata.barraStato {
+    background-color: #272727;
 }
 
 .circle {
