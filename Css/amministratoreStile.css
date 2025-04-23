@@ -367,6 +367,7 @@ body.scrolled .bc {
     background-color: #272727;
 }
 
+
 .barraSegnalazione h4 {
     font-size: 18px;
     color: white;
@@ -438,6 +439,9 @@ body.scrolled .bc {
     color: white;
     
 }
+
+
+
 
 .infoAccount p {
     margin: 10px 0;
@@ -570,7 +574,7 @@ button:hover {
 }
 
 .barraStato {
-    background-color: #D70505;
+    background-color: #df5900;
     height: 50px;
     width: 100%;
     border-radius: 20px;
@@ -578,6 +582,18 @@ button:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+#Nuova.barraStato {
+    background-color: #D70505;
+}
+
+#Completa.barraStato {
+    background-color: #1c8107;
+}
+
+#Archiviata.barraStato {
+    background-color: #272727;
 }
 
 .reimg {
@@ -690,5 +706,24 @@ button:hover {
     color: white;
 }
 
+.buttonAggiungi{
 
+    background-color: #D70505;
+    font-size: 24px;
+    color: white;
+    border-radius: 12px;
+    padding: 0.2%;
+    padding-left: 1%;
+    padding-right: 1%;
+    border: none;
+    
+    
+    text-align: center;
+    margin-left: 10%;
 
+}
+
+.buttonAggiungi:hover{
+    background-color: #A45050;
+    border: none;
+}

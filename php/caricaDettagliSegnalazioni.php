@@ -12,7 +12,7 @@ if (!isset($_SESSION['start_time'])) {
     $_SESSION['start_time'] = time();
 }
 
-$session_duration = 300;
+$session_duration = 900;
 if (time() - $_SESSION['start_time'] > $session_duration) {
     
     die("exit");
@@ -44,7 +44,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-    echo "<div class='barraStato'>";
+    echo "<div id= '". htmlspecialchars($row["stato"]) ."' class='barraStato'>";
     echo "<h4><span id='stato'>" . htmlspecialchars($row["stato"]) . "</span></h4>";
     echo "</div>";
 

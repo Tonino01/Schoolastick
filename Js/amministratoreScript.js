@@ -768,3 +768,44 @@ function sede1() {
   pulisciContenitore();
   fetching('librerie/nuovaSegnalazione.html');
 }
+
+function aggiungiSede(){
+  
+  fetching('librerie/nuovaSede.html');
+  document.getElementById("titolo").innerText = "AGGIUNGI SEDE";
+
+  
+
+  
+
+
+
+}
+
+function setSede(){
+
+  let sede  = document.getElementById("n_sede").value;
+
+  fetch('php/aggiungiSede.php', {
+    method: 'POST',
+    formData: sede
+    
+  })
+  .then(response => response.text())
+  .then(data => {
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    alert("Sede aggiunta con successo!");
+    fetching('librerie/nuovaSegnalazione-Sedi.html');
+    console.log('Successo:', data);
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
+}
