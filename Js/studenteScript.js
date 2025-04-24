@@ -104,6 +104,26 @@ function caricaIconaProfilo(){
 }
 
 function segnalazioni(vediIconaProfilo) {
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo != "Studente"){
+
+      alert("non hai il permesso di accedere a questa pagina!!");
+
+      logOut();
+      
+    }
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+
   if (vediIconaProfilo == null) {
     vediIconaProfilo = false; // Se non viene passato, impostalo a false di default
   }
