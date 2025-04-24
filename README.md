@@ -4,8 +4,7 @@ Questa applicazione ha come scopo quello di facilitare il personale scolastico n
 
 QUESTO PROGETTO è IN FASE DI SVILUPPO:
 
-
-![Screenshot 2025-03-24 210710](https://github.com/user-attachments/assets/9d452222-e33e-4eb2-9554-61e72d1cc8ff)
+![image](https://github.com/user-attachments/assets/077bd2e4-b4a3-4cf8-92b6-f4956696bcb6)
 ![Screenshot 2025-03-24 210723](https://github.com/user-attachments/assets/2fd6d9fe-e64c-4b50-8a6b-241deacf6a8b)
 ![Screenshot 2025-03-24 210736](https://github.com/user-attachments/assets/dc726eb5-6026-4538-b5c2-587bb416ce0a)
 ![Screenshot 2025-03-24 210754](https://github.com/user-attachments/assets/b0cc349b-14dd-484b-bd86-1b738f01e9c7)
