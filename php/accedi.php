@@ -10,8 +10,18 @@ require_once("conn_db_SK.php"); // Collegamento al database
 
 // Controlla se il form è stato inviato
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'] ?? null;
-    $password = $_POST['password'] ?? null;
+
+    $codice = $_POST["codice"];
+
+    //fare a casaaa!!!
+
+
+
+
+
+
+    $email = $_SESSION["unverified_email"] ?? null;
+    $password = $_SESSION["unverified_password"] ?? null;
 
     if (!$email || !$password) {
         die("Errore: Tutti i campi sono obbligatori. <br><a href='login.html'>Torna indietro</a>");

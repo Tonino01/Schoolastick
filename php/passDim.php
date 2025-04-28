@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Invia email con il link per il reset della password
         $subject = "Recupero Password Schoolastick";
         $message = "Clicca qui per cambiare la password:\n https://schoolastick.ittvive.it/cambia_password.php?token=$token\n\n";
-        mail($email, $subject, $message, "From: no-reply@schoolastick.com");
+        mail($email, $subject, $message, "From: no-reply@schoolastick.it");
 
         echo "Segui le istruzioni inviate alla tua email per cambiare la password!<br>";
         echo "Puoi chiudere la scheda.";
@@ -41,4 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Email non trovata!";
     }
 }
+
+$stmt->close();
 ?>
