@@ -19,9 +19,9 @@ $_SESSION["unverified_password"]=$_POST["password"];
 
 
 $stmt = $conn->prepare("SELECT id FROM utenti WHERE email = ?");
-$stmt->bind_param("s", $email);
+$stmt->bind_param("si", $email, $id);
 $stmt->execute();
- $stmt->store_result();
+$stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     $stmt->bind_result($user_id);
