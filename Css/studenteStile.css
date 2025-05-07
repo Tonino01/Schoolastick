@@ -130,7 +130,7 @@ body.scrolled .bc {
     max-height: 48px;
     margin-left: 1200px;
     position: absolute;
-    right: 10%;
+    right: 7%;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -138,9 +138,40 @@ body.scrolled .bc {
 .containerSegnalazioni .sezFiltro{
 
     position: absolute;
-    right: 14%;
+    right: 12%;
     top: 50%;
     transform: translateY(-50%);
+    align-items: center;
+    display: flex;
+
+}
+
+.containerSegnalazioni .sezFiltro select{
+    padding: 6px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 1%;
+}
+
+.containerSegnalazioni .sezFiltro input{
+    padding: 6px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 1%;
+}
+
+.sezFiltro .XButton{
+    padding: 0px;
+    border-radius: 5px;
+    background: none;
+    margin: 1%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .parentContainer {
@@ -191,7 +222,7 @@ body.scrolled .bc {
 }
 
 .barraSegnalazione {
-  background-color: #D70505;
+  background-color: #df5900;
   height: 50px;
   width: 100%;
   display: flex;
@@ -206,12 +237,33 @@ body.scrolled .bc {
     color: white;
 }
 
+#Nuova.barraSegnalazione{
+
+    background-color: #D70505;
+
+}
+
+
+
+#Completa.barraSegnalazione {
+
+    background-color: #1c8107;
+
+}
+
+#Archiviata.barraSegnalazione {
+
+    background-color: #272727;
+
+}
+
 .annulla{
     cursor: pointer;
     display: inline-flex;
     justify-content: center; 
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 70px;
+    
     font-size: 14px;
     font-weight: bold; 
     width: 20%;
@@ -247,40 +299,63 @@ body.scrolled .bc {
   margin: 40px auto;
   color: white;
   background-color: #00000065;
-  padding: 10px;
+  padding: 1%;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  width:80%;
+  width:60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.testa {
-    position: relative;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-}
 
-.testa h3 {
+
+.testa {
     margin: 0;
     color: white;
     font-size: 24px;
-    background-color: #E16B04;
+    background-color: #d6d6d6;
     padding: 10px 20px;
     border-radius: 20px;
+    align-items: center;
 }
 
-.testa img {
-    margin-left: 20px;
+#Studente {
+    font-size: 24px;
+    color: white;
+    background-color: #ff7011;
+    
 }
+
+#Docente {
+    font-size: 24px;
+    background-color: #8408ff;
+    color: white;
+    
+}
+
+#Tecnico {
+    font-size: 24px;
+    background-color: #0f0f0f;
+    color: white;
+    
+}
+
+#Amministratore{
+    background-color: #D70505;
+    font-size: 24px;
+    color: white;
+    
+}
+
+
 
 .infoAccount p {
+    padding: 3%;
     margin: 10px 0;
     text-align: center;
+    font-size: 23px;
 }
 
 .infoAccount #indietro {
@@ -358,6 +433,7 @@ button .buttonAula:hover {
 .noButton:hover {
     background: none;
     border: none;
+    
 }
 
 .segnalazione button{
@@ -378,6 +454,7 @@ button:hover {
     background-color: #4e4e4e;
     border: 2px solid #4e4e4e;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .creaSegnalazioni {
@@ -449,14 +526,39 @@ button:hover {
 }
 
 .barraStato {
-    background-color: #D70505;
+    background-color: #df5900;
     height: 50px;
     width: 100%;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Center the text */
+    text-align: center;
+}
+
+#Nuova.barraStato {
+    background-color: #D70505;
+}
+
+#Completa.barraStato {
+    background-color: #1c8107;
+}
+
+#Archiviata.barraStato {
+    background-color: #272727;
+}
+
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -464,9 +566,7 @@ button:hover {
         position: relative;
     }
 
-    .header {
-    }
-
+   
     .logo {
         width: 100%;
     }

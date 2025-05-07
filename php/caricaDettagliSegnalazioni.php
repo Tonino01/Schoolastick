@@ -1,11 +1,23 @@
 <?php
 
-session_start();
+
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'conn_db_SK.php';
+
+session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 900;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
+
 
 // Verifica se l'ID è stato ricevuto nella richiesta POST
 if (!isset($_POST['id']) || empty($_POST['id'])) {
@@ -32,13 +44,13 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-    echo "<div class='barraStato'>";
+    echo "<div id= '". htmlspecialchars($row["stato"]) ."' class='barraStato'>";
     echo "<h4><span id='stato'>" . htmlspecialchars($row["stato"]) . "</span></h4>";
     echo "</div>";
 
     echo "<p>DESCRIZIONE: <span id='descrizione'>" . htmlspecialchars($row["descrizione"]) . "</span></p>";
 
-    if ($row["stato"] == 'Completa') {
+    if ($row["stato"] == 'Completa' || $row["stato"] == 'Archiviata') {
         echo "<p>REPORT: <span id='report'>" . htmlspecialchars($row["report"]) . "</span></p>";
     }
 

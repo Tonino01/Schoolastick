@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagina di accesso</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="Css/accedi.css">
+  <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>Inserisci il codice</span></div>
+    <form id="login-form" action="php/accedi.php" method="POST" onsubmit="return validateForm()">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input id = "codice" type="codice" name="codice" placeholder="codice" required />
+      </div>
+      
+    </form>
+  </div>
+  <script src="Js/accedi.js"></script>
+</body>
+</html>

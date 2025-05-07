@@ -12,14 +12,14 @@
 
 	</head>
 
-	<body onload="segnalazioni()">
+	<body onload="segnalazioni(true)">
 		<div class="header">
 
 			<div class="logo">
 				<img id="utenteImg" src="icone/logo_studente.png" onclick="segnalazioni()">
 				<h2><a onclick="segnalazioni()" class="utente">Area Studenti</a></h2>
 			</div>
-			<img src="icone/profile_test_icon.png" class="profile" onclick="mostraInfoAccount()">
+			<div id="IconaProfilo" class = "profile" onclick="mostraInfoAccount()"></div>
 
 		</div>
 		<div class="bc"><div class="bar"></div></div>
@@ -36,16 +36,14 @@
 
 			</div>
 
-			<button  class="noButton" onclick="mostraFiltro()">
+			
 
-				<img  class= "ricercaButton" src = "icone/ricerca-64.png" ></img>
-
+			<button class="noButton" onclick="Filtro()">
+				<img class="ricercaButton" src="icone/ricerca-64.png"></img>
 			</button>
 
 			<button class="noButton" onclick="mostraArchivio()">
-
-				<img id = "archivioButton" src = "icone/box_icon.png" class = "editIcon"></img>
-
+				<img id="archivioButton" src="icone/box_icon.png" class="editIcon"></img>
 			</button>
 
 		</div>

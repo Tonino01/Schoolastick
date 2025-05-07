@@ -1,11 +1,23 @@
 <?php
 
-session_start();
+
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'conn_db_SK.php';
+
+
+session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 900;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
 
 
 $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null';
@@ -31,15 +43,19 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     ?>
-    <div class='testa'>
-        <h3><span id='tipoUtente'><?= htmlspecialchars($row["tipo"]) ?></span></h3>
-        <img id='tipoUtenteImg' src='icone/profile_test_icon.png' class='profile' onclick='mostraInfoAccount()'>
-    </div>
-    <p>Nome: <span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
+    
+    <h3 id='<?= htmlspecialchars($row["tipo"]) ?>' class='testa'><span ><?= htmlspecialchars($row["tipo"]) ?></span></h3>
+    
+    <p>Nome: <br><span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
+
+    <button type="button" onclick="logOut()" class="annulla">LOG OUT</button>
+    <button type="button" onclick="segnalazioni()" class="annulla">INDIETRO</button>
     <?php
 } else {
     echo "Nessun utente trovato.";
+    echo "<button type='button' onclick='logOut()' class='annulla'>LOG OUT</button>";
+    echo "<button type='button' onclick='segnalazioni()'' class='annulla'>INDIETRO</button>";
 }
 
 $stmt->close();

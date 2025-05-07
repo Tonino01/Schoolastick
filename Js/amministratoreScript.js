@@ -53,13 +53,110 @@ function pulisciContenitore(){
 
 }
 
+function caricaIconaProfilo(){
 
-function segnalazioni(){
+  
+  let circle = document.createElement("div");
+  circle.id = "profilo"; // Assegna un ID al cerchio
+  circle.className = "circle";
+  
+
+  //prendo il nome
+
+  fetch('php/getNomeUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let nome = data;
+
+    let initial = nome.charAt(0).toUpperCase(); // Prende la prima lettera e la mette in maiuscolo
+  
+  circle.textContent = initial;
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  //prendo il tipo
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo === "Studente"){
+
+      circle.style.backgroundColor = "#ff7011";
+      
+    }else if(tipo === "Docente"){
+      circle.style.backgroundColor = "#8408ff";
+    }else if(tipo === "Tecnico"){
+      circle.style.backgroundColor = "#2C2C2C"; 
+    }else if(tipo === "Amministratore"){   
+      circle.style.backgroundColor = "#D70505";
+    }
+    else{ 
+      circle.style.backgroundColor = "#ffffff";
+    }
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
+
+    // Inserisce il cerchio nel contenitore
+    document.getElementById("IconaProfilo").appendChild(circle);
+
+    
+
+}
+
+
+function segnalazioni(vediIconaProfilo){
+
+  fetch('php/getTipoUtente.php') 
+  .then(response => response.text())
+  .then(data => {
+    
+    let tipo = data;
+
+    if(tipo != "Amministratore"){
+
+      alert("non hai il permesso di accedere a questa pagina!!");
+
+      logOut();
+      
+    }
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  if(vediIconaProfilo == null){
+
+    vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
+
+  }
+
+
+  if(vediIconaProfilo){
+    
+    caricaIconaProfilo(); // Carica l'icona del profilo
+
+  }else{
+    
+    //non fare nulla
+
+  }
 
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
+  
 
-  document.getElementById("titolo").innerText = "Segnalazioni:";
+  document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
   document.getElementById("archivioButton").src = "icone/box_icon.png";
 
@@ -72,6 +169,15 @@ function caricaSegnalazioni() {
   .then(response => response.text())
   .then(data => {
     // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -100,7 +206,15 @@ function caricaDettagliSegnalazioni(id_segnalazione) {
   })
   .then(response => response.text()) // Gestisce la risposta del server come testo
   .then(data => {
-    // Aggiungi i dettagli nel div con id "dettagli"
+    
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
     document.getElementById('dettagli').innerHTML = data;
   })
   .catch(error => {
@@ -210,7 +324,7 @@ function nuovaSegnalazione(){
 
   fetching('librerie/nuovaSegnalazione.html');
 
-  document.getElementById("titolo").innerText = "Creazione Segnalazione:"
+  document.getElementById("titolo").innerText = "CREAZIONE SEGNALAZIONE";
 
 }
 
@@ -233,6 +347,14 @@ async function caricaDettagliUtente() {
   fetch('php/caricaDettagliUtente.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     // Aggiungi i dettagli nel div con id "dettagli
     document.getElementById('dettagli').innerHTML = data;
   })
@@ -248,9 +370,147 @@ function mostraUtenti(){
 
   fetching('librerie/mostraUtenti.html');
 
-  document.getElementById("titolo").innerText = "Utenti Piattaforma:"
+  document.getElementById("titolo").innerText = "UTENTI PIATTAFORMA";
+
+  caricaUtenti();
 
 }
+
+function caricaUtenti() {
+  fetch('php/view_ut.php') // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    // Aggiungi i dettagli nel div con id "dettagli
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+
+function mostraModificaUtente(id_utente){
+
+  let id = id_utente;
+
+  pulisciContenitore();
+
+  fetching('librerie/modificaUtente.html');
+
+  document.getElementById("titolo").innerText = "MODIFICA PERMESSI UTENTE";
+
+  modificaUtente(id);
+  
+}
+
+function modificaUtente(id_utente) {
+  let id = id_utente;
+
+  fetch('php/caricaDettagliUtenteModifica.php?id=' + id) // Qui chiami il file PHP
+  .then(response => response.text())
+  .then(data => {
+    // Aggiungi i dettagli nel div con id "dettagli
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    document.getElementById('dettagli').innerHTML = data;
+
+    
+
+    //imposto la selezione con il tipo dell'account
+    document.getElementById('permesso').value = document.getElementById('tipoUtente').innerText;
+
+
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+  
+}
+
+function salvaTipoUtente(id_utente){
+
+  let id = id_utente;
+
+  let selectElement = document.getElementById('permesso');
+
+
+  let tipo = selectElement.options[selectElement.selectedIndex];
+
+
+  let tipoSelezionato = tipo.value;
+
+
+  const formData = new FormData();
+  formData.append('tipo', tipoSelezionato);
+  formData.append('id', id);
+  
+
+  fetch('php/modifica_tipo.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(result => {
+
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    console.log('Successo:', result);
+    alert("modifica effettuata!!");
+    mostraUtenti();
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("modifica NON effettuata!!");
+  });
+
+
+}
+
+function eliminaUtente( id_utente){
+
+  let id = id_utente;
+  const formData = new FormData();
+  formData.append('id', id);
+
+  fetch('php/elimina_ut.php', {
+    method: 'POST',
+    body: formData
+
+  })
+  .then(response => response.text())
+  .then(result => {
+    console.log('Successo:', result);
+    alert("eliminazione effettuata!!");
+    mostraUtenti();
+  })
+  .catch(error => {
+    console.error('Errore:', error);
+    alert("eliminazione NON effettuata!!");
+  });
+
+}
+
+
 
 //gestione selezione luogo
 
@@ -282,7 +542,7 @@ function intermedio1Button(){
 
   tempPiano = "Intermedio 1";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio1.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio1.html');
 
 }
 function piano1Button(){
@@ -296,14 +556,14 @@ function intermedio2Button(){
 
   tempPiano = "Intermedio 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - intermedio2.html');
+  fetching('librerie/nuovaSegnalazione - Intermedio2.html');
 
 }
 function piano2Button(){
 
   tempPiano = "Piano 2";
   pulisciContenitore();
-  fetching('librerie/nuovaSegnalazione - piano2.html');
+  fetching('librerie/nuovaSegnalazione - Piano2.html');
 
 }
 
@@ -327,47 +587,40 @@ function indietro(){
 }
 
 let tmp = false;
-function mostraArchivio(){
-
-  if(tmp){
-
+function mostraArchivio() {
+  if (tmp) {
     segnalazioni();
-
     tmp = false;
-
-  }else{
-
+  } else {
     pulisciContenitore();
-
     fetching('librerie/mostraArchivio.html');
-
-    document.getElementById("titolo").innerText = "Archivio Segnalazioni:";
-
+    document.getElementById("titolo").innerText = "ARCHIVIO SEGNALAZIONI";
     document.getElementById("archivioButton").src = "icone/indietro-48.png";
-
+    caricaSegnalazioniArchiviate();
     tmp = true;
-
   }
 }
 
+function caricaSegnalazioniArchiviate() {
+  fetch('php/caricaSegnalazioniArchiviate.php')
+    .then(response => response.text())
+    .then(data => {
 
+      if(data == "exit"){
 
-function salvaRuoloUtente(){
+        alert("sessione scaduta!");
+  
+        logOut();
+  
+      }
 
-  //DA FARE!!!!
-
+      document.getElementById('dettagli').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento dei dettagli:', error);
+    });
 }
 
-
-function mostraModificaUtente(){
-
-  pulisciContenitore();
-
-  fetching('librerie/modificaUtente.html');
-
-  document.getElementById("titolo").innerText = "Modifica Permessi Utente:"
-
-}
 
 async function getUtenteId() {
   const response = await fetch('php/getUtente.php', { credentials: 'include' });
@@ -423,6 +676,13 @@ function inviaSegnalazioni() {
   })
   .then(response => response.text())
   .then(result => {
+    if(result == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
     console.log('Successo:', result);
     alert("segnalazione effettuata!!");
   })
@@ -433,72 +693,137 @@ function inviaSegnalazioni() {
 }
 
 let tmpFiltro = false;
-function mostraFiltro() {
-  let input = document.createElement("input");
-  let selectStato = document.createElement("select");
-  let selectCategoria = document.createElement("select");
-  let selectSede = document.createElement("select");
+let descrizione = '';
+let stato = '';
+let categoria = '';
+let sede = '';
 
-  if (tmpFiltro) {
-    let descrizione = document.getElementById("input").value;
+function Filtro() {
+    const sezioneFiltro = document.getElementById("sezioneFiltro");
+    if (tmpFiltro) {
 
-    let selectElementStato = document.getElementById('selectStato');
-    let stato = selectElementStato.options[selectElementStato.selectedIndex].value;
-
-    let selectElementCategoria = document.getElementById('selectCategoria');
-    let categoria = selectElementCategoria.options[selectElementCategoria.selectedIndex].value;
-
-    let selectElementSede = document.getElementById('selectSede');
-    let sede = selectElementSede.options[selectElementSede.selectedIndex].value;
-
-    const formData = new FormData();
-    formData.append('descrizione', descrizione);
-    formData.append('stato', stato);
-    formData.append('categoria', categoria);
-    formData.append('sede', sede);
-
-    fetch('php/filtraSegnalazioni.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('dettagli').innerHTML = data;
-    })
-    .catch(error => {
-      console.error('Errore nel caricamento dei dettagli:', error);
-    });
-
-  } else {
-    input.type = "text";
-    input.placeholder = "Inserisci qualcosa...";
-    input.id = "input";
-
-    selectStato.id = "selectStato";
-    selectStato.options[selectStato.options.length] = new Option('Qualunque', 'Qualunque');
-    selectStato.options[selectStato.options.length] = new Option('Nuova', 'Nuova');
-    selectStato.options[selectStato.options.length] = new Option('In corso', 'In corso');
-    selectStato.options[selectStato.options.length] = new Option('Completa', 'Completa');
-
-    selectCategoria.id = "selectCategoria";
-    selectCategoria.options[selectCategoria.options.length] = new Option('Qualunque', 'Qualunque');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Riparare', 'Riparare');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Sostituire', 'Sostituire');
-    selectCategoria.options[selectCategoria.options.length] = new Option('Pulire', 'Pulire');
-
-    selectSede.id = "selectSede";
-    selectSede.options[selectSede.options.length] = new Option('Tutte', 'Tutte');
-    selectSede.options[selectSede.options.length] = new Option('ITT', 'ITT');
-    selectSede.options[selectSede.options.length] = new Option('IPSIA', 'IPSIA');
-    selectSede.options[selectSede.options.length] = new Option('ITE', 'ITE');
-
+        descrizione = document.getElementById('input').value;
+        stato = document.getElementById('selectStato').value; 
+        categoria = document.getElementById('selectCategoria').value;
+        sede = document.getElementById('selectSede').value;
+        
+        applicaFiltro();
+        
+        
+    } else {
+        sezioneFiltro.innerHTML = `
+            <button class='XButton' onclick='nascFiltro()'>
+                <img class='nascondiButton' src='icone/cancButton.png'>
+            </button>
+            <input type="text" id="input" placeholder="Inserisci qualcosa...">
+            <select id="selectStato">
+                <option>Qualunque</option>
+                <option>Nuova</option>
+                <option>In corso</option>
+                <option>Completa</option>
+            </select>
+            <select id="selectCategoria">
+                <option>Qualunque</option>
+                <option>Riparare</option>
+                <option>Sostituire</option>
+                <option>Pulire</option>
+            </select>
+            <select id="selectSede">
+                <option>Tutte</option>
+                <option>ITT</</option>
+                <option>IPSIA</option>
+                <option>ITE</option>
+            </select>
+        `;
+        tmpFiltro = !tmpFiltro;
+    }
     
+}
 
-    document.getElementById("sezioneFiltro").appendChild(input);
-    document.getElementById("sezioneFiltro").appendChild(selectStato);
-    document.getElementById("sezioneFiltro").appendChild(selectCategoria);
-    document.getElementById("sezioneFiltro").appendChild(selectSede);
+function nascFiltro() {
+    const sezioneFiltro = document.getElementById("sezioneFiltro");
+    sezioneFiltro.innerHTML = '';
+    tmpFiltro = !tmpFiltro;
+    caricaSegnalazioni();
+}
 
-    tmpFiltro = true;
-  }
+function applicaFiltro() {
+  const formData = new FormData();
+  formData.append('descrizione', descrizione);
+  formData.append('stato', stato);
+  formData.append('categoria', categoria);
+  formData.append('sede', sede);
+
+  fetch('php/filtraSegnalazioni.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+}
+
+function nuovaSegnalazione_Sedi() {
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione-Sedi.html');
+  document.getElementById("titolo").innerText = "CREA SEGNALAZIONE";
+}
+
+function sede1() {
+  pulisciContenitore();
+  fetching('librerie/nuovaSegnalazione.html');
+}
+
+function aggiungiSede(){
+  
+  fetching('librerie/nuovaSede.html');
+  document.getElementById("titolo").innerText = "AGGIUNGI SEDE";
+
+  
+
+  
+
+
+
+}
+
+function setSede(){
+
+  let sede  = document.getElementById("n_sede").value;
+
+  fetch('php/aggiungiSede.php', {
+    method: 'POST',
+    formData: sede
+    
+  })
+  .then(response => response.text())
+  .then(data => {
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    alert("Sede aggiunta con successo!");
+    fetching('librerie/nuovaSegnalazione-Sedi.html');
+    console.log('Successo:', data);
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+  
 }

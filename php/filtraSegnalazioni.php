@@ -1,11 +1,31 @@
 <?php
 require_once 'conn_db_SK.php';
 
+session_start();
+if (!isset($_SESSION['start_time'])) {
+    $_SESSION['start_time'] = time();
+}
+
+$session_duration = 900;
+if (time() - $_SESSION['start_time'] > $session_duration) {
+    
+    die("exit");
+}
+
 // Ottieni il parametro di ricerca dal POST
 $descrizione = $_POST['descrizione'];
 $stato = $_POST['stato'];
 $categoria = $_POST['categoria'];
 $sede = $_POST['sede'];
+
+
+
+$termineCercato = ($descrizione == "") ? "%" : "%" . $descrizione . "%";
+$statoCercato = ($stato == "Qualunque") ? "%" : $stato;
+$categoriaCercata = ($categoria == "Qualunque") ? "%" : $categoria;
+$sedeCercata = ($sede == "Tutte") ? "%" : $sede;
+
+
 
 // Costruisci la query in base ai parametri di ricerca
 $sql = "SELECT s.id, s.descrizione, s.stato, s.categoria FROM segnalazioni s 
@@ -13,17 +33,14 @@ $sql = "SELECT s.id, s.descrizione, s.stato, s.categoria FROM segnalazioni s
         JOIN luoghi l ON s.luogo_id = l.id
         JOIN piani p ON l.piano_id = p.id
         JOIN sedi se ON p.sede_id = se.id
-        WHERE s.descrizione LIKE ? OR l.nome LIKE ? OR p.nome LIKE ?
-        AND se.nome LIKE ? AND s.stato LIKE ? AND s.categoria LIKE ? AND s.stato != 'Archiviata'
+        WHERE (s.descrizione LIKE ? OR l.nome LIKE ? OR p.nome LIKE ?) AND se.nome LIKE ? AND s.stato LIKE ? AND s.categoria LIKE ?
+        AND s.stato != 'Archiviata'
         ";
 
 $stmt = $conn->prepare($sql);
 
 // Aggiungi i parametri di ricerca con i caratteri jolly per la ricerca parziale
-$termineCercato = "%" . $descrizione . "%";
-$statoCercato = ($stato == "Qualunque") ? "%" : $stato;
-$categoriaCercata = ($categoria == "Qualunque") ? "%" : $categoria;
-$sedeCercata = ($sede == "Tutte") ? "%" : $sede;
+
 $stmt->bind_param("ssssss", $termineCercato, $termineCercato, $termineCercato, $sedeCercata, $statoCercato, $categoriaCercata);
 
 // Esegui la query
@@ -36,8 +53,8 @@ if ($result->num_rows > 0) {
         // Stampa l'HTML con i dati della segnalazione
         echo "<div class='segnalazione'>";
 
-        echo "<div class='barraSegnalazione'>";
-        echo "<h4>[<span id = 'idSegnalazione'>" . $row["id"] . "</span>]<span id='completamento'>" . $row["stato"] . "</span></h4>";
+        echo "<div id='" . $row["stato"] ."'  class='barraSegnalazione'>";
+        echo "<h4><span id = 'idSegnalazione'></span><span id='completamento'>" . $row["stato"] . "</span></h4>";
         echo "</div>";
 
         echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
