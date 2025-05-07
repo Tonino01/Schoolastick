@@ -18,18 +18,29 @@ $_SESSION["unverified_password"]=$_POST["password"];
 
 
 
-$stmt = $conn->prepare("SELECT id FROM utenti WHERE email = ?");
-$stmt->bind_param("si", $email, $id);
+
+
+$stmt = $conn->prepare("SELECT id, autenticazione FROM utenti WHERE email = ?");
+$stmt->bind_param("s", $email);
 $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    $stmt->bind_result($user_id);
+    $stmt->bind_result($user_id, $autenticazione);
     $stmt->fetch();
 
     // Salva l'id nella sessione
+
+    if($autenticazione == 0) {
+        
+        header("Location: ../php/accedi.php?autenticazione=$autenticazione");
+
+
+        exit();
+    }
     
     $_SESSION['unverified_user_id'] = $user_id;
+    
 }else {
     ?>
                 <!DOCTYPE html>

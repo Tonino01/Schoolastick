@@ -48,6 +48,13 @@ if ($result->num_rows > 0) {
     
     <p>Nome: <br><span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
+    <br>
+    <p>stato autenticazione a 2 fattori:</p>
+    <label class="switch">
+        <input type="checkbox" id="swithcAutenticazione" onclick="cambiaAutenticazione()">
+        <span class="slider round"></span>
+    </label>
+    <br>
 
     <button type="button" onclick="logOut()" class="annulla">LOG OUT</button>
     <button type="button" onclick="segnalazioni()" class="annulla">INDIETRO</button>

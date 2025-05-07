@@ -114,8 +114,7 @@ function caricaIconaProfilo(){
 
 }
 
-
-function segnalazioni(vediIconaProfilo){
+function verificaUtente(){
 
   fetch('php/getTipoUtente.php') 
   .then(response => response.text())
@@ -140,6 +139,13 @@ function segnalazioni(vediIconaProfilo){
     vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
 
   }
+
+}
+
+
+function segnalazioni(vediIconaProfilo){
+
+  
 
 
   if(vediIconaProfilo){
@@ -825,5 +831,11 @@ function setSede(){
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
+  
+}
+
+function cambiaAutenticazione(){
+
+
   
 }
