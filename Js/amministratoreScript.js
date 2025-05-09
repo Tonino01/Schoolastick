@@ -114,8 +114,7 @@ function caricaIconaProfilo(){
 
 }
 
-
-function segnalazioni(vediIconaProfilo){
+function verificaUtente(){
 
   fetch('php/getTipoUtente.php') 
   .then(response => response.text())
@@ -140,6 +139,13 @@ function segnalazioni(vediIconaProfilo){
     vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
 
   }
+
+}
+
+
+function segnalazioni(vediIconaProfilo){
+
+  
 
 
   if(vediIconaProfilo){
@@ -825,5 +831,35 @@ function setSede(){
   .catch(error => {
     console.error('Errore nel caricamento dei dettagli:', error);
   });
+  
+}
+
+async function cambiaAutenticazione(autenticazione){
+
+  const formData = new FormData();
+
+  formData.append('autenticazione', autenticazione);
+
+  fetch('php/setAutenticazione.php', {
+    method: 'POST',
+    body: formData
+    
+  })
+  .then(response => response.text())
+  .then(data => {
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+    
+    
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
   
 }
