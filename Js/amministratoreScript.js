@@ -122,6 +122,8 @@ function verificaUtente(){
     
     let tipo = data;
 
+    
+
     if(tipo != "Amministratore"){
 
       alert("non hai il permesso di accedere a questa pagina!!");
@@ -146,7 +148,7 @@ function verificaUtente(){
 function segnalazioni(vediIconaProfilo){
 
   
-
+  verificaUtente();
 
   if(vediIconaProfilo){
     

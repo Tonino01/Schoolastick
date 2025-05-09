@@ -105,6 +105,8 @@ function caricaIconaProfilo(){
 
 function segnalazioni(vediIconaProfilo) {
 
+  verificaUtente();
+
   fetch('php/getTipoUtente.php') 
   .then(response => response.text())
   .then(data => {
