@@ -27,7 +27,7 @@ if (!$id) {
     exit;
 }
 
-$sql = "SELECT nome, email, tipo FROM utenti WHERE id = ?";
+$sql = "SELECT nome, email, tipo, autenticazione FROM utenti WHERE id = ?";
 $stmt = $conn->prepare($sql);
 
 if ($stmt === false) {
@@ -42,6 +42,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
+    $isChecked = $row['autenticazione'] == 1 ? 'checked' : ''; // Determina se il checkbox deve essere selezionato
     ?>
     
     <h3 id='<?= htmlspecialchars($row["tipo"]) ?>' class='testa'><span ><?= htmlspecialchars($row["tipo"]) ?></span></h3>
@@ -49,9 +50,9 @@ if ($result->num_rows > 0) {
     <p>Nome: <br><span id='nome'><?= htmlspecialchars($row["nome"]) ?></span></p>
     <p>E-mail: <span id='e-mail'><?= htmlspecialchars($row["email"]) ?></span></p>
     <br>
-    <p>stato autenticazione a 2 fattori:</p>
+    <p>Stato autenticazione a 2 fattori:</p>
     <label class="switch">
-        <input type="checkbox" id="swithcAutenticazione" onclick="cambiaAutenticazione()">
+        <input type="checkbox" id="swithcAutenticazione" onchange="cambiaAutenticazione('<?= htmlspecialchars($row['autenticazione']) ?>')" <?= $isChecked ?>>
         <span class="slider round"></span>
     </label>
     <br>
