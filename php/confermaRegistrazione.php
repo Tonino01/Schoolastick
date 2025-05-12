@@ -14,17 +14,17 @@ $confirm_password = $_POST['confirm-password'];
 $_SESSION["Rnome"] = $nome; 
 $_SESSION["Remail"] = $email;
 $_SESSION["Rpassword"] = $password;
-$_SESSION["Rconfirm-password"] = $confirm_password;
+
 
 
 if ($password !== $confirm_password) {
-    die("Errore: Le password non corrispondono. <br><a href='registra.html'>Torna indietro</a>");
+    die("Errore: Le password non corrispondono. <br><a href='../registra.html'>Torna indietro</a>");
 }
 
 // Controllo del dominio dell'email
 $dominioConsentito = "@iisvittorioveneto.it";
 if (!str_ends_with($email, $dominioConsentito)) {
-    die("Errore: Devi usare un'email con dominio " . $dominioConsentito . "<br><a href='registra.html'>Torna indietro</a>");
+    die("Errore: Devi usare un'email con dominio " . $dominioConsentito . "<br><a href='../registra.html'>Torna indietro</a>");
 }
 
 
@@ -36,7 +36,7 @@ $checkStmt->execute();
 $checkStmt->store_result();
 
 if ($checkStmt->num_rows > 0) {
-    die("Errore: Questa email è già registrata. <br><a href='registra.html'>Torna indietro</a>");
+    die("Errore: Questa email è già registrata. <br><a href='../registra.html'>Torna indietro</a>");
 
 
 
@@ -50,12 +50,9 @@ $scadenza = date("Y-m-d H:i:s", strtotime("+1 hour"));
 $subject = "Conferma Registrazione - Schoolastick";
 $message = "
 
-<h1>Conferma Registrazione</h1>
+CONFERMA REGISTRAZIONE CLICCANDO IL LINK SEGUENTE:
 
-<p>Ciao $nome,</p>
-<p>Grazie per esserti registrato su Schoolastick! Per completare la registrazione, clicca sul link qui sotto:</p>
-
-<a style='background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;'>CONFERMA REGISTRAZIONE</a>
+https://schoolastick.ittvive.it/php/registra.php
 
 
 ";
@@ -71,19 +68,18 @@ mail($email, $subject, $message, "From: no-reply@schoolastick.it");
 
 <!DOCTYPE html>
 <html lang="it">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="Css/accedi.css">
-    <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+    
     <head>
         <meta charset="UTF-8">
-                        
-        <title>Errore</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+        <link rel="stylesheet" href="../Css/accedi.css">
+        <link rel="icon" type="image/x-icon" href="../icone/logo_default.png" >        
+        <title>CONFERMA E-MAIL</title>
     </head>
     <body>
-        <h1>L'e-mail è stata inviata con successo</h1>
-        <br>
-        <p>puoi chiudere questa pagina o tornale al login</p>
+        <h1>L'e-mail di conferma registrazione è stata inviata con successo (puoi chiudere questa pagina)</h1>
+        
                         
-        <a href="../accedi.html">Torna al login</a>
+        
     </body>
 </html>

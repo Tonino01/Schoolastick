@@ -2,11 +2,13 @@
 
 require_once("conn_db_SK.php");
 
+session_start();
+
 // Recupero dati dal form
 $nome = $_SESSION["Rnome"];
 $email = $_SESSION["Remail"];
 $password = $_SESSION["Rpassword"];
-$confirm_password = $_SESSION["Rconfirm-password"];
+
 
 // Criptare la password prima di salvarla
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -33,5 +35,7 @@ if ($comando) {
 $checkStmt->close();
 $comando->close();
 $conn->close();
+
+ // Reindirizzamento alla pagina successiva
 
 ?>
