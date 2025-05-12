@@ -68,19 +68,18 @@ mail($email, $subject, $message, "From: no-reply@schoolastick.it");
 
 <!DOCTYPE html>
 <html lang="it">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="Css/accedi.css">
-    <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+    
     <head>
         <meta charset="UTF-8">
-                        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+        <link rel="stylesheet" href="../Css/accedi.css">
+        <link rel="icon" type="image/x-icon" href="../icone/logo_default.png" >        
         <title>CONFERMA E-MAIL</title>
     </head>
     <body>
-        <h1>L'e-mail è stata inviata con successo</h1>
-        <br>
-        <p>puoi chiudere questa pagina o tornale al login</p>
+        <h1>L'e-mail di conferma registrazione è stata inviata con successo (puoi chiudere questa pagina)</h1>
+        
                         
-        <a href="../accedi.html">Torna al login</a>
+        
     </body>
 </html>

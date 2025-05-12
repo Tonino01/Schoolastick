@@ -126,9 +126,10 @@ function verificaUtente(){
 
     if(tipo != "Amministratore"){
 
-      alert("non hai il permesso di accedere a questa pagina!!");
+      
 
       logOut();
+      
       
     }
   })
@@ -136,11 +137,7 @@ function verificaUtente(){
     console.error('Errore nel caricamento dei dettagli:', error);
   });
 
-  if(vediIconaProfilo == null){
-
-    vediIconaProfilo = false; // Se non viene passato, impostalo a true di default
-
-  }
+  
 
 }
 

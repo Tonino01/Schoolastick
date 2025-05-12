@@ -2,6 +2,8 @@
 
 require_once("conn_db_SK.php");
 
+session_start();
+
 // Recupero dati dal form
 $nome = $_SESSION["Rnome"];
 $email = $_SESSION["Remail"];
