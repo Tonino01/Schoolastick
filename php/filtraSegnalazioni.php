@@ -28,14 +28,16 @@ $sedeCercata = ($sede == "Tutte") ? "%" : $sede;
 
 
 // Costruisci la query in base ai parametri di ricerca
-$sql = "SELECT s.id, s.descrizione, s.stato, s.categoria FROM segnalazioni s 
-        JOIN utenti u ON s.id_utente_crea = u.id
-        JOIN luoghi l ON s.luogo_id = l.id
-        JOIN piani p ON l.piano_id = p.id
-        JOIN sedi se ON p.sede_id = se.id
-        WHERE (s.descrizione LIKE ? OR l.nome LIKE ? OR p.nome LIKE ?) AND se.nome LIKE ? AND s.stato LIKE ? AND s.categoria LIKE ?
+$sql = "SELECT s.id AS id, s.stato AS stato, s.descrizione AS descrizione, S.nome AS sede, p.nome AS piano, l.nome AS luogo
+        FROM segnalazioni s JOIN luoghi l
+        ON s.luogo_id = l.id JOIN piani p 
+        ON l.piano_id = p.id JOIN sedi S 
+        ON p.sede_id = S.id 
+        WHERE (s.descrizione LIKE ? OR l.nome LIKE ? OR p.nome LIKE ?) AND S.nome LIKE ? AND s.stato LIKE ? AND s.categoria LIKE ?
         AND s.stato != 'Archiviata'
         ";
+
+
 
 $stmt = $conn->prepare($sql);
 
@@ -48,8 +50,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
+
     // Ciclo su ogni segnalazione per generare l'HTML
     while($row = $result->fetch_assoc()) {
+
         // Stampa l'HTML con i dati della segnalazione
         echo "<div class='segnalazione'>";
 
@@ -58,7 +62,10 @@ if ($result->num_rows > 0) {
         echo "</div>";
 
         echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
-        echo "<h4>Categoria:<br><span id='categoria'>" . $row["categoria"] . "</span></h4>";
+
+        echo "<h4>Posizione:<br><span id='posizione'>" . $row["sede"]." - ".  $row["piano"] ." - ".$row["luogo"]. "</span></h4>";
+
+        
 
         // Aggiungi un bottone per i dettagli, passando l'id della segnalazione
         echo "<button type='button' onclick='dettagliSegnalazione(" . $row["id"] . ")' class='defaultButton'>Dettagli..</button>";

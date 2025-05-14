@@ -29,11 +29,6 @@ if ($result->num_rows > 0) {
     // Ciclo su ogni segnalazione per generare l'HTML
     while($row = $result->fetch_assoc()) {
 
-
-        
-
-
-
         // Stampa l'HTML con i dati della segnalazione
         echo "<div class='segnalazione'>";
 

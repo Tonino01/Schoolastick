@@ -14,12 +14,10 @@ if (time() - $_SESSION['start_time'] > $session_duration) {
     die("exit");
 }
 
-$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+
 
 $sql = "SELECT * FROM utenti";
-if (!empty($search)) {
-    $sql .= " WHERE nome LIKE '%$search%' OR email LIKE '%$search%'";
-}
+
 
 $result = $conn->query($sql);
 $utenti_html = "";
