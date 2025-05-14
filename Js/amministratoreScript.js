@@ -160,6 +160,7 @@ function segnalazioni(vediIconaProfilo){
   pulisciContenitore();
   fetching('librerie/mostraSegnalazioni.html');
   
+  utenti = false;
 
   document.getElementById("titolo").innerText = "SEGNALAZIONI";
 
@@ -170,6 +171,8 @@ function segnalazioni(vediIconaProfilo){
 }
 
 function caricaSegnalazioni() {
+
+
   fetch('php/caricaSegnalazioniDB.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -380,8 +383,11 @@ function mostraUtenti(){
   caricaUtenti();
 
 }
-
+let utenti = false;
 function caricaUtenti() {
+
+  utenti = true;
+
   fetch('php/view_ut.php') // Qui chiami il file PHP
   .then(response => response.text())
   .then(data => {
@@ -697,13 +703,93 @@ function inviaSegnalazioni() {
   });
 }
 
+
 let tmpFiltro = false;
+
+
+function filtro(){
+
+  if(utenti){
+
+    filtroUtenti();
+
+  }else{
+
+    filtroSegnalazioni();
+  }
+
+
+}
+
+function filtroUtenti() {
+
+  const sezioneFiltro = document.getElementById("sezioneFiltro");
+  if (tmpFiltro) {
+    const nome = document.getElementById('input').value;
+    const tipo = document.getElementById('selectTipo').value; 
+    
+    applicaFiltroUtenti(nome, tipo);
+  } else {
+    sezioneFiltro.innerHTML = `
+        <button class='XButton' onclick='nascFiltro()'>
+            <img class='nascondiButton' src='icone/cancButton.png'>
+        </button>
+        <input type="text" id="input" placeholder="Inserisci il nome...">
+        <select id="selectTipo">
+            <option>Tutti</option>
+            <option>Studente</option>
+            <option>Docente</option>
+            <option>Tecnico</option>
+            <option>Amministratore</option>
+        </select>
+    `;
+    tmpFiltro = !tmpFiltro;
+  }
+
+}
+
+function applicaFiltroUtenti(nome, tipo) {
+  const formData = new FormData();
+  formData.append('nome', nome);
+  formData.append('tipo', tipo);
+  
+
+  fetch('php/filtraUtenti.php', {
+      method: 'POST',
+      body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+
+    if(data == "exit"){
+
+      alert("sessione scaduta!");
+
+      logOut();
+
+    }
+
+    document.getElementById('dettagli').innerHTML = data;
+  })
+  .catch(error => {
+    console.error('Errore nel caricamento dei dettagli:', error);
+  });
+
+
+
+}
+
+
+
+
+
+
 let descrizione = '';
 let stato = '';
 let categoria = '';
 let sede = '';
 
-function Filtro() {
+function filtroSegnalazioni() {
     const sezioneFiltro = document.getElementById("sezioneFiltro");
     if (tmpFiltro) {
 
@@ -712,7 +798,7 @@ function Filtro() {
         categoria = document.getElementById('selectCategoria').value;
         sede = document.getElementById('selectSede').value;
         
-        applicaFiltro();
+        applicaFiltroSegnalazioni();
         
         
     } else {
@@ -746,13 +832,23 @@ function Filtro() {
 }
 
 function nascFiltro() {
+
+  if(utenti){
+    const sezioneFiltro = document.getElementById("sezioneFiltro");
+    sezioneFiltro.innerHTML = '';
+    tmpFiltro = !tmpFiltro;
+    mostraUtenti();
+
+  }else{
+
     const sezioneFiltro = document.getElementById("sezioneFiltro");
     sezioneFiltro.innerHTML = '';
     tmpFiltro = !tmpFiltro;
     caricaSegnalazioni();
+  }
 }
 
-function applicaFiltro() {
+function applicaFiltroSegnalazioni() {
   const formData = new FormData();
   formData.append('descrizione', descrizione);
   formData.append('stato', stato);
