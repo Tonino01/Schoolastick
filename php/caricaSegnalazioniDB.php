@@ -16,12 +16,24 @@ if (time() - $_SESSION['start_time'] > $session_duration) {
 
 
 // Esegui la query per ottenere le segnalazioni
-$sql = "SELECT * FROM segnalazioni WHERE stato != 'Archiviata'";
+$sql = "SELECT s.id AS id, s.stato AS stato, s.descrizione AS descrizione, S.nome AS sede, p.nome AS piano, l.nome AS luogo
+        FROM segnalazioni s JOIN luoghi l
+        ON s.luogo_id = l.id JOIN piani p 
+        ON l.piano_id = p.id JOIN sedi S 
+        ON p.sede_id = S.id 
+        WHERE s.stato != 'Archiviata'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+
     // Ciclo su ogni segnalazione per generare l'HTML
     while($row = $result->fetch_assoc()) {
+
+
+        
+
+
+
         // Stampa l'HTML con i dati della segnalazione
         echo "<div class='segnalazione'>";
 
@@ -30,7 +42,10 @@ if ($result->num_rows > 0) {
         echo "</div>";
 
         echo "<h4>Descrizione:<br> <span id='descrizione'>" . $row["descrizione"] . "</span></h4>";
-        echo "<h4>Categoria:<br><span id='categoria'>" . $row["categoria"] . "</span></h4>";
+
+        echo "<h4>Posizione:<br><span id='posizione'>" . $row["sede"]." - ".  $row["piano"] ." - ".$row["luogo"]. "</span></h4>";
+
+        
 
         // Aggiungi un bottone per i dettagli, passando l'id della segnalazione
         echo "<button type='button' onclick='dettagliSegnalazione(" . $row["id"] . ")' class='defaultButton'>Dettagli..</button>";
