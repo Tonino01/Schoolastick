@@ -493,6 +493,12 @@ async function getLuogoId(aula) {
 async function creaNuovaSegnalazione() {
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
+  // Controllo descrizione vuota
+  if (segnalazione.descrizione == null || segnalazione.descrizione == "") {
+    alert("Inserire una descrizione valida");
+    return;
+  }
+
   let selectElement = document.getElementById('categoria');
   let categoria = selectElement.options[selectElement.selectedIndex];
   segnalazione.categoria = categoria.value;
