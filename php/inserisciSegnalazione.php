@@ -17,12 +17,16 @@ if (time() - $_SESSION['start_time'] > $session_duration) {
 
   // Verifica se i dati necessari sono stati inviati tramite POST
   if (isset($_POST['descrizione'], $_POST['id_utente_crea'], $_POST['luogo_id'], $_POST['categoria'])) {
+
+
       // Recupera i dati dal form
       $descrizione = $_POST['descrizione'];
       $data_creazione = date("Y-m-d H:i:s");
       $id_utente_crea = $_POST['id_utente_crea'];
       $luogo_id = $_POST['luogo_id'];
       $categoria = $_POST['categoria'];
+
+      
 
       // Prepara la query di inserimento
       $sql = "INSERT INTO segnalazioni (descrizione, data_creazione, id_utente_crea, luogo_id, categoria) VALUES (?, ?, ?, ?, ?)";

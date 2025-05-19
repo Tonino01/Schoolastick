@@ -662,15 +662,32 @@ async function getLuogoId(aula) {
 async function creaNuovaSegnalazione() {
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
+  if (segnalazione.descrizione == null || segnalazione.descrizione == "") {
+    alert("Inserire una descrizione valida");
+    exit();
+  }
+
   let selectElement = document.getElementById('categoria');
   let categoria = selectElement.options[selectElement.selectedIndex];
+
+  
+
+  let aula = tempAula;
+
+  alert(aula);
+
   segnalazione.categoria = categoria.value;
 
-  segnalazione.luogo_id = await getLuogoId(tempAula);
+  segnalazione.luogo_id = await getLuogoId(aula);
+  
+  
+
   segnalazione.stato = "Da fare";
   segnalazione.id_utente_crea = await getUtenteId();
 
   inviaSegnalazioni();
+
+  
   segnalazioni();
 }
 
