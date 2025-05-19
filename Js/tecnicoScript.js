@@ -470,9 +470,9 @@ async function getUtenteId() {
   return userId !== 'null' ? userId : null;
 }
 
-async function getLuogoId(aula) {
+async function getLuogoId(nome) {
   const formData = new FormData();
-  formData.append('aula', aula);
+  formData.append('nome', nome);
 
   try {
     const response = await fetch('php/getLuogo.php', {

@@ -639,9 +639,9 @@ async function getUtenteId() {
   return userId !== 'null' ? userId : null;
 }
 
-async function getLuogoId(aula) {
+async function getLuogoId(nome) {
   const formData = new FormData();
-  formData.append('aula', aula);
+  formData.append('nome', nome);
 
   try {
     const response = await fetch('php/getLuogo.php', {
@@ -672,13 +672,14 @@ async function creaNuovaSegnalazione() {
 
   
 
-  let aula = tempAula;
 
-  alert(aula);
+  
 
   segnalazione.categoria = categoria.value;
 
-  segnalazione.luogo_id = await getLuogoId(aula);
+  segnalazione.luogo_id = await getLuogoId(tempAula);
+
+  alert("Luogo ID: " + segnalazione.luogo_id);
   
   
 
