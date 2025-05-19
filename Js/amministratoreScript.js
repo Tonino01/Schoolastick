@@ -679,7 +679,9 @@ async function creaNuovaSegnalazione() {
 
   segnalazione.luogo_id = await getLuogoId(tempAula);
 
-  alert("Luogo ID: " + segnalazione.luogo_id);
+
+
+  
   
   
 
@@ -713,11 +715,11 @@ function inviaSegnalazioni() {
 
     }
     console.log('Successo:', result);
-    alert("segnalazione effettuata!!");
+    alert(result);
   })
   .catch(error => {
     console.error('Errore:', error);
-    alert("segnalazione NON effettuata!!");
+    alert(result);
   });
 }
 
