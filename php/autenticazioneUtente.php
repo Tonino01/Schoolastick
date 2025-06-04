@@ -40,14 +40,33 @@ if ($stmt->num_rows > 0) {
     }
     
     $_SESSION['unverified_user_id'] = $user_id;
+
+    
+    $codice = mt_rand(10000, 99999);
+    $scadenza = date("Y-m-d H:i:s", strtotime("+1 hour"));
+
+    // Salva il codice e la scadenza nel database
+    $stmt = $conn->prepare("INSERT INTO autenticazione_utente (codice, scadenza, unverified_user_id) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $codice, $scadenza, $user_id);
+    $stmt->execute();
+
+    $subject = "Autenticazione Utente di Schoolastick";
+    $message = "Inserisci il codice qui sotto nella pagina di autenticazione:\n$codice\n";
+    mail($email, $subject, $message, "From: no-reply@schoolastick.it");
+
+    header("Location: ../verificaUtente.html");
+
+
+
+    $stmt->close();
     
 }else {
     ?>
                 <!DOCTYPE html>
                     <html lang="it">
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-                    <link rel="stylesheet" href="Css/accedi.css">
-                    <link rel="icon" type="image/x-icon" href="icone/logo_default.png" >
+                    <link rel="stylesheet" href="../Css/accedi.css">
+                    <link rel="icon" type="image/x-icon" href="../icone/logo_default.png" >
                     <head>
                         <meta charset="UTF-8">
                         
@@ -55,33 +74,15 @@ if ($stmt->num_rows > 0) {
                     </head>
                     <body>
                         <h1>UTENTE INESISTENTE</h1>
+                        <br>
                         
-                        <a href="../accedi.html">Torna al login</a>
+                        <div class="signup-link">Riprova ad accedere <a href="../accedi.html">Registarti</a></div>
                     </body>
                     </html>
                 <?php
+    exit();
 }
 
-
-
-
-$codice = mt_rand(10000, 99999);
-$scadenza = date("Y-m-d H:i:s", strtotime("+1 hour"));
-
-// Salva il codice e la scadenza nel database
-$stmt = $conn->prepare("INSERT INTO autenticazione_utente (codice, scadenza, unverified_user_id) VALUES (?, ?, ?)");
-$stmt->bind_param("ssi", $codice, $scadenza, $user_id);
-$stmt->execute();
-
-$subject = "Autenticazione Utente di Schoolastick";
-$message = "Inserisci il codice qui sotto nella pagina di autenticazione:\n$codice\n";
-mail($email, $subject, $message, "From: no-reply@schoolastick.it");
-
-header("Location: ../verificaUtente.html");
-
-
-
-$stmt->close();
 
 
 ?>

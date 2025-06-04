@@ -388,9 +388,9 @@ async function getUtenteId(){
 
 
 
-async function getLuogoId(aula) {
+async function getLuogoId(nome) {
     const formData = new FormData();
-    formData.append('aula', aula);
+    formData.append('nome', nome);
 
     try {
         const response = await fetch('php/getLuogo.php', {
@@ -412,28 +412,23 @@ async function creaNuovaSegnalazione() {
 
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
+  // Controllo descrizione vuota
+  if (segnalazione.descrizione == null || segnalazione.descrizione == "") {
+    alert("Inserire una descrizione valida");
+    return;
+  }
+
   let selectElement = document.getElementById('categoria');
-
-
   let categoria = selectElement.options[selectElement.selectedIndex];
-
-
   segnalazione.categoria = categoria.value;
 
-
   segnalazione.luogo_id = await getLuogoId(tempAula);
-
   segnalazione.stato = "Da fare";
-
   segnalazione.id_utente_crea = await getUtenteId();
-
-
 
   inviaSegnalazioni();
 
-
-
-  
+  segnalazioni();
 }
 
 document.addEventListener('scroll', function() {

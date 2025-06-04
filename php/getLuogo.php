@@ -3,11 +3,13 @@
 require_once 'conn_db_SK.php';
 
 // Ottieni il nome dell'aula dal POST
-$aula = $_POST['aula'];
+$nome = $_POST['nome'];
+
+
 
 // Prepara e esegui la query
 $sql = $conn->prepare("SELECT id FROM luoghi WHERE nome = ?");
-$sql->bind_param("s", $aula);
+$sql->bind_param("s", $nome);
 $sql->execute();
 $sql->bind_result($id);
 $sql->fetch();
@@ -16,7 +18,8 @@ $sql->fetch();
 if ($id) {
     echo $id;
 } else {
-    echo "Nessun risultato trovato";
+    echo null;
+    
 }
 
 // Chiudi la connessione

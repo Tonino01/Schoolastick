@@ -639,9 +639,9 @@ async function getUtenteId() {
   return userId !== 'null' ? userId : null;
 }
 
-async function getLuogoId(aula) {
+async function getLuogoId(nome) {
   const formData = new FormData();
-  formData.append('aula', aula);
+  formData.append('nome', nome);
 
   try {
     const response = await fetch('php/getLuogo.php', {
@@ -662,15 +662,35 @@ async function getLuogoId(aula) {
 async function creaNuovaSegnalazione() {
   segnalazione.descrizione = document.getElementById("descrizione").value;
 
+  if (segnalazione.descrizione == null || segnalazione.descrizione == "") {
+    alert("Inserire una descrizione valida");
+    exit();
+  }
+
   let selectElement = document.getElementById('categoria');
   let categoria = selectElement.options[selectElement.selectedIndex];
+
+  
+
+
+  
+
   segnalazione.categoria = categoria.value;
 
   segnalazione.luogo_id = await getLuogoId(tempAula);
+
+
+
+  
+  
+  
+
   segnalazione.stato = "Da fare";
   segnalazione.id_utente_crea = await getUtenteId();
 
   inviaSegnalazioni();
+
+  
   segnalazioni();
 }
 
@@ -695,11 +715,11 @@ function inviaSegnalazioni() {
 
     }
     console.log('Successo:', result);
-    alert("segnalazione effettuata!!");
+    alert(result);
   })
   .catch(error => {
     console.error('Errore:', error);
-    alert("segnalazione NON effettuata!!");
+    alert(result);
   });
 }
 
