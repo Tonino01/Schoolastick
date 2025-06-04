@@ -178,6 +178,9 @@ body.scrolled .bc {
   padding: 20px 20px 20px 0;
   display: flex;
   align-items: center; 
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+
+
 }
 
 .containerSegnalazioni h2 {
@@ -634,6 +637,7 @@ button:hover {
 
   .containerSegnalazioni {
       align-items: center;
+      
   }
 
   .segnalazione {

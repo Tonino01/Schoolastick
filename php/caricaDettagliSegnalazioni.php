@@ -44,22 +44,24 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
-    echo "<div id= '". htmlspecialchars($row["stato"]) ."' class='barraStato'>";
-    echo "<h4><span id='stato'>" . htmlspecialchars($row["stato"]) . "</span></h4>";
+    echo "<div id= '". $row["stato"] ."' class='barraStato'>";
+    echo "<h4><span id='stato'>" . $row["stato"] . "</span></h4>";
     echo "</div>";
 
-    echo "<p>DESCRIZIONE: <span id='descrizione'>" . htmlspecialchars($row["descrizione"]) . "</span></p>";
+    echo "<p>DESCRIZIONE: <span id='descrizione'>" . $row["descrizione"] . "</span></p>";
 
     if ($row["stato"] == 'Completa' || $row["stato"] == 'Archiviata') {
-        echo "<p>REPORT: <span id='report'>" . htmlspecialchars($row["report"]) . "</span></p>";
+        echo "<p>REPORT: <span id='report'>" . $row["report"] . "</span></p>";
     }
 
-    echo "<p>DATA CREAZIONE: <span id='data_creazione'>" . htmlspecialchars($row["data_creazione"]) . "</span></p>";
-    echo "<p>CREATA DA: <span id='id_utente_crea'>" . htmlspecialchars($row["nome_utente"]) . "</span></p>";
-    echo "<p>CATEGORIA: <span id='categoria'>" . htmlspecialchars($row["categoria"]) . "</span></p>";
-    echo "<p>SEDE: <span id='sede'>" . htmlspecialchars($row["nome_sede"]) . "</span></p>";
-    echo "<p>PIANO: <span id='piano'>" . htmlspecialchars($row["nome_piano"]) . "</span></p>";
-    echo "<p>LUOGO: <span id='luogo'>" . htmlspecialchars($row["nome_luogo"]) . "</span></p>";
+    echo "<p>DATA CREAZIONE: <span id='data_creazione'>" . $row["data_creazione"] . "</span></p>";
+    echo "<p>CREATA DA: <span id='id_utente_crea'>" . 
+    (!empty($row["nome_utente"]) ? $row["nome_utente"] : "Sconosciuto") . 
+    "</span></p>";
+    echo "<p>CATEGORIA: <span id='categoria'>" . $row["categoria"] . "</span></p>";
+    echo "<p>SEDE: <span id='sede'>" . $row["nome_sede"] . "</span></p>";
+    echo "<p>PIANO: <span id='piano'>" . $row["nome_piano"] . "</span></p>";
+    echo "<p>LUOGO: <span id='luogo'>" . $row["nome_luogo"] . "</span></p>";
 
     echo "<div class='pulsanti'>";
     echo "<button type='button' onclick='segnalazioni()' class='annulla'>INDIETRO</button>";
